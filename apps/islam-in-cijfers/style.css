@@ -1,0 +1,400 @@
+/* ========================================================
+   Islam in Cijfers — Infographic Scroll-ervaring
+   Licht, strak en modern thema met sectie-accenten
+   ======================================================== */
+
+/* --- Design tokens --- */
+:root {
+    --bg:         #f5f5f0;
+    --surface:    #ffffff;
+    --text:       #1a1a1a;
+    --text-muted: #666666;
+    --border:     #e8e5de;
+    --shadow-sm:  0 1px 3px rgba(0,0,0,.05);
+    --shadow-md:  0 4px 20px rgba(0,0,0,.07);
+    --shadow-lg:  0 12px 40px rgba(0,0,0,.10);
+    --radius:     20px;
+    --radius-sm:  14px;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Section accents */
+    --emerald:    #059669;
+    --emerald-bg: #ecfdf5;
+    --blue:       #2563eb;
+    --blue-bg:    #eff6ff;
+    --amber:      #d97706;
+    --amber-bg:   #fffbeb;
+    --rose:       #e11d48;
+    --rose-bg:    #fff1f2;
+    --violet:     #7c3aed;
+    --violet-bg:  #f5f3ff;
+    --teal:       #0d9488;
+    --teal-bg:    #f0fdfa;
+    --indigo:     #4f46e5;
+    --indigo-bg:  #eef2ff;
+    --gold:       #b8963e;
+    --gold-bg:    #fdf8ee;
+}
+
+/* --- Reset & base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- App shell --- */
+.app-shell {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.25rem 3rem;
+}
+
+/* --- Header --- */
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 0 .5rem;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: box-shadow .2s, transform .2s;
+    flex-shrink: 0;
+}
+.back-link:hover {
+    box-shadow: var(--shadow-md);
+    transform: scale(1.05);
+}
+
+.header-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 4.5vw, 2rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+}
+
+.header-subtitle {
+    font-size: .85rem;
+    color: var(--text-muted);
+    margin-top: .1rem;
+}
+
+/* --- Hero --- */
+.hero {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero-big-number {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 14vw, 7rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: .25rem;
+}
+
+.hero-label {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.scroll-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-top: 2rem;
+    font-size: .82rem;
+    color: var(--text-muted);
+}
+
+.scroll-hint-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--border);
+    font-size: .85rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+}
+
+/* --- Section (infosection) --- */
+.infosection {
+    margin-bottom: 2rem;
+    opacity: .35;
+    transform: translateY(12px);
+    transition: opacity .5s ease, transform .5s ease;
+}
+
+.infosection.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section header */
+.section-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: .4rem;
+}
+
+.section-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+}
+
+.section-intro {
+    font-size: .9rem;
+    color: var(--text-muted);
+    margin-top: .2rem;
+}
+
+/* --- Stats grid --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.stats-grid.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* --- Stat card --- */
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .3s, transform .3s, border-color .3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--border);
+    transition: background .3s;
+}
+
+.stat-card.counted::before {
+    background: var(--section-accent, var(--text-muted));
+}
+
+.stat-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.stat-card-wide {
+    grid-column: 1 / -1;
+}
+
+/* Stat number */
+.stat-number {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: .4rem;
+    min-height: 1.2em;
+}
+
+.stat-suffix {
+    font-family: var(--font-body);
+    font-size: .55em;
+    font-weight: 500;
+    color: var(--text-muted);
+    vertical-align: baseline;
+}
+
+/* Stat label */
+.stat-label {
+    font-size: .8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Progress bar */
+.progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    margin-top: .75rem;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 3px;
+    background: var(--section-accent, var(--text-muted));
+    transition: width 1.5s cubic-bezier(.22, 1, .36, 1);
+}
+
+.progress-fill.animate {
+    /* width set by JS */
+}
+
+/* --- Section accent colors --- */
+[data-accent="emerald"] { --section-accent: var(--emerald); --section-bg: var(--emerald-bg); }
+[data-accent="blue"]    { --section-accent: var(--blue);    --section-bg: var(--blue-bg);    }
+[data-accent="amber"]   { --section-accent: var(--amber);   --section-bg: var(--amber-bg);   }
+[data-accent="rose"]    { --section-accent: var(--rose);     --section-bg: var(--rose-bg);    }
+[data-accent="violet"]  { --section-accent: var(--violet);   --section-bg: var(--violet-bg);  }
+[data-accent="teal"]    { --section-accent: var(--teal);     --section-bg: var(--teal-bg);    }
+[data-accent="indigo"]  { --section-accent: var(--indigo);   --section-bg: var(--indigo-bg);  }
+[data-accent="gold"]    { --section-accent: var(--gold);     --section-bg: var(--gold-bg);    }
+
+/* Apply accent to stat numbers when counted */
+.stat-card.counted .stat-number {
+    color: var(--section-accent, var(--text));
+}
+
+/* Section detail */
+.section-detail {
+    background: var(--section-bg, var(--surface));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.15rem 1.25rem;
+    font-size: .88rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+/* Timeline variant */
+.stat-card-timeline .stat-number {
+    font-size: clamp(1.6rem, 4vw, 2rem);
+}
+
+.stat-card-timeline .stat-label {
+    font-size: .78rem;
+    line-height: 1.5;
+}
+
+/* --- Outro --- */
+.outro {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    margin-top: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.outro-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: .75rem;
+}
+
+.outro-body {
+    font-size: .93rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 540px;
+    margin: 0 auto 1.5rem;
+}
+
+.outro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .6rem 1.4rem;
+    border-radius: 50px;
+    background: var(--text);
+    color: #fff;
+    text-decoration: none;
+    font-size: .88rem;
+    font-weight: 500;
+    transition: background .2s, transform .2s;
+}
+.outro-link:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+    .app-shell { padding: 0 .85rem 2rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+    .stats-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .stat-card { padding: 1.15rem .9rem; }
+    .stat-number { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+    .hero-big-number { font-size: clamp(3.5rem, 16vw, 5rem); }
+}
+
+@media (min-width: 700px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+    .stats-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+    .infosection { opacity: 1; transform: none; }
+}
+
+*:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+}
