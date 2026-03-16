@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1000 500" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <style>
+      .land { fill: #e8e3da; stroke: #d1ccc3; stroke-width: 0.5; transition: fill 0.6s ease; }
+      .land.active { fill: #c8ddd0; }
+      .water { fill: #dce8f0; }
+      .marker { opacity: 0; transition: opacity 0.5s ease; }
+      .marker.visible { opacity: 1; }
+      .marker-dot { fill: #1a6b4a; }
+      .marker-ring { fill: none; stroke: #1a6b4a; stroke-width: 1.5; }
+      @keyframes pulse { 0%,100%{ r:6; opacity:.4 } 50%{ r:10; opacity:0 } }
+      .marker-pulse { fill: #1a6b4a; animation: pulse 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <!-- Water background -->
+  <rect class="water" x="0" y="0" width="1000" height="600"/>
+
+  <!-- === LANDMASSES (simplified polygons) === -->
+
+  <!-- EUROPE -->
+  <!-- Iberian Peninsula (Spain/Portugal) -->
+  <path id="spain" class="land" d="M350,230 L370,220 L395,218 L410,225 L415,240 L410,258 L395,265 L380,268 L365,262 L355,250 L348,240Z"/>
+  <!-- France -->
+  <path id="france" class="land" d="M395,218 L410,208 L425,200 L440,205 L448,215 L445,230 L435,240 L420,242 L410,240 L410,225 L395,218Z"/>
+  <!-- Italy -->
+  <path id="italy" class="land" d="M448,215 L455,220 L460,230 L458,245 L465,260 L470,275 L465,280 L460,275 L455,260 L450,250 L445,240 L445,230Z"/>
+  <!-- Greece -->
+  <path id="greece" class="land" d="M490,248 L500,242 L510,245 L512,255 L508,265 L500,272 L492,268 L488,258Z"/>
+  <!-- Balkans -->
+  <path id="balkans" class="land" d="M470,220 L485,215 L500,220 L510,230 L510,245 L500,242 L490,248 L480,245 L470,235Z"/>
+  <!-- Central Europe -->
+  <path id="central-europe" class="land" d="M425,200 L440,190 L460,188 L475,192 L485,200 L485,215 L470,220 L460,215 L448,215 L440,205Z"/>
+  <!-- British Isles -->
+  <path id="britain" class="land" d="M380,178 L392,172 L400,178 L398,192 L390,198 L382,195 L378,188Z"/>
+  <!-- Scandinavia -->
+  <path id="scandinavia" class="land" d="M440,140 L450,130 L460,135 L465,150 L470,170 L465,185 L455,188 L445,180 L438,165 L435,150Z"/>
+  <!-- Eastern Europe / Russia -->
+  <path id="russia" class="land" d="M485,140 L520,130 L580,125 L640,130 L700,140 L750,150 L780,165 L770,185 L740,195 L700,200 L650,205 L600,210 L560,215 L530,218 L510,215 L500,200 L485,200 L475,192 L480,170 L485,155Z"/>
+
+  <!-- MIDDLE EAST -->
+  <!-- Turkey -->
+  <path id="turkey" class="land" d="M510,230 L530,218 L560,215 L590,218 L620,225 L635,235 L630,245 L615,248 L590,250 L560,248 L540,245 L520,240Z"/>
+  <!-- Syria -->
+  <path id="syria" class="land" d="M615,248 L630,245 L640,250 L645,260 L640,270 L628,272 L618,268 L615,258Z"/>
+  <!-- Iraq -->
+  <path id="iraq" class="land" d="M640,250 L660,248 L675,255 L680,270 L678,290 L665,300 L650,295 L640,285 L635,272 L640,270 L645,260Z"/>
+  <!-- Saudi Arabia -->
+  <path id="saudi" class="land" d="M618,268 L628,272 L635,272 L640,285 L650,295 L665,300 L680,310 L685,330 L675,350 L660,360 L640,365 L620,358 L600,345 L590,325 L585,305 L590,290 L600,278 L610,270Z"/>
+  <!-- Yemen -->
+  <path id="yemen" class="land" d="M620,358 L640,365 L660,360 L665,370 L655,380 L635,385 L615,378 L610,368Z"/>
+  <!-- Oman -->
+  <path id="oman" class="land" d="M680,310 L695,305 L705,315 L700,335 L690,348 L675,350 L685,330Z"/>
+  <!-- UAE/Qatar/Bahrain -->
+  <path id="uae" class="land" d="M685,330 L695,325 L700,335 L695,340 L690,338Z"/>
+  <!-- Jordan -->
+  <path id="jordan" class="land" d="M610,270 L618,268 L615,258 L620,262 L625,275 L620,285 L612,280Z"/>
+  <!-- Palestine/Israel -->
+  <path id="palestine" class="land" d="M605,262 L610,258 L612,265 L612,278 L608,275 L605,268Z"/>
+  <!-- Iran -->
+  <path id="iran" class="land" d="M660,248 L680,240 L710,238 L735,245 L745,260 L740,280 L730,295 L715,305 L695,305 L680,310 L678,290 L675,255Z"/>
+  <!-- Afghanistan -->
+  <path id="afghanistan" class="land" d="M735,245 L755,238 L775,242 L785,255 L778,268 L765,275 L750,272 L745,260Z"/>
+
+  <!-- CENTRAL ASIA -->
+  <!-- Uzbekistan -->
+  <path id="uzbekistan" class="land" d="M700,200 L720,195 L745,198 L760,208 L765,222 L755,235 L740,240 L735,245 L720,238 L710,225 L705,210Z"/>
+  <!-- Turkmenistan -->
+  <path id="turkmenistan" class="land" d="M680,240 L700,230 L710,238 L720,238 L710,225 L705,210 L700,200 L690,205 L680,215 L670,225 L660,248Z"/>
+  <!-- Kazakhstan -->
+  <path id="kazakhstan" class="land" d="M640,130 L700,140 L750,150 L780,165 L785,185 L770,195 L745,198 L720,195 L700,200 L650,205 L640,195 L630,170 L635,150Z"/>
+
+  <!-- AFRICA -->
+  <!-- Egypt -->
+  <path id="egypt" class="land" d="M545,275 L565,268 L585,270 L600,278 L590,290 L585,305 L580,318 L565,325 L555,320 L545,310 L540,295 L538,280Z"/>
+  <!-- Libya -->
+  <path id="libya" class="land" d="M470,275 L490,268 L520,270 L545,275 L538,280 L540,295 L545,310 L540,330 L525,345 L505,340 L490,335 L480,320 L475,300Z"/>
+  <!-- Tunisia -->
+  <path id="tunisia" class="land" d="M445,248 L455,242 L462,248 L465,260 L460,268 L452,265 L448,255Z"/>
+  <!-- Algeria -->
+  <path id="algeria" class="land" d="M385,268 L395,265 L410,258 L415,255 L430,250 L445,248 L448,255 L452,265 L460,268 L465,280 L470,300 L475,320 L465,340 L445,348 L420,345 L400,335 L390,315 L385,295Z"/>
+  <!-- Morocco -->
+  <path id="morocco" class="land" d="M348,240 L355,250 L365,262 L380,268 L385,268 L385,295 L380,310 L368,315 L355,310 L345,298 L340,280 L342,260Z"/>
+  <!-- Mali -->
+  <path id="mali" class="land" d="M368,315 L380,310 L390,315 L400,335 L420,345 L430,360 L425,380 L410,395 L390,400 L370,395 L355,385 L348,368 L350,345 L358,330Z"/>
+  <!-- West Africa -->
+  <path id="west-africa" class="land" d="M310,360 L330,350 L350,345 L348,368 L355,385 L370,395 L365,410 L350,418 L335,420 L320,415 L305,405 L298,390 L300,375Z"/>
+  <!-- East Africa -->
+  <path id="east-africa" class="land" d="M565,325 L580,318 L585,305 L590,325 L600,345 L610,368 L615,390 L610,410 L600,425 L585,430 L570,425 L560,410 L555,390 L550,370 L548,348 L555,335Z"/>
+  <!-- Central Africa -->
+  <path id="central-africa" class="land" d="M445,348 L465,340 L475,320 L480,320 L490,335 L505,340 L525,345 L540,330 L545,310 L555,320 L565,325 L555,335 L548,348 L550,370 L555,390 L545,405 L530,415 L510,418 L490,415 L475,405 L460,395 L450,380 L445,365Z"/>
+  <!-- Southern Africa -->
+  <path id="southern-africa" class="land" d="M475,405 L490,415 L510,418 L530,415 L545,405 L555,390 L560,410 L565,430 L560,450 L548,468 L530,478 L510,480 L490,475 L475,462 L465,445 L460,425 L462,410Z"/>
+
+  <!-- SOUTH ASIA -->
+  <!-- Pakistan -->
+  <path id="pakistan" class="land" d="M745,260 L750,272 L765,275 L778,268 L785,280 L780,300 L770,315 L755,320 L740,312 L730,300 L730,295 L740,280Z"/>
+  <!-- India -->
+  <path id="india" class="land" d="M755,320 L770,315 L780,300 L790,310 L800,330 L805,355 L798,380 L785,400 L770,410 L758,405 L750,390 L748,370 L752,350 L750,335Z"/>
+
+  <!-- === LOCATION MARKERS === -->
+  <!-- Mekka -->
+  <g class="marker" id="marker-mekka" transform="translate(610,338)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+
+  <!-- Medina -->
+  <g class="marker" id="marker-medina" transform="translate(600,318)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+
+  <!-- Jeruzalem -->
+  <g class="marker" id="marker-jeruzalem" transform="translate(608,268)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+
+  <!-- Damascus -->
+  <g class="marker" id="marker-damascus" transform="translate(625,260)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+
+  <!-- Bagdad -->
+  <g class="marker" id="marker-bagdad" transform="translate(658,272)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+
+  <!-- Caïro -->
+  <g class="marker" id="marker-cairo" transform="translate(565,290)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+
+  <!-- Córdoba -->
+  <g class="marker" id="marker-cordoba" transform="translate(370,250)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+
+  <!-- Timboektoe -->
+  <g class="marker" id="marker-timboektoe" transform="translate(388,348)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+
+  <!-- Samarkand -->
+  <g class="marker" id="marker-samarkand" transform="translate(738,218)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+
+  <!-- Istanbul -->
+  <g class="marker" id="marker-istanbul" transform="translate(528,232)">
+    <circle class="marker-pulse" r="6"/>
+    <circle class="marker-ring" r="6"/>
+    <circle class="marker-dot" r="3"/>
+  </g>
+</svg>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="nl" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icons/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://hetrechtepadcollege.goatcounter.com;">
+    <title>Interactieve Wereldkaart | Het Rechte Pad College</title>
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://leer.hetrechtepadcollege.nl/apps/interactieve-wereldkaart/">
+    <meta property="og:title" content="Heilige & Historische Plaatsen van de Islam">
+    <meta property="og:description" content="Ontdek de belangrijkste heilige en historische plaatsen van de Islam op een interactieve wereldkaart.">
+    <meta property="og:image" content="https://leer.hetrechtepadcollege.nl/images/share-banner.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Heilige & Historische Plaatsen van de Islam">
+    <meta property="twitter:description" content="Ontdek de belangrijkste heilige en historische plaatsen van de Islam op een interactieve wereldkaart.">
+    <meta property="twitter:image" content="https://leer.hetrechtepadcollege.nl/images/share-banner.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Sans:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+    <!-- ========== Header ========== -->
+    <header class="app-header">
+        <a href="/" class="back-link" aria-label="Terug naar het leerportaal">←</a>
+        <div class="header-text">
+            <h1 class="header-title">Heilige &amp; Historische Plaatsen</h1>
+            <p class="header-subtitle">Een reis door de islamitische beschaving</p>
+        </div>
+    </header>
+
+    <!-- ========== Intro ========== -->
+    <section class="intro">
+        <p>Van de woestijn van Mekka tot de bibliotheken van Timboektoe — de islamitische beschaving
+            strekt zich uit over drie continenten en veertien eeuwen. Scroll naar beneden en ontdek
+            tien plaatsen die de loop van de geschiedenis hebben veranderd.</p>
+        <div class="scroll-hint">
+            <span class="scroll-hint-arrow">↓</span>
+            <span>Scroll om te beginnen</span>
+        </div>
+    </section>
+
+    <!-- ========== Sticky Map Container ========== -->
+    <div class="map-story-wrapper">
+        <div class="map-container" id="mapContainer">
+            <div class="map-inner" id="mapInner">
+                <!-- SVG loaded inline by JS -->
+            </div>
+            <div class="map-label" id="mapLabel"></div>
+            <!-- Progress dots -->
+            <div class="progress-dots" id="progressDots">
+                <button class="dot active" data-index="0" aria-label="Mekka"></button>
+                <button class="dot" data-index="1" aria-label="Medina"></button>
+                <button class="dot" data-index="2" aria-label="Jeruzalem"></button>
+                <button class="dot" data-index="3" aria-label="Damascus"></button>
+                <button class="dot" data-index="4" aria-label="Bagdad"></button>
+                <button class="dot" data-index="5" aria-label="Caïro"></button>
+                <button class="dot" data-index="6" aria-label="Córdoba"></button>
+                <button class="dot" data-index="7" aria-label="Timboektoe"></button>
+                <button class="dot" data-index="8" aria-label="Samarkand"></button>
+                <button class="dot" data-index="9" aria-label="Istanbul"></button>
+            </div>
+        </div>
+
+        <!-- ========== Chapters ========== -->
+        <div class="chapters" id="chapters">
+
+            <!-- 1. Mekka -->
+            <article class="chapter" id="ch-mekka" data-location="mekka"
+                     data-viewbox="560 290 120 100" data-highlight="saudi">
+                <div class="chapter-number">01</div>
+                <h2 class="chapter-title">Mekka</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">مَكَّة الْمُكَرَّمَة</p>
+                <p class="chapter-body">De geboorteplaats van de Profeet Muḥammad ﷺ en het spirituele
+                    hart van de Islam. Hier staat de Ka'bah — het eerste huis dat voor de mensheid is gebouwd
+                    om Allah te aanbidden. Jaarlijks verzamelen miljoenen moslims zich hier voor de Ḥajj,
+                    de bedevaart die elke moslim minstens één keer in zijn leven dient te verrichten.</p>
+                <blockquote class="chapter-ref">
+                    <p>«Voorwaar, het eerste Huis dat voor de mensheid is geplaatst,
+                        is dat in Bakkah: gezegend en een leiding voor de werelden.»</p>
+                    <cite>Soera Āl ʿImrān 3:96</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> De Ka'bah is volgens de islamitische traditie
+                    oorspronkelijk gebouwd door de profeet Ibrāhīm (Abraham) en zijn zoon Ismāʿīl.
+                    De Zwarte Steen (al-Ḥajar al-Aswad) in de hoek van de Ka'bah wordt door
+                    pelgrims aangeraakt of gegroet tijdens de ṭawāf (ommegang).
+                </div>
+            </article>
+
+            <!-- 2. Medina -->
+            <article class="chapter" id="ch-medina" data-location="medina"
+                     data-viewbox="550 270 120 100" data-highlight="saudi">
+                <div class="chapter-number">02</div>
+                <h2 class="chapter-title">Medina</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">اَلْمَدِينَة الْمُنَوَّرَة</p>
+                <p class="chapter-body">Na de Hijrah (emigratie) in 622 n.Chr. vestigde de Profeet ﷺ
+                    zich in Medina, waar hij de eerste islamitische gemeenschap stichtte. Hier bouwde
+                    hij Masjid an-Nabawī — de Moskee van de Profeet — die tot op de dag van vandaag
+                    een van de heiligste plaatsen in de Islam is. In deze stad werd de islamitische
+                    beschaving geboren.</p>
+                <blockquote class="chapter-ref">
+                    <p>«Medina is een heiligdom van de ene berg tot de andere.
+                        Zijn bomen mogen niet gekapt worden en er mag geen nieuwigheid
+                        (in de religie) worden ingevoerd.»</p>
+                    <cite>Ṣaḥīḥ al-Bukhārī</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> De Profeet ﷺ ligt begraven in een kamer naast
+                    de moskee die hij zelf bouwde. Het groene koepeldak boven zijn graf is een van
+                    de meest herkenbare symbolen van de Islam. Naast hem rusten zijn twee naaste
+                    metgezellen: Abū Bakr en ʿUmar ibn al-Khaṭṭāb.
+                </div>
+            </article>
+
+            <!-- 3. Jeruzalem -->
+            <article class="chapter" id="ch-jeruzalem" data-location="jeruzalem"
+                     data-viewbox="558 225 110 95" data-highlight="palestine">
+                <div class="chapter-number">03</div>
+                <h2 class="chapter-title">Jeruzalem</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">اَلْقُدْس</p>
+                <p class="chapter-body">Al-Quds (Jeruzalem) herbergt al-Masjid al-Aqṣā — de derde
+                    heiligste moskee in de Islam. Het was de eerste gebedsrichting (qiblah) van de
+                    moslims en de bestemming van de miraculeuze nachtreis (al-Isrāʾ) van de
+                    Profeet ﷺ, gevolgd door zijn hemelvaart (al-Miʿrāj).</p>
+                <blockquote class="chapter-ref">
+                    <p>«Heilig is Degene Die Zijn dienaar bij nacht deed reizen van
+                        al-Masjid al-Ḥarām naar al-Masjid al-Aqṣā, waarvan Wij de
+                        omgeving hebben gezegend.»</p>
+                    <cite>Soera al-Isrāʾ 17:1</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> Volgens de islamitische traditie leidde de
+                    Profeet ﷺ alle voorgaande profeten in gebed bij al-Aqṣā voordat hij
+                    opsteeg naar de hemelen. De Rotskoepel (Qubbat aṣ-Ṣakhrah) op het
+                    Tempelbergcomplex is een van de oudste islamitische bouwwerken ter wereld (691 n.Chr.).
+                </div>
+            </article>
+
+            <!-- 4. Damascus -->
+            <article class="chapter" id="ch-damascus" data-location="damascus"
+                     data-viewbox="575 220 110 80" data-highlight="syria">
+                <div class="chapter-number">04</div>
+                <h2 class="chapter-title">Damascus</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">دِمَشْق</p>
+                <p class="chapter-body">Damascus, een van de oudst bewoonde steden ter wereld, werd
+                    de hoofdstad van het Umayyaden-kalifaat (661–750 n.Chr.). De Umayyaden-moskee,
+                    gebouwd door kalief al-Walīd I, was een architectonisch meesterwerk dat
+                    de standaard zette voor islamitische moskeeën wereldwijd. Hier begon het
+                    eerste grote islamitische rijk vorm te krijgen.</p>
+                <blockquote class="chapter-ref">
+                    <p>«ʿĪsā ibn Maryam zal neerdalen bij de witte minaret ten oosten
+                        van Damascus.»</p>
+                    <cite>Ṣaḥīḥ Muslim</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> De Umayyaden-moskee bevat een schrijn dat
+                    volgens de traditie het hoofd van de profeet Yaḥyā (Johannes de Doper) herbergt.
+                    De moskee was een van de eerste die een miḥrāb (gebedsnis), minaretten
+                    en een binnenplaats met fonteinen had.
+                </div>
+            </article>
+
+            <!-- 5. Bagdad -->
+            <article class="chapter" id="ch-bagdad" data-location="bagdad"
+                     data-viewbox="605 230 120 90" data-highlight="iraq">
+                <div class="chapter-number">05</div>
+                <h2 class="chapter-title">Bagdad</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">بَغْدَاد</p>
+                <p class="chapter-body">Gesticht in 762 n.Chr. door kalief al-Manṣūr als de
+                    «Ronde Stad», groeide Bagdad uit tot het intellectuele centrum van de wereld.
+                    Het Bayt al-Ḥikmah (Huis der Wijsheid) was een ongekend instituut waar geleerden
+                    Griekse, Perzische en Indiase werken vertaalden en de fundamenten legden voor
+                    algebra, optica, geneeskunde en astronomie.</p>
+                <blockquote class="chapter-ref">
+                    <p>«Zoek kennis, al is het tot in China.»</p>
+                    <cite>Overlevering toegeschreven aan de Profeet ﷺ</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> De wiskundige al-Khwārizmī ontwikkelde in Bagdad
+                    de algebra (van het Arabische «al-jabr»). Het woord «algoritme» is afgeleid
+                    van zijn naam. Het Huis der Wijsheid had een van de grootste bibliotheken
+                    ter wereld totdat de Mongolen de stad verwoestten in 1258.
+                </div>
+            </article>
+
+            <!-- 6. Caïro -->
+            <article class="chapter" id="ch-cairo" data-location="cairo"
+                     data-viewbox="510 245 120 100" data-highlight="egypt">
+                <div class="chapter-number">06</div>
+                <h2 class="chapter-title">Caïro</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">اَلْقَاهِرَة</p>
+                <p class="chapter-body">Caïro, gesticht door het Fatimiden-kalifaat in 969 n.Chr.,
+                    is de thuisbasis van al-Azhar — de oudste continu functionerende universiteit
+                    ter wereld. Al-Azhar begon als moskee en groeide uit tot het meest
+                    gezaghebbende centrum voor islamitische geleerdheid. Tot op de dag van
+                    vandaag studeren hier duizenden studenten uit de hele wereld.</p>
+                <blockquote class="chapter-ref">
+                    <p>«Wie een pad bewandelt op zoek naar kennis, voor hem maakt
+                        Allah het pad naar het Paradijs gemakkelijk.»</p>
+                    <cite>Ṣaḥīḥ Muslim</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> Al-Azhar universiteit is opgericht in 970 n.Chr. —
+                    ruim een eeuw vóór de eerste Europese universiteiten (Bologna 1088, Oxford 1096).
+                    De naam «al-Azhar» (de stralende) is een eerbetoon aan Fāṭimah az-Zahrāʾ,
+                    de dochter van de Profeet ﷺ.
+                </div>
+            </article>
+
+            <!-- 7. Córdoba -->
+            <article class="chapter" id="ch-cordoba" data-location="cordoba"
+                     data-viewbox="310 205 130 100" data-highlight="spain">
+                <div class="chapter-number">07</div>
+                <h2 class="chapter-title">Córdoba</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">قُرْطُبَة</p>
+                <p class="chapter-body">Tijdens de gouden eeuw van Al-Andalus was Córdoba de
+                    grootste en meest ontwikkelde stad van Europa. De Grote Moskee (Mezquita) met
+                    haar iconische rood-witte bogen was het hart van een beschaving waar moslims,
+                    christenen en joden samenleefden en samenwerkten. De stad had straatverlichting,
+                    openbare baden en een bibliotheek met 400.000 boeken.</p>
+                <blockquote class="chapter-ref">
+                    <p>«En tot Zijn tekenen behoren de schepping van de hemelen en de aarde
+                        en het verschil in jullie talen en kleuren.»</p>
+                    <cite>Soera ar-Rūm 30:22</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> De bibliotheek van kalief al-Ḥakam II in
+                    Córdoba bevatte naar schatting 400.000 manuscripten — op een moment dat de
+                    grootste bibliotheek in christelijk Europa slechts 400 boeken telde.
+                    De geleerde Ibn Rushd (Averroës) schreef hier zijn invloedrijke commentaren
+                    op Aristoteles.
+                </div>
+            </article>
+
+            <!-- 8. Timboektoe -->
+            <article class="chapter" id="ch-timboektoe" data-location="timboektoe"
+                     data-viewbox="330 300 140 110" data-highlight="mali">
+                <div class="chapter-number">08</div>
+                <h2 class="chapter-title">Timboektoe</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">تِمْبُكْتُو</p>
+                <p class="chapter-body">In het hart van West-Afrika groeide Timboektoe uit tot
+                    een van de belangrijkste centra van islamitisch onderwijs in de wereld.
+                    De Sankore-universiteit trok in de 15e en 16e eeuw duizenden studenten aan.
+                    De stad was een knooppunt van trans-Saharaanse handelsroutes waar kennis,
+                    goud en zout werden verhandeld.</p>
+                <blockquote class="chapter-ref">
+                    <p>«De geleerden zijn de erfgenamen van de profeten.»</p>
+                    <cite>Sunan Abī Dāwūd</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> Timboektoe herbergt naar schatting 700.000
+                    oude manuscripten over islamitische wetenschappen, astronomie, geneeskunde
+                    en recht. De Sankore-universiteit had een streng curriculum vergelijkbaar
+                    met moderne universiteiten, inclusief examens en diploma's.
+                </div>
+            </article>
+
+            <!-- 9. Samarkand -->
+            <article class="chapter" id="ch-samarkand" data-location="samarkand"
+                     data-viewbox="680 175 130 95" data-highlight="uzbekistan">
+                <div class="chapter-number">09</div>
+                <h2 class="chapter-title">Samarkand</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">سَمَرْقَنْد</p>
+                <p class="chapter-body">Gelegen aan de legendarische Zijderoute, was Samarkand
+                    een kruispunt van beschavingen. Onder de Timuriden (14e–15e eeuw) werd het
+                    een centrum van islamitische kunst, architectuur en wetenschap. Het Registan —
+                    een plein omringd door drie majestueuze madrasa's — wordt beschouwd als een
+                    van de mooiste plekken van de islamitische wereld.</p>
+                <blockquote class="chapter-ref">
+                    <p>«Allah is mooi en Hij houdt van schoonheid.»</p>
+                    <cite>Ṣaḥīḥ Muslim</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> De astronoom Ulugh Beg bouwde in Samarkand een
+                    observatorium (1420) en stelde een sterrencatalogus samen met de posities
+                    van meer dan 1.000 sterren — de meest nauwkeurige tot de uitvinding van
+                    de telescoop. De imām al-Bukhārī, samensteller van de beroemdste
+                    ḥadīth-verzameling, kwam uit deze regio.
+                </div>
+            </article>
+
+            <!-- 10. Istanbul -->
+            <article class="chapter" id="ch-istanbul" data-location="istanbul"
+                     data-viewbox="475 195 120 85" data-highlight="turkey">
+                <div class="chapter-number">10</div>
+                <h2 class="chapter-title">Istanbul</h2>
+                <p class="chapter-name-ar" dir="rtl" lang="ar">إِسْطَنْبُول</p>
+                <p class="chapter-body">De verovering van Constantinopel in 1453 door sultan
+                    Meḥmed II markeerde het begin van het Ottomaanse Rijk als wereldmacht.
+                    De stad werd omgedoopt tot Istanbul en sierde zich met prachtige moskeeën,
+                    waarvan de Sultan Ahmed-moskee (Blauwe Moskee) met haar zes minaretten
+                    en duizenden blauwe tegels een icoon werd. Architect Sinān bouwde hier
+                    zijn meesterwerken.</p>
+                <blockquote class="chapter-ref">
+                    <p>«Jullie zullen Constantinopel veroveren. Hoe voortreffelijk is de
+                        aanvoerder die dat doet, en hoe voortreffelijk is dat leger.»</p>
+                    <cite>Musnad Aḥmad</cite>
+                </blockquote>
+                <div class="chapter-fact">
+                    <strong>Wist je dat?</strong> De architect Mīmār Sinān (1488–1588) ontwierp
+                    meer dan 300 bouwwerken in het Ottomaanse Rijk. De Süleymaniye-moskee in
+                    Istanbul wordt beschouwd als zijn meesterwerk. Na de verovering in 1453
+                    stond sultan Meḥmed II christenen en joden toe om vrijelijk hun
+                    geloof te belijden.
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <!-- ========== Outro ========== -->
+    <section class="outro" id="outro">
+        <h2 class="outro-title">Einde van de reis</h2>
+        <p class="outro-body">Van de Ka'bah in Mekka tot de minaretten van Istanbul — de
+            islamitische beschaving heeft een onuitwisbare stempel gedrukt op de wereldgeschiedenis.
+            Deze tien plaatsen zijn slechts een greep uit het rijke erfgoed van kennis, kunst
+            en spiritualiteit dat moslims door de eeuwen heen hebben nagelaten.</p>
+        <a href="/" class="outro-link">← Terug naar het leerportaal</a>
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
+<script data-goatcounter="https://hetrechtepadcollege.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"
+        integrity="sha384-DGiREytotlUiLflu8vLo0vvfxKWn36pKPT1ZBhh3R+3vhwrS/4p3H9eys9Zr2bPQ"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
