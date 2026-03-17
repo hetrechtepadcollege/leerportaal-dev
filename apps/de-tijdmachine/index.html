@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="icon" href="/icons/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://hetrechtepadcollege.goatcounter.com;">
+    <title>De Tijdmachine | Het Rechte Pad College</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leer.hetrechtepadcollege.nl/apps/de-tijdmachine/">
+    <meta property="og:site_name" content="Het Rechte Pad College">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:title" content="De Tijdmachine | Het Rechte Pad College">
+    <meta property="og:description" content="Reis door de Islamitische Gouden Eeuw en ontdek geleerden, uitvindingen en bijdragen aan de wetenschap.">
+    <meta property="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="compass-rose" aria-hidden="true">
+            <div class="compass-inner"></div>
+        </div>
+        <h1>De Tijdmachine</h1>
+        <p class="subtitle">Reis door de Islamitische Gouden Eeuw</p>
+    </header>
+
+    <!-- Progress -->
+    <section class="progress-section" aria-live="polite">
+        <p class="progress-text" id="progress-text">0 van 10 ontdekkingen</p>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </section>
+
+    <!-- Timeline slider -->
+    <section class="timeline-section">
+        <p class="timeline-label">Filter op tijdperiode</p>
+        <input type="range" class="timeline-slider" id="timeline-slider" min="0" max="9" value="0" step="1">
+        <p class="timeline-value" id="timeline-value">Alle eeuwen</p>
+    </section>
+
+    <!-- Map -->
+    <div class="map-container">
+        <svg class="map-svg" viewBox="0 0 1000 550" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kaart van de Islamitische wereld met 10 historische steden">
+
+            <!-- Simplified landmasses -->
+            <!-- Iberian Peninsula -->
+            <path class="land" d="M60,180 L120,170 L150,190 L140,230 L120,250 L80,240 L60,220 Z"/>
+            <!-- North Africa -->
+            <path class="land" d="M60,260 L150,250 L250,260 L350,270 L450,280 L500,300 L550,310 L500,380 L400,400 L300,410 L200,400 L120,380 L80,340 L60,300 Z"/>
+            <!-- Italy -->
+            <path class="land" d="M250,170 L260,190 L270,220 L265,250 L255,240 L245,210 L240,180 Z"/>
+            <!-- Greece & Balkans -->
+            <path class="land" d="M320,175 L350,180 L370,200 L380,230 L360,240 L340,230 L330,210 L320,190 Z"/>
+            <!-- Anatolia / Turkey -->
+            <path class="land" d="M380,180 L430,170 L490,175 L530,190 L520,215 L480,220 L440,215 L400,210 L380,200 Z"/>
+            <!-- Middle East -->
+            <path class="land" d="M500,220 L560,210 L620,230 L660,260 L680,300 L640,320 L580,340 L530,320 L500,300 Z"/>
+            <!-- Arabian Peninsula -->
+            <path class="land" d="M530,320 L580,340 L640,320 L680,300 L700,340 L680,400 L620,430 L560,420 L520,380 L510,340 Z"/>
+            <!-- Persia / Iran -->
+            <path class="land" d="M660,220 L720,200 L780,210 L800,240 L780,280 L740,290 L700,280 L680,260 L660,240 Z"/>
+            <!-- Central Asia -->
+            <path class="land" d="M700,150 L780,140 L850,150 L880,170 L860,200 L800,210 L740,200 L710,180 Z"/>
+            <!-- West Africa -->
+            <path class="land" d="M60,350 L120,380 L200,400 L240,420 L220,460 L160,470 L100,450 L60,420 Z"/>
+            <!-- France outline -->
+            <path class="land" d="M120,130 L180,120 L220,140 L240,170 L200,190 L150,190 L120,170 Z"/>
+
+            <!-- Dotted travel lines connecting cities in rough chronological order -->
+            <path class="travel-line" d="M173,380 L130,272"/>
+            <path class="travel-line" d="M130,272 L100,215"/>
+            <path class="travel-line" d="M100,215 L105,222"/>
+            <path class="travel-line" d="M130,272 L490,305"/>
+            <path class="travel-line" d="M490,305 L550,260"/>
+            <path class="travel-line" d="M550,260 L620,270"/>
+            <path class="travel-line" d="M620,270 L470,195"/>
+            <path class="travel-line" d="M620,270 L750,195"/>
+            <path class="travel-line" d="M750,195 L760,185"/>
+
+            <!-- City markers -->
+            <g class="city-marker" data-city="fez" transform="translate(130, 272)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="0" y="-14">Fez</text>
+            </g>
+
+            <g class="city-marker" data-city="cordoba" transform="translate(100, 215)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="0" y="-14">Córdoba</text>
+            </g>
+
+            <g class="city-marker" data-city="toledo" transform="translate(105, 222)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="-30" y="5">Toledo</text>
+            </g>
+
+            <g class="city-marker" data-city="timbuktu" transform="translate(173, 380)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="0" y="20">Timboektoe</text>
+            </g>
+
+            <g class="city-marker" data-city="cairo" transform="translate(490, 305)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="0" y="-14">Caïro</text>
+            </g>
+
+            <g class="city-marker" data-city="istanbul" transform="translate(470, 195)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="0" y="-14">Istanbul</text>
+            </g>
+
+            <g class="city-marker" data-city="damascus" transform="translate(550, 260)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="0" y="-14">Damascus</text>
+            </g>
+
+            <g class="city-marker" data-city="baghdad" transform="translate(620, 270)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="0" y="-14">Bagdad</text>
+            </g>
+
+            <g class="city-marker" data-city="bukhara" transform="translate(750, 195)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="0" y="-14">Bukhara</text>
+            </g>
+
+            <g class="city-marker" data-city="samarkand" transform="translate(760, 185)">
+                <circle class="marker-pulse" cx="0" cy="0"/>
+                <circle class="marker-dot" cx="0" cy="0"/>
+                <circle class="marker-dot-inner" cx="0" cy="0"/>
+                <text class="marker-label" x="30" y="5">Samarkand</text>
+            </g>
+
+        </svg>
+    </div>
+
+    <!-- Celebration message -->
+    <div class="celebration" id="celebration">
+        <h2>Alle steden ontdekt!</h2>
+        <p>Je hebt alle 10 steden van de Islamitische Gouden Eeuw bezocht. Geweldig gedaan!</p>
+    </div>
+
+    <!-- Discovery card overlay -->
+    <div class="overlay" id="overlay">
+        <article class="discovery-card" id="discovery-card">
+            <div class="card-header">
+                <button class="close-btn" id="close-card" aria-label="Sluiten">&times;</button>
+                <p class="period" id="card-period"></p>
+                <h2 id="card-title"></h2>
+                <p class="scholar">
+                    <span id="card-scholar"></span>
+                    <span class="scholar-arabic" id="card-scholar-ar" dir="rtl" lang="ar"></span>
+                </p>
+            </div>
+            <div class="card-body">
+                <p class="description" id="card-description"></p>
+                <div class="invention-badge" id="card-invention"></div>
+                <div class="fun-fact">
+                    <p class="fun-fact-label">Wist je dat?</p>
+                    <p id="card-funfact"></p>
+                </div>
+            </div>
+            <div class="challenge-section" id="challenge-section">
+                <h3>Mini-challenge</h3>
+                <p class="challenge-question" id="challenge-question"></p>
+                <div class="challenge-options" id="challenge-options"></div>
+                <div class="challenge-feedback" id="challenge-feedback"></div>
+            </div>
+            <div class="collected-badge" id="collected-badge">Ontdekking verzameld &#10003;</div>
+        </article>
+    </div>
+
+    <!-- Discoveries drawer toggle -->
+    <button class="drawer-toggle" id="drawer-toggle" aria-label="Ontdekkingen bekijken">
+        Ontdekkingen <span class="count" id="drawer-count">0</span>
+    </button>
+
+    <!-- Drawer overlay -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- Discoveries drawer -->
+    <aside class="discoveries-drawer" id="discoveries-drawer">
+        <div class="drawer-header">
+            <h3>Mijn Ontdekkingen</h3>
+            <button class="drawer-close" id="drawer-close" aria-label="Sluiten">&times;</button>
+        </div>
+        <div id="drawer-list"></div>
+    </aside>
+
+    <!-- Back to portal -->
+    <div class="portal-home-wrap">
+        <a href="https://leer.hetrechtepadcollege.nl/" class="portal-home-btn">&#8592; Terug naar Leerportaal</a>
+    </div>
+
+    <script src="script.js"></script>
+    <script data-goatcounter="https://hetrechtepadcollege.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"
+            integrity="sha384-DGiREytotlUiLflu8vLo0vvfxKWn36pKPT1ZBhh3R+3vhwrS/4p3H9eys9Zr2bPQ"
+            crossorigin="anonymous"></script>
+</body>
+</html>
