@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="nl" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 script-src 'self' https://gc.zgo.at;
+                 connect-src 'self' https://hetrechtepadcollege.goatcounter.com;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                 font-src 'self' https://fonts.gstatic.com;
+                 img-src 'self' data:;" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De Weg naar Istiqāmah — Het Rechte Pad College</title>
+  <meta name="description" content="Jouw metgezel in de laatste nachten van Ramadan en een 40-dagenplan om je goede gewoonten vast te houden na Ramadan." />
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="De Weg naar Istiqāmah" />
+  <meta property="og:description" content="Jouw metgezel in de laatste nachten van Ramadan en een 40-dagenplan om je goede gewoonten vast te houden." />
+  <meta property="og:image" content="https://leer.hetrechtepadcollege.nl/images/share-banner.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Sterrenhemel -->
+  <div class="stars-container" id="stars" aria-hidden="true"></div>
+
+  <div class="app-shell">
+
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+      <a href="../../" class="header-logo-link" aria-label="Terug naar Leerportaal">
+        <img src="../../images/HRPC-logo.png" alt="Het Rechte Pad College" class="header-logo" />
+      </a>
+      <h1 class="header-title">De Weg naar Istiqāmah</h1>
+      <p class="header-arabic" dir="rtl" lang="ar">الطَّرِيقُ إِلَى الِاسْتِقَامَة</p>
+      <p class="header-subtitle" id="headerSubtitle">Jouw metgezel in de Laatste Nachten</p>
+    </header>
+
+    <main class="app-main">
+
+      <!-- ══════════════════════════════════════════
+           WACHTSCHERM — vóór de laatste 10 nachten
+           ══════════════════════════════════════════ -->
+      <section class="phase" id="phaseWaiting" aria-label="Binnenkort beschikbaar">
+        <div class="glass-card waiting-card">
+          <div class="waiting-moon" aria-hidden="true">🌙</div>
+          <h2 class="waiting-title">De Laatste Nachten beginnen binnenkort</h2>
+          <p class="waiting-countdown" id="waitingCountdown"></p>
+          <p class="waiting-desc">Bereid je voor op de meest gezegende nachten van het jaar. Laylatul Qadr is beter dan duizend maanden.</p>
+          <p class="waiting-arabic" dir="rtl" lang="ar">لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ</p>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           FASE 1 — De Laatste Nachten
+           ══════════════════════════════════════════ -->
+      <section class="phase" id="phase1" aria-label="De Laatste Nachten">
+
+        <!-- Nacht-selector -->
+        <nav class="night-nav" aria-label="Selecteer een nacht">
+          <div class="night-pills" id="nightPills" role="list"></div>
+        </nav>
+
+        <!-- Nachtklok -->
+        <div class="night-clock-card glass-card" id="nightClockCard">
+          <div class="night-time" id="nightTime" aria-live="polite">00:00</div>
+          <div class="night-remaining" id="nightRemaining">Nacht loopt…</div>
+          <div class="sky-bar" id="skyBar" aria-hidden="true">
+            <div class="sky-bar-fill" id="skyBarFill"></div>
+            <span class="sky-bar-label sky-bar-start">Maghrib</span>
+            <span class="sky-bar-label sky-bar-end">Fajr</span>
+          </div>
+        </div>
+
+        <!-- Stations van de Nacht -->
+        <section class="stations-section" aria-label="Stations van de Nacht">
+          <h2 class="section-heading">Stations van de Nacht</h2>
+          <ol class="stations-list" id="stationsList"></ol>
+        </section>
+
+        <!-- Du'a carrousel -->
+        <section class="dua-section" aria-label="Smeekbeden en verzen">
+          <h2 class="section-heading">Smeekbeden &amp; Verzen</h2>
+          <div class="dua-card glass-card" id="duaCard">
+            <p class="dua-arabic" dir="rtl" lang="ar" id="duaArabic"></p>
+            <p class="dua-translit" id="duaTranslit"></p>
+            <p class="dua-translation" id="duaTranslation"></p>
+            <p class="dua-source" id="duaSource"></p>
+            <div class="dua-nav" aria-label="Navigeer smeekbeden">
+              <button class="dua-btn" id="duaPrev" aria-label="Vorige smeekbede">&#8592;</button>
+              <span class="dua-count" id="duaCount" aria-live="polite"></span>
+              <button class="dua-btn" id="duaNext" aria-label="Volgende smeekbede">&#8594;</button>
+            </div>
+          </div>
+          <button class="focus-btn" id="focusBtn" aria-label="Open focusmodus">
+            <span aria-hidden="true">🧘</span> Focusmodus
+          </button>
+        </section>
+
+        <!-- Focusmodus overlay -->
+        <div class="focus-overlay" id="focusOverlay" role="dialog" aria-modal="true" aria-label="Focusmodus" hidden>
+          <button class="focus-close" id="focusClose" aria-label="Sluit focusmodus">&times;</button>
+          <div class="focus-content">
+            <p class="focus-arabic" dir="rtl" lang="ar" id="focusArabic"></p>
+            <p class="focus-translation" id="focusTranslation"></p>
+          </div>
+        </div>
+
+        <!-- Voornemens (brug naar Fase 2) -->
+        <section class="intentions-section" aria-label="Voornemens na Ramadan">
+          <div class="section-divider" aria-hidden="true"><span class="divider-diamond">◆</span></div>
+          <h2 class="section-heading">
+            <span aria-hidden="true">🌱</span> Mijn voornemens na Ramadan
+          </h2>
+          <p class="intentions-intro">Welke gewoonten wil je vasthouden na Ramadan? Kies er <strong>3 tot 5</strong>.</p>
+
+          <div class="intentions-list" id="intentionsList" role="group" aria-label="Kies je voornemens">
+
+            <label class="intention-option">
+              <input type="checkbox" data-habit="salah" data-label="Vijf dagelijkse gebeden op tijd" />
+              <span class="intention-check" aria-hidden="true"></span>
+              <span class="intention-text"><span aria-hidden="true">🕌</span> Vijf dagelijkse gebeden op tijd</span>
+            </label>
+
+            <label class="intention-option">
+              <input type="checkbox" data-habit="koran" data-label="Dagelijks Koran lezen" />
+              <span class="intention-check" aria-hidden="true"></span>
+              <span class="intention-text"><span aria-hidden="true">📖</span> Dagelijks Koran lezen</span>
+            </label>
+
+            <label class="intention-option">
+              <input type="checkbox" data-habit="dzikr" data-label="Dagelijkse dzikr (ochtend &amp; avond)" />
+              <span class="intention-check" aria-hidden="true"></span>
+              <span class="intention-text"><span aria-hidden="true">📿</span> Dagelijkse dzikr (ochtend &amp; avond)</span>
+            </label>
+
+            <label class="intention-option">
+              <input type="checkbox" data-habit="dua" data-label="Dagelijks du'a maken" />
+              <span class="intention-check" aria-hidden="true"></span>
+              <span class="intention-text"><span aria-hidden="true">🤲</span> Dagelijks du'a maken</span>
+            </label>
+
+            <label class="intention-option">
+              <input type="checkbox" data-habit="sadaqah" data-label="Wekelijks liefdadigheid" />
+              <span class="intention-check" aria-hidden="true"></span>
+              <span class="intention-text"><span aria-hidden="true">💚</span> Wekelijks liefdadigheid</span>
+            </label>
+
+            <label class="intention-option">
+              <input type="checkbox" data-habit="vasten" data-label="Regelmatig vasten (maandag/donderdag)" />
+              <span class="intention-check" aria-hidden="true"></span>
+              <span class="intention-text"><span aria-hidden="true">🌙</span> Regelmatig vasten (maandag/donderdag)</span>
+            </label>
+
+            <label class="intention-option">
+              <input type="checkbox" data-habit="nachtgebed" data-label="Nachtgebed (tahajjud/witr)" />
+              <span class="intention-check" aria-hidden="true"></span>
+              <span class="intention-text"><span aria-hidden="true">⭐</span> Nachtgebed (tahajjud/witr)</span>
+            </label>
+
+            <label class="intention-option">
+              <input type="checkbox" data-habit="kennis" data-label="Islamitische kennis opdoen" />
+              <span class="intention-check" aria-hidden="true"></span>
+              <span class="intention-text"><span aria-hidden="true">📚</span> Islamitische kennis opdoen</span>
+            </label>
+
+          </div>
+
+          <p class="intentions-count" id="intentionsCount" aria-live="polite">0 van 5 gekozen</p>
+
+          <div class="custom-intention-row">
+            <input type="text" id="customHabitInput" class="custom-habit-input"
+                   placeholder="Eigen gewoonte toevoegen…" maxlength="60"
+                   aria-label="Voeg een eigen gewoonte toe" />
+            <button class="custom-habit-add" id="addCustomHabit" aria-label="Voeg toe">+</button>
+          </div>
+
+          <button class="save-intentions-btn" id="saveIntentionsBtn" disabled>
+            Voornemens opslaan ✓
+          </button>
+          <p class="intentions-saved-msg" id="intentionsSavedMsg" aria-live="polite" hidden>
+            ✓ Opgeslagen! Na Ramadan vind je hier jouw 40-dagenplan.
+          </p>
+        </section>
+
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           FASE 2 — 40 Dagen na Ramadan
+           ══════════════════════════════════════════ -->
+      <section class="phase" id="phase2" aria-label="40 Dagen na Ramadan">
+
+        <!-- Voortgangskop -->
+        <div class="journey-header glass-card">
+          <div class="journey-day-label" id="journeyDayLabel" aria-live="polite">Dag 1 van 40</div>
+          <div class="journey-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="journeyProgressBar">
+            <div class="journey-progress-fill" id="journeyProgressFill"></div>
+          </div>
+          <p class="journey-hadith-teaser">
+            <span dir="rtl" lang="ar">أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا</span>
+          </p>
+          <p class="journey-hadith-trans">De meest geliefde daden bij Allah zijn de meest regelmatige — al zijn ze klein.</p>
+        </div>
+
+        <!-- Kronkelend pad (40 stippen) -->
+        <div class="journey-path-wrap" aria-label="Voortgangspad van 40 dagen">
+          <div class="journey-path" id="journeyPath"></div>
+        </div>
+
+        <!-- Dagelijkse check-in -->
+        <section class="checkin-section" aria-label="Dagelijkse check-in">
+          <h2 class="section-heading">Check-in vandaag</h2>
+          <p class="checkin-date" id="checkinDate"></p>
+          <div class="habits-checklist" id="habitsList" role="group" aria-label="Jouw gewoonten"></div>
+          <button class="checkin-save-btn" id="checkinSaveBtn">Opslaan ✓</button>
+          <p class="checkin-saved-msg" id="checkinSavedMsg" aria-live="polite" hidden>✓ Check-in opgeslagen!</p>
+        </section>
+
+        <!-- Streak -->
+        <div class="streak-card glass-card" id="streakCard">
+          <div class="streak-fire" id="streakFire" aria-hidden="true"></div>
+          <div class="streak-number" id="streakNumber">0</div>
+          <div class="streak-label">dagen op rij actief</div>
+        </div>
+
+        <!-- Motivatie-hadith -->
+        <div class="motivation-card glass-card" id="motivationCard">
+          <p class="motivation-arabic" dir="rtl" lang="ar" id="motivationArabic"></p>
+          <p class="motivation-text" id="motivationText"></p>
+          <p class="motivation-source" id="motivationSource"></p>
+        </div>
+
+        <!-- Gewoonte-statistieken -->
+        <section class="stats-section" aria-label="Gewoonte-statistieken">
+          <h2 class="section-heading">Jouw Ramadan-gewoonten</h2>
+          <div class="stats-list" id="statsList"></div>
+        </section>
+
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           VOLTOOIINGSCHERM — na 40 dagen
+           ══════════════════════════════════════════ -->
+      <section class="phase" id="phaseComplete" aria-label="40 Dagen voltooid">
+        <div class="glass-card complete-card">
+          <div class="complete-emoji" aria-hidden="true">🏆</div>
+          <h2 class="complete-title">40 Dagen Voltooid!</h2>
+          <div class="complete-stats" id="completeStats"></div>
+          <p class="complete-dua">Moge Allah jouw goede gewoonten accepteren en je standvastigheid (istiqāmah) schenken.</p>
+          <p class="complete-arabic" dir="rtl" lang="ar">اللَّهُمَّ اجْعَلْنَا مِنَ الْمُسْتَقِيمِينَ</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Terug naar portaal -->
+    <div class="portal-back-wrap">
+      <a href="../../" class="portal-back-btn">&larr; Terug naar Leerportaal</a>
+    </div>
+
+  </div><!-- /.app-shell -->
+
+  <script src="script.js"></script>
+  <script data-goatcounter="https://hetrechtepadcollege.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

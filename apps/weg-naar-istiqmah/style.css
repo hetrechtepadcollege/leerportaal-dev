@@ -1,0 +1,920 @@
+/* ═══════════════════════════════════════════════════════
+   De Weg naar Istiqāmah — style.css
+   Look & feel: nacht-van-qadr
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Custom font ───────────────────────────────────────── */
+@font-face {
+  font-family: 'AlQalamQuranMajeed';
+  src: url('fonts/AlQalamQuranMajeed.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* ── Design tokens (identiek aan nacht-van-qadr) ───────── */
+:root {
+  --bg-top:         #081a33;
+  --bg-mid:         #0f2d50;
+  --bg-bottom:      #0c2642;
+  --gold:           #d4af37;
+  --gold-light:     #e8c84a;
+  --gold-dim:       rgba(212,175,55,0.18);
+  --gold-glow:      rgba(212,175,55,0.12);
+  --gold-border:    rgba(212,175,55,0.30);
+  --on-dark:        rgba(255,255,255,0.92);
+  --on-dark-muted:  rgba(255,255,255,0.68);
+  --on-dark-subtle: rgba(255,255,255,0.40);
+  --glass:          rgba(15,45,80,0.55);
+  --glass-border:   rgba(212,175,55,0.22);
+  --success:        #3a9e5f;
+  --success-dim:    rgba(58,158,95,0.15);
+  --radius-sm:      10px;
+  --radius-md:      16px;
+  --radius-lg:      24px;
+  --transition:     0.3s cubic-bezier(0.4,0,0.2,1);
+  --max-w:          480px;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+  color: inherit;
+}
+input { font-family: inherit; }
+a { text-decoration: none; color: inherit; }
+
+/* ── Body: diepe nachthemel (nacht-van-qadr identiek) ──── */
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 40%, var(--bg-bottom) 100%);
+  background-attachment: fixed;
+  color: var(--on-dark);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CSS Sterrenpatroon (nacht-van-qadr body::before) ──── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.50) 1px,   transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.30) 1px,   transparent 1px),
+    radial-gradient(circle, rgba(212,175,55,0.45)  1px,   transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.20) 0.5px, transparent 0.5px);
+  background-size:     150px 120px, 90px 80px, 220px 180px, 60px 50px;
+  background-position: 20px 30px,   55px 15px, 100px 70px,  35px 45px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Goudgloed atmosfeer (nacht-van-qadr body::after) ──── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% -5%,  rgba(212,175,55,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 15%,  rgba(100,120,200,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 10% 80%,  rgba(212,175,55,0.06) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Geanimeerde sterren ───────────────────────────────── */
+.stars-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle var(--dur, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+.star--gold {
+  background: var(--gold);
+  width: 2px; height: 2px;
+}
+@keyframes twinkle {
+  0%,100% { opacity: 0.1; transform: scale(0.8); }
+  50%     { opacity: 0.9; transform: scale(1.2); }
+}
+
+/* ── App shell ─────────────────────────────────────────── */
+.app-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 3rem;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.app-header {
+  width: 100%;
+  max-width: var(--max-w);
+  text-align: center;
+  padding: 2rem 1.25rem 1rem;
+}
+.header-logo-link { display: inline-block; }
+.header-logo { height: 44px; margin-bottom: 1rem; }
+.header-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .04em;
+  line-height: 1.2;
+  text-shadow: 0 2px 20px rgba(212,175,55,0.3);
+}
+.header-arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: var(--gold-light);
+  margin-top: .35rem;
+  opacity: .85;
+}
+.header-subtitle {
+  font-size: .9rem;
+  color: var(--on-dark-muted);
+  margin-top: .4rem;
+  font-style: italic;
+}
+
+/* ── Main & phase switching ────────────────────────────── */
+.app-main {
+  width: 100%;
+  max-width: var(--max-w);
+  padding: 0 1rem;
+}
+.phase { display: none; }
+.phase.active { display: block; }
+
+/* ── Glass card (nacht-van-qadr identiek) ──────────────── */
+.glass-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Section heading ───────────────────────────────────── */
+.section-heading {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(.95rem, 2.5vw, 1.15rem);
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: .04em;
+  text-shadow: 0 1px 12px rgba(212,175,55,0.2);
+}
+
+/* ════════════════════════════════════════════════════════
+   WACHTSCHERM
+   ════════════════════════════════════════════════════════ */
+.waiting-card { text-align: center; margin-top: 2rem; }
+.waiting-moon { font-size: 3rem; margin-bottom: .75rem; }
+.waiting-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: var(--gold);
+  margin-bottom: .75rem;
+}
+.waiting-countdown {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: .5rem;
+}
+.waiting-desc {
+  font-size: .9rem;
+  color: var(--on-dark-muted);
+  max-width: 320px;
+  margin: 0 auto .75rem;
+  line-height: 1.7;
+  font-style: italic;
+}
+.waiting-arabic {
+  font-family: 'AlQalamQuranMajeed', 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  color: var(--gold);
+  line-height: 2;
+}
+
+/* ════════════════════════════════════════════════════════
+   FASE 1 — DE LAATSTE NACHTEN
+   ════════════════════════════════════════════════════════ */
+
+/* Nacht-selector pills */
+.night-nav { margin: 1.25rem 0 .75rem; }
+.night-pills {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.night-pill {
+  font-family: 'Cinzel', serif;
+  font-size: .78rem;
+  font-weight: 600;
+  padding: .4rem .85rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--gold-border);
+  color: var(--on-dark-muted);
+  background: transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.night-pill:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-dim);
+}
+.night-pill.active {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.night-pill.is-tonight::after {
+  content: ' ✦';
+  font-size: .65rem;
+}
+
+/* Nachtklok */
+.night-clock-card { text-align: center; }
+.night-time {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.4rem, 10vw, 3.5rem);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .06em;
+  line-height: 1;
+  text-shadow: 0 2px 30px rgba(212,175,55,0.3);
+}
+.night-remaining {
+  font-size: .85rem;
+  color: var(--on-dark-muted);
+  font-style: italic;
+  margin: .4rem 0 1rem;
+}
+.sky-bar {
+  position: relative;
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: .5rem 0 1.5rem;
+}
+.sky-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 999px;
+  transition: width 1s ease;
+  width: 0%;
+}
+.sky-bar-label {
+  position: absolute;
+  top: 10px;
+  font-size: .68rem;
+  color: var(--on-dark-subtle);
+}
+.sky-bar-start { left: 0; }
+.sky-bar-end   { right: 0; }
+
+/* Stations */
+.stations-section { margin-bottom: 1.5rem; }
+.stations-list {
+  list-style: none;
+  position: relative;
+  padding-left: 2rem;
+}
+.stations-list::before {
+  content: '';
+  position: absolute;
+  left: .7rem;
+  top: .6rem;
+  bottom: .6rem;
+  width: 2px;
+  background: var(--gold-dim);
+  border-radius: 2px;
+}
+.station-item {
+  position: relative;
+  margin-bottom: 1rem;
+  transition: var(--transition);
+}
+.station-item:last-child { margin-bottom: 0; }
+.station-dot {
+  position: absolute;
+  left: -1.5rem;
+  top: .55rem;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--gold-border);
+  background: var(--bg-top);
+  transition: var(--transition);
+}
+.station-item.active .station-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(212,175,55,0.5);
+}
+.station-item.done .station-dot {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+}
+.station-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-md);
+  padding: .75rem 1rem;
+  transition: var(--transition);
+}
+.station-item.active .station-card {
+  background: var(--gold-dim);
+  border-color: var(--gold-border);
+  box-shadow: 0 0 20px rgba(212,175,55,0.10);
+}
+.station-time {
+  font-size: .72rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: .2rem;
+  letter-spacing: .04em;
+}
+.station-title {
+  font-family: 'Cinzel', serif;
+  font-size: .9rem;
+  color: var(--on-dark);
+  font-weight: 600;
+}
+.station-desc {
+  font-size: .82rem;
+  color: var(--on-dark-muted);
+  margin-top: .2rem;
+  line-height: 1.6;
+}
+
+/* Du'a carrousel */
+.dua-section { margin-bottom: 1.5rem; }
+.dua-card { text-align: center; }
+.dua-arabic {
+  font-family: 'AlQalamQuranMajeed', 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.3rem, 4.5vw, 1.8rem);
+  line-height: 2.2;
+  color: #fff;
+  margin-bottom: .75rem;
+}
+.dua-translit {
+  font-size: .82rem;
+  font-style: italic;
+  color: var(--on-dark-subtle);
+  margin-bottom: .5rem;
+  line-height: 1.6;
+}
+.dua-translation {
+  font-size: .9rem;
+  color: var(--on-dark-muted);
+  line-height: 1.65;
+  margin-bottom: .5rem;
+  font-style: italic;
+}
+.dua-source {
+  font-size: .75rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: .85rem;
+}
+.dua-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.dua-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-border);
+  color: var(--gold);
+  font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+  background: rgba(212,175,55,0.08);
+}
+.dua-btn:hover {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+}
+.dua-count { font-size: .8rem; color: var(--on-dark-subtle); }
+
+/* Focus-knop */
+.focus-btn {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: .5rem auto 0;
+  padding: .55rem 1.25rem;
+  background: rgba(212,175,55,0.10);
+  border: 1px solid var(--gold-border);
+  border-radius: 50px;
+  font-size: .85rem;
+  color: var(--gold-light);
+  transition: var(--transition);
+}
+.focus-btn:hover {
+  background: rgba(212,175,55,0.18);
+  border-color: var(--gold);
+}
+
+/* Focus overlay */
+.focus-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 15, 35, 0.97);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn .4s ease;
+}
+.focus-overlay[hidden] { display: none; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.focus-close {
+  position: absolute;
+  top: 1.25rem; right: 1.25rem;
+  font-size: 1.8rem;
+  color: var(--on-dark-subtle);
+  line-height: 1;
+  transition: var(--transition);
+}
+.focus-close:hover { color: var(--gold); }
+.focus-content { text-align: center; padding: 2rem 1.5rem; max-width: 420px; }
+.focus-arabic {
+  font-family: 'AlQalamQuranMajeed', 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  line-height: 2.4;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  animation: focusPulse 4s ease-in-out infinite;
+}
+.focus-translation {
+  font-size: clamp(.95rem, 2.5vw, 1.1rem);
+  color: var(--on-dark-muted);
+  line-height: 1.8;
+  font-style: italic;
+}
+@keyframes focusPulse {
+  0%,100% { opacity: .88; }
+  50%      { opacity: 1; text-shadow: 0 0 30px rgba(212,175,55,0.35); }
+}
+
+/* Intenties */
+.intentions-section { margin-top: 1rem; }
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 1.5rem 0 1rem;
+  color: var(--gold-dim);
+}
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+.divider-diamond {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: .5;
+  display: inline-block;
+}
+.intentions-intro {
+  font-size: .88rem;
+  color: var(--on-dark-muted);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+.intentions-list { display: flex; flex-direction: column; gap: .5rem; margin-bottom: .75rem; }
+.intention-option {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .65rem .9rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(212,175,55,0.15);
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.intention-option:hover {
+  border-color: var(--gold-border);
+  background: var(--gold-dim);
+}
+.intention-option input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.intention-check {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border-radius: 6px;
+  border: 1.5px solid var(--gold-border);
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+  color: transparent;
+  font-size: .75rem;
+}
+.intention-check::after { content: '✓'; }
+.intention-option input:checked ~ .intention-check {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg-top);
+}
+.intention-option.is-disabled {
+  opacity: .4;
+  pointer-events: none;
+}
+.intention-text {
+  font-size: .88rem;
+  color: var(--on-dark);
+  line-height: 1.4;
+}
+.intentions-count {
+  font-size: .82rem;
+  color: var(--gold);
+  margin-bottom: .75rem;
+}
+.custom-intention-row {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: .75rem;
+}
+.custom-habit-input {
+  flex: 1;
+  padding: .55rem .9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold-border);
+  background: rgba(255,255,255,0.05);
+  color: var(--on-dark);
+  font-size: .88rem;
+  outline: none;
+  transition: var(--transition);
+}
+.custom-habit-input:focus { border-color: var(--gold); background: var(--gold-dim); }
+.custom-habit-input::placeholder { color: var(--on-dark-subtle); }
+.custom-habit-add {
+  width: 40px; height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold-border);
+  background: rgba(212,175,55,0.08);
+  color: var(--gold);
+  font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.custom-habit-add:hover { background: var(--gold-dim); border-color: var(--gold); }
+.save-intentions-btn {
+  width: 100%;
+  padding: .85rem;
+  border-radius: var(--radius-md);
+  background: rgba(212,175,55,0.15);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  transition: var(--transition);
+}
+.save-intentions-btn:hover:not(:disabled) {
+  background: rgba(212,175,55,0.25);
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(212,175,55,0.15);
+}
+.save-intentions-btn:disabled { opacity: .35; cursor: not-allowed; }
+.intentions-saved-msg {
+  text-align: center;
+  font-size: .85rem;
+  color: #7dcc7d;
+  margin-top: .6rem;
+}
+
+/* ════════════════════════════════════════════════════════
+   FASE 2 — 40 DAGEN
+   ════════════════════════════════════════════════════════ */
+
+/* Journey header */
+.journey-header { text-align: center; }
+.journey-day-label {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: var(--gold);
+  margin-bottom: .75rem;
+  text-shadow: 0 1px 12px rgba(212,175,55,0.2);
+}
+.journey-progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.journey-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 999px;
+  transition: width .8s ease;
+  width: 0%;
+}
+.journey-hadith-teaser {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--gold-light);
+  margin-bottom: .35rem;
+}
+.journey-hadith-trans {
+  font-size: .82rem;
+  font-style: italic;
+  color: var(--on-dark-muted);
+  line-height: 1.6;
+}
+
+/* Pad van 40 stippen */
+.journey-path-wrap { margin-bottom: 1.5rem; padding: .5rem 0; }
+.journey-path {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: .45rem;
+  justify-items: center;
+}
+.path-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .65rem;
+  font-weight: 600;
+  color: var(--on-dark-subtle);
+  transition: var(--transition);
+}
+.path-dot.done {
+  background: rgba(212,175,55,0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 10px rgba(212,175,55,0.15);
+}
+.path-dot.today {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold);
+  font-weight: 700;
+  box-shadow: 0 0 16px rgba(212,175,55,0.3);
+  animation: dotPulse 3s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%,100% { box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+  50%     { box-shadow: 0 0 22px rgba(212,175,55,0.45); }
+}
+
+/* Check-in */
+.checkin-section { margin-bottom: 1.5rem; }
+.checkin-date {
+  font-size: .82rem;
+  color: var(--on-dark-subtle);
+  font-style: italic;
+  margin-bottom: .85rem;
+}
+.habits-checklist { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1rem; }
+.habit-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .7rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(212,175,55,0.15);
+  background: rgba(255,255,255,0.04);
+  transition: var(--transition);
+}
+.habit-toggle-row.is-done {
+  border-color: rgba(58,158,95,0.45);
+  background: var(--success-dim);
+}
+.habit-toggle-label {
+  font-size: .9rem;
+  color: var(--on-dark);
+}
+.habit-toggle-btn {
+  width: 44px; height: 24px;
+  border-radius: 999px;
+  border: 1.5px solid var(--gold-border);
+  background: rgba(255,255,255,0.06);
+  position: relative;
+  transition: var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+  flex-shrink: 0;
+}
+.habit-toggle-btn::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--on-dark-subtle);
+  transition: var(--transition);
+}
+.habit-toggle-btn.active {
+  background: var(--success);
+  border-color: var(--success);
+}
+.habit-toggle-btn.active::after {
+  background: white;
+  transform: translateX(20px);
+}
+.checkin-save-btn {
+  width: 100%;
+  padding: .85rem;
+  border-radius: var(--radius-md);
+  background: rgba(212,175,55,0.15);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  transition: var(--transition);
+}
+.checkin-save-btn:hover {
+  background: rgba(212,175,55,0.25);
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(212,175,55,0.15);
+}
+.checkin-saved-msg {
+  text-align: center;
+  font-size: .85rem;
+  color: #7dcc7d;
+  margin-top: .6rem;
+}
+
+/* Streak */
+.streak-card { text-align: center; margin-bottom: 1.25rem; }
+.streak-fire {
+  font-size: 2rem;
+  margin-bottom: .3rem;
+  min-height: 2.4rem;
+}
+.streak-number {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  text-shadow: 0 2px 30px rgba(212,175,55,0.3);
+}
+.streak-label {
+  font-size: .85rem;
+  color: var(--on-dark-muted);
+  font-style: italic;
+  margin-top: .35rem;
+}
+
+/* Motivatie */
+.motivation-card { text-align: center; margin-bottom: 1.25rem; }
+.motivation-arabic {
+  font-family: 'AlQalamQuranMajeed', 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  line-height: 2.2;
+  color: var(--gold-light);
+  margin-bottom: .6rem;
+}
+.motivation-text {
+  font-size: .92rem;
+  color: var(--on-dark-muted);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: .4rem;
+}
+.motivation-source {
+  font-size: .75rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Statistieken */
+.stats-section { margin-bottom: 2rem; }
+.stats-list { display: flex; flex-direction: column; gap: .85rem; }
+.stat-row {}
+.stat-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .85rem;
+  color: var(--on-dark);
+  margin-bottom: .3rem;
+}
+.stat-pct { color: var(--gold); font-weight: 600; }
+.stat-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.stat-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 999px;
+  transition: width 1s ease;
+}
+
+/* ════════════════════════════════════════════════════════
+   VOLTOOIINGSCHERM
+   ════════════════════════════════════════════════════════ */
+.complete-card { text-align: center; margin-top: 2rem; }
+.complete-emoji { font-size: 3.5rem; margin-bottom: .75rem; }
+.complete-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  color: var(--gold);
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 20px rgba(212,175,55,0.3);
+}
+.complete-stats { margin-bottom: 1rem; }
+.complete-dua {
+  font-size: .92rem;
+  color: var(--on-dark-muted);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: .75rem;
+}
+.complete-arabic {
+  font-family: 'AlQalamQuranMajeed', 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  line-height: 2.2;
+  color: var(--gold);
+}
+
+/* ── Terug-knop (nacht-van-qadr stijl) ─────────────────── */
+.portal-back-wrap {
+  text-align: center;
+  padding: 2.5rem 1rem 1rem;
+}
+.portal-back-btn {
+  display: inline-block;
+  padding: .75rem 1.75rem;
+  background: rgba(212,175,55,0.10);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-md);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: .9rem;
+  transition: var(--transition);
+}
+.portal-back-btn:hover {
+  background: rgba(212,175,55,0.20);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(212,175,55,0.15);
+}
+
+/* ── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 400px) {
+  .journey-path { grid-template-columns: repeat(7, 1fr); }
+  .path-dot { width: 28px; height: 28px; font-size: .6rem; }
+}
