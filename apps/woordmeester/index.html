@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="icon" href="/icons/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://hetrechtepadcollege.goatcounter.com;">
+    <title>Woordmeester | Het Rechte Pad College</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leer.hetrechtepadcollege.nl/apps/woordmeester/">
+    <meta property="og:site_name" content="Het Rechte Pad College">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:title" content="Woordmeester | Het Rechte Pad College">
+    <meta property="og:description" content="Raad elke dag een islamitisch begrip aan de hand van hints uit de Koran en Hadith.">
+    <meta property="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+
+        <!-- Header -->
+        <header class="game-header">
+            <img src="../../images/HRPC-logo.png" alt="Het Rechte Pad College" class="header-logo">
+            <h1>Woordmeester</h1>
+            <div class="header-actions">
+                <button class="header-btn" id="info-btn" aria-label="Hoe speel je?">&#8505;&#65039;</button>
+                <button class="header-btn" id="stats-btn" aria-label="Statistieken">&#128202;</button>
+            </div>
+        </header>
+
+        <!-- Board -->
+        <div class="board" id="board" aria-live="polite"></div>
+
+        <!-- Hints -->
+        <section class="hint-section">
+            <h3>Hints</h3>
+            <div class="hint-buttons">
+                <button class="hint-btn" id="hint-btn-1">Hint 1: Categorie</button>
+                <button class="hint-btn" id="hint-btn-2" disabled>Hint 2: Koranvers</button>
+                <button class="hint-btn" id="hint-btn-3" disabled>Hint 3: Definitie</button>
+                <button class="hint-btn" id="hint-btn-4" disabled>Hint 4: Eerste letter</button>
+            </div>
+            <div class="hint-cards">
+                <div class="hint-card hint-card--1" id="hint-card-1">
+                    <p class="hint-label">Categorie</p>
+                    <p class="hint-text" id="hint-text-1"></p>
+                </div>
+                <div class="hint-card hint-card--2" id="hint-card-2">
+                    <p class="hint-label">Koranvers / Hadith</p>
+                    <p class="hint-text" id="hint-text-2"></p>
+                </div>
+                <div class="hint-card hint-card--3" id="hint-card-3">
+                    <p class="hint-label">Definitie</p>
+                    <p class="hint-text" id="hint-text-3"></p>
+                </div>
+                <div class="hint-card hint-card--4" id="hint-card-4">
+                    <p class="hint-label">Eerste letter</p>
+                    <p class="hint-text" id="hint-text-4"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Result -->
+        <div class="result-section" id="result-section">
+            <div class="result-stars" id="result-stars"></div>
+            <p class="result-text" id="result-text"></p>
+            <p class="result-word" id="result-word"></p>
+            <p class="result-meaning" id="result-meaning"></p>
+            <button class="share-btn" id="share-btn">Deel je resultaat</button>
+            <p class="share-copied" id="share-copied">Gekopieerd naar klembord!</p>
+        </div>
+
+        <!-- Keyboard -->
+        <div class="keyboard" id="keyboard">
+            <div class="keyboard-row">
+                <button class="key" data-key="Q">Q</button>
+                <button class="key" data-key="W">W</button>
+                <button class="key" data-key="E">E</button>
+                <button class="key" data-key="R">R</button>
+                <button class="key" data-key="T">T</button>
+                <button class="key" data-key="Y">Y</button>
+                <button class="key" data-key="U">U</button>
+                <button class="key" data-key="I">I</button>
+                <button class="key" data-key="O">O</button>
+                <button class="key" data-key="P">P</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key" data-key="A">A</button>
+                <button class="key" data-key="S">S</button>
+                <button class="key" data-key="D">D</button>
+                <button class="key" data-key="F">F</button>
+                <button class="key" data-key="G">G</button>
+                <button class="key" data-key="H">H</button>
+                <button class="key" data-key="J">J</button>
+                <button class="key" data-key="K">K</button>
+                <button class="key" data-key="L">L</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key key--wide" data-key="BACKSPACE">&#9003;</button>
+                <button class="key" data-key="Z">Z</button>
+                <button class="key" data-key="X">X</button>
+                <button class="key" data-key="C">C</button>
+                <button class="key" data-key="V">V</button>
+                <button class="key" data-key="B">B</button>
+                <button class="key" data-key="N">N</button>
+                <button class="key" data-key="M">M</button>
+                <button class="key key--wide key--enter" data-key="ENTER">&#10003;</button>
+            </div>
+        </div>
+
+        <!-- Back to portal -->
+        <div class="portal-home-wrap">
+            <a href="../../" class="portal-home-btn">&#8592; Terug naar Leerportaal</a>
+        </div>
+
+    </div>
+
+    <!-- Confetti container -->
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <!-- Stats Modal -->
+    <div class="modal-overlay" id="stats-modal">
+        <div class="modal">
+            <button class="modal-close" id="stats-close" aria-label="Sluiten">&times;</button>
+            <h2>Statistieken</h2>
+            <div class="stats-grid" id="stats-grid"></div>
+            <div class="distribution" id="distribution"></div>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div class="modal-overlay" id="info-modal">
+        <div class="modal">
+            <button class="modal-close" id="info-close" aria-label="Sluiten">&times;</button>
+            <h2>Hoe speel je?</h2>
+            <div class="info-section">
+                <h3>Het doel</h3>
+                <p>Raad het dagelijkse islamitische begrip in maximaal 5 pogingen.</p>
+            </div>
+            <div class="info-section">
+                <h3>Hoe het werkt</h3>
+                <ul>
+                    <li>Typ een woord en druk op Enter</li>
+                    <li>Het woord moet exact overeenkomen met het gezochte begrip</li>
+                    <li>Gebruik hints als je vastloopt — maar elke hint kost een ster!</li>
+                </ul>
+            </div>
+            <div class="info-section">
+                <h3>Hints</h3>
+                <ul>
+                    <li><strong>Hint 1:</strong> De categorie van het woord</li>
+                    <li><strong>Hint 2:</strong> Een relevant Koranvers of Hadith</li>
+                    <li><strong>Hint 3:</strong> De definitie van het begrip</li>
+                    <li><strong>Hint 4:</strong> De eerste letter van het woord</li>
+                </ul>
+            </div>
+            <div class="info-section">
+                <h3>Sterren</h3>
+                <p>Hoe minder hints je gebruikt, hoe meer sterren je verdient. 0 hints = 4 sterren, 1 hint = 3 sterren, enzovoort (minimaal 1 ster).</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script data-goatcounter="https://hetrechtepadcollege.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"
+            integrity="sha384-DGiREytotlUiLflu8vLo0vvfxKWn36pKPT1ZBhh3R+3vhwrS/4p3H9eys9Zr2bPQ"
+            crossorigin="anonymous"></script>
+</body>
+</html>
