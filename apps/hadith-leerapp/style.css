@@ -1,0 +1,498 @@
+:root {
+    --blue: #1f294d;
+    --blue-dim: rgba(31, 41, 77, 0.08);
+    --blue-border: rgba(31, 41, 77, 0.12);
+    --gold: #d4af37;
+    --gold-bg: rgba(212, 175, 55, 0.10);
+    --gold-border: rgba(212, 175, 55, 0.32);
+    --bg: #f9f8f6;
+    --card-bg: #ffffff;
+    --text: #1c2340;
+    --muted: #5c6e8a;
+    --border: rgba(31, 41, 77, 0.09);
+    --shadow: 0 1px 4px rgba(31, 41, 77, 0.06), 0 4px 16px rgba(31, 41, 77, 0.07);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+.app-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.app-header {
+    background: var(--blue);
+    color: #ffffff;
+    padding: 28px 24px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-logo {
+    display: block;
+    max-width: 180px;
+    height: auto;
+    margin: 0 auto 16px;
+}
+
+.back-btn {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    transition: color 0.15s;
+}
+
+.back-btn:hover {
+    color: #ffffff;
+}
+
+.header-title {
+    margin: 0 0 6px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.header-subtitle {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 400;
+    opacity: 0.95;
+}
+
+/* ── MAIN CONTENT ── */
+.app-main {
+    flex: 1;
+    max-width: 860px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 20px;
+}
+
+/* ── DAY BANNER ── */
+.dag-banner {
+    background: linear-gradient(135deg, var(--blue), #2a3666);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    color: #ffffff;
+}
+
+.dag-banner .db-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.dag-banner .db-arabisch {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.dag-banner .db-nl {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.dag-banner .db-bron {
+    font-size: 0.75rem;
+    color: rgba(212, 175, 55, 0.85);
+    font-style: italic;
+    display: block;
+}
+
+/* ── TOPBAR (SEARCH & FILTERS) ── */
+.hadith-topbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.zoek-input {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.875rem;
+    color: var(--text);
+    outline: none;
+    background: var(--card-bg);
+    transition: border-color 0.15s;
+}
+
+.zoek-input:focus {
+    border-color: var(--blue);
+}
+
+.zoek-input::placeholder {
+    color: var(--muted);
+}
+
+.cat-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.cat-btn {
+    padding: 6px 16px;
+    border-radius: 99px;
+    border: 1.5px solid var(--border);
+    background: var(--card-bg);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--muted);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.cat-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+.cat-btn.actief {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #ffffff;
+}
+
+/* ── HADITH LIST ── */
+.hadith-lijst {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hadith-kaart {
+    background: var(--card-bg);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 0.15s;
+}
+
+.hadith-kaart:hover {
+    border-color: rgba(31, 41, 77, 0.15);
+}
+
+.hadith-kaart.open {
+    border-color: var(--gold-border);
+}
+
+/* ── HADITH CARD HEADER ── */
+.hk-header {
+    padding: 18px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.hadith-kaart:hover .hk-header {
+    background: rgba(31, 41, 77, 0.02);
+}
+
+.hk-cat {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    margin-top: 2px;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.hk-kort {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.5;
+    flex: 1;
+    color: var(--text);
+}
+
+.hk-pijl {
+    color: var(--muted);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.hadith-kaart.open .hk-pijl {
+    transform: rotate(180deg);
+}
+
+/* ── HADITH CARD BODY (COLLAPSED) ── */
+.hk-body {
+    display: none;
+    padding: 0 22px 22px;
+    border-top: 1px solid var(--border);
+}
+
+.hadith-kaart.open .hk-body {
+    display: block;
+}
+
+/* ── ARABIC TEXT IN BODY ── */
+.hk-arabisch-wrap {
+    margin: 18px 0;
+    padding: 16px;
+    background: var(--bg);
+    border-radius: 10px;
+    border-left: 3px solid var(--gold);
+}
+
+.hk-arabisch {
+    font-size: 1.1rem;
+    color: var(--blue);
+    line-height: 1.9;
+    margin: 0;
+    font-weight: 500;
+}
+
+.hk-nl {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.75;
+    margin: 14px 0;
+}
+
+/* ── EXPLANATION BOX ── */
+.hk-uitleg-wrap {
+    background: var(--gold-bg);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.hk-uitleg-titel {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #7a5f0a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px;
+    display: block;
+}
+
+.hk-uitleg {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.75;
+    margin: 0;
+}
+
+.hk-bron {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0;
+}
+
+/* ── FOOTER ── */
+.app-footer {
+    background: var(--bg);
+    color: var(--muted);
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+.app-footer p {
+    margin: 0 0 8px;
+}
+
+.footer-link {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.footer-link:hover {
+    color: var(--text);
+}
+
+/* ── CATEGORY COLOR MAP ── */
+.cat-intentie {
+    background: rgba(99, 102, 241, 0.1);
+    color: #4338CA;
+}
+
+.cat-goedheid {
+    background: rgba(31, 120, 70, 0.1);
+    color: #1a5c38;
+}
+
+.cat-kennis {
+    background: rgba(212, 175, 55, 0.15);
+    color: #7a5f0a;
+}
+
+.cat-geduld {
+    background: rgba(14, 116, 144, 0.1);
+    color: #0e7490;
+}
+
+.cat-karakter {
+    background: rgba(220, 38, 38, 0.1);
+    color: #991b1b;
+}
+
+.cat-tong {
+    background: rgba(124, 58, 237, 0.1);
+    color: #5b21b6;
+}
+
+.cat-dua {
+    background: rgba(31, 120, 70, 0.1);
+    color: #1a5c38;
+}
+
+.cat-barmhartigheid {
+    background: rgba(234, 88, 12, 0.1);
+    color: #9a3412;
+}
+
+.cat-werk {
+    background: rgba(31, 41, 77, 0.08);
+    color: #1f294d;
+}
+
+.cat-reinheid {
+    background: rgba(14, 116, 144, 0.1);
+    color: #0e7490;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+    .app-header {
+        padding: 20px 16px;
+    }
+
+    .header-title {
+        font-size: 1.4rem;
+    }
+
+    .header-subtitle {
+        font-size: 0.875rem;
+    }
+
+    .app-main {
+        padding: 20px 16px;
+    }
+
+    .dag-banner {
+        padding: 18px 20px;
+        margin-bottom: 24px;
+    }
+
+    .dag-banner .db-arabisch {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .dag-banner .db-nl {
+        font-size: 0.875rem;
+    }
+
+    .hadith-topbar {
+        gap: 10px;
+        margin-bottom: 18px;
+    }
+
+    .zoek-input {
+        min-width: 100%;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .cat-filters {
+        gap: 6px;
+    }
+
+    .cat-btn {
+        padding: 5px 12px;
+        font-size: 0.7rem;
+    }
+
+    .hk-header {
+        padding: 14px 16px;
+        gap: 10px;
+    }
+
+    .hk-kort {
+        font-size: 0.9rem;
+    }
+
+    .hk-body {
+        padding: 0 16px 16px;
+    }
+
+    .hk-arabisch-wrap {
+        margin: 14px 0;
+        padding: 12px;
+    }
+
+    .hk-arabisch {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .hk-nl {
+        font-size: 0.85rem;
+        margin: 12px 0;
+    }
+
+    .hk-uitleg-wrap {
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .hk-uitleg {
+        font-size: 0.8rem;
+    }
+
+    .app-footer {
+        padding: 20px 16px;
+        font-size: 0.8rem;
+    }
+}
