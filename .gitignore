@@ -39,9 +39,6 @@ apps/ramadan-kalender/daden2.json
 # Lokale docs (niet naar GitHub pushen)
 docs/
 
-# Apps nog niet klaar voor productie
-apps/sirah-motion/
-apps/sirah-motion-vite/
 
 # Claude Code werkbestanden
 .claude/
