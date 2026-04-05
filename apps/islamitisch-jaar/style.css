@@ -1,0 +1,697 @@
+/* ─── Reset & basisvariabelen ───────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --blauw: #1f294d;
+  --goud: #d4af37;
+  --goud-licht: #f0e080;
+  --bg: #f9f8f6;
+  --card-bg: #ffffff;
+  --tekst: #1c2340;
+  --gedempt: #5c6e8a;
+  --rand: #e8e4dc;
+  --radius: 16px;
+  --radius-groot: 24px;
+  --schaduw: 0 2px 12px rgba(0,0,0,0.08);
+  --schaduw-groot: 0 8px 32px rgba(0,0,0,0.14);
+  --font: 'Plus Jakarta Sans', sans-serif;
+  --font-arabisch: 'Amiri', 'Scheherazade New', serif;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--tekst);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── Nu-blok (hero) ────────────────────────────────────────────────────────── */
+
+#nu-blok {
+  position: relative;
+  width: 100%;
+  min-height: 52vh;
+  padding: 3rem 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  transition: background 1s ease;
+}
+
+.nu-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-arabisch);
+  font-size: clamp(7rem, 30vw, 15rem);
+  color: rgba(255, 255, 255, 0.07);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.nu-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: auto;
+}
+
+.nu-datum-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.03em;
+}
+
+.maan-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.maan-container svg {
+  width: 44px;
+  height: 44px;
+  filter: drop-shadow(0 2px 8px rgba(212,175,55,0.4));
+}
+
+#maan-label {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  max-width: 60px;
+}
+
+.nu-inhoud {
+  position: relative;
+  z-index: 1;
+}
+
+.nu-naam {
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.nu-karakter {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+  max-width: 480px;
+  margin-bottom: 1.25rem;
+}
+
+/* Maandvoortgangsbalk */
+.maand-voortgang {
+  margin-bottom: 1.5rem;
+}
+
+.voortgang-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.3rem;
+}
+
+.voortgang-balk-bg {
+  height: 3px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.voortgang-balk-vulling {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0.9));
+  border-radius: 100px;
+  transition: width 1s ease;
+}
+
+/* Knoppen in hero */
+.nu-knoppen {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-primair {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,255,255,0.95);
+  color: var(--tekst);
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.7rem 1.3rem;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.btn-primair:active {
+  transform: scale(0.97);
+}
+
+.btn-secundair {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.9);
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.7rem 1.3rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-secundair:active {
+  background: rgba(255,255,255,0.25);
+}
+
+/* ─── Jaar-grid ──────────────────────────────────────────────────────────────── */
+
+.jaar-sectie {
+  padding: 2rem 1.25rem 1rem;
+}
+
+.sectie-header {
+  margin-bottom: 1.25rem;
+}
+
+.sectie-titel {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--tekst);
+  letter-spacing: -0.01em;
+}
+
+.sectie-ondertitel {
+  font-size: 0.8rem;
+  color: var(--gedempt);
+  margin-top: 0.15rem;
+}
+
+#jaar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.875rem;
+}
+
+.maand-card {
+  position: relative;
+  border: 1px solid var(--rand);
+  border-radius: var(--radius);
+  padding: 1rem;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: var(--schaduw);
+  font-family: var(--font);
+  -webkit-tap-highlight-color: transparent;
+  min-height: 130px;
+}
+
+.maand-card:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+
+.maand-card.huidig {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.maand-nummer {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--gedempt);
+  letter-spacing: 0.05em;
+}
+
+.maand-emoji {
+  font-size: 1.4rem;
+  line-height: 1;
+  margin: 0.1rem 0;
+}
+
+.maand-arabisch-klein {
+  font-family: var(--font-arabisch);
+  font-size: 0.9rem;
+  color: var(--gedempt);
+  direction: rtl;
+  line-height: 1.2;
+}
+
+.maand-naam-kaart {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--tekst);
+  line-height: 1.2;
+  margin-top: auto;
+}
+
+.nu-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: var(--goud);
+  color: #1a1a00;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ─── Altijd-sectie ──────────────────────────────────────────────────────────── */
+
+.altijd-sectie-wrapper {
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.altijd-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.altijd-icon {
+  font-size: 1.1rem;
+}
+
+#altijd-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.altijd-sectie {
+  background: var(--card-bg);
+  border: 1px solid var(--rand);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+
+.altijd-titel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gedempt);
+  margin-bottom: 0.75rem;
+}
+
+.altijd-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rand);
+}
+
+.altijd-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.altijd-naam {
+  display: block;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--tekst);
+  margin-bottom: 0.15rem;
+}
+
+.altijd-omschrijving {
+  display: block;
+  font-size: 0.775rem;
+  color: var(--gedempt);
+  line-height: 1.45;
+}
+
+/* ─── Modal ──────────────────────────────────────────────────────────────────── */
+
+#modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  align-items: flex-end;
+}
+
+#modal.open {
+  display: flex;
+}
+
+#modal-sheet {
+  width: 100%;
+  max-height: 90vh;
+  background: var(--bg);
+  border-radius: 24px 24px 0 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transform: translateY(100%);
+  transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+  overscroll-behavior: contain;
+}
+
+#modal-sheet.open {
+  transform: translateY(0);
+}
+
+/* Swipe-indicator */
+.modal-swipe-hint {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 0 0;
+}
+
+.modal-swipe-pill {
+  width: 40px;
+  height: 4px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 100px;
+}
+
+/* Modal-header */
+#modal-header {
+  padding: 1rem 1.25rem 1.75rem;
+  position: relative;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.modal-watermark {
+  position: absolute;
+  top: 50%;
+  right: -0.5rem;
+  transform: translateY(-50%);
+  font-family: var(--font-arabisch);
+  font-size: 5.5rem;
+  color: rgba(255,255,255,0.1);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+#modal-arabisch {
+  font-family: var(--font-arabisch);
+  font-size: 1.75rem;
+  color: rgba(255,255,255,0.7);
+  direction: rtl;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+
+#modal-naam {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+#modal-betekenis {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.65);
+  margin-top: 0.3rem;
+}
+
+/* Sluit-knop */
+#modal-sluit {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Modal body */
+.modal-body {
+  padding: 1.5rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-sectie-titel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gedempt);
+  margin-bottom: 0.75rem;
+}
+
+.modal-karakter {
+  font-size: 0.9rem;
+  color: var(--tekst);
+  line-height: 1.65;
+}
+
+/* Bijzondere dagen */
+.modal-dag {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rand);
+}
+
+.modal-dag:last-child {
+  border-bottom: none;
+}
+
+.modal-dag-nummer {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: var(--blauw);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.modal-dag-naam {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--tekst);
+}
+
+.modal-dag-beschrijving {
+  font-size: 0.8rem;
+  color: var(--gedempt);
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+.modal-geen-dagen {
+  font-size: 0.85rem;
+  color: var(--gedempt);
+  font-style: italic;
+}
+
+/* Aanbevelingen */
+.modal-aanbeveling {
+  font-size: 0.875rem;
+  color: var(--tekst);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rand);
+  line-height: 1.5;
+}
+
+.modal-aanbeveling:last-child {
+  border-bottom: none;
+}
+
+/* Hadith */
+.modal-quote {
+  font-size: 0.925rem;
+  font-style: italic;
+  color: var(--tekst);
+  line-height: 1.65;
+  border-left: 3px solid var(--goud);
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-bron {
+  font-size: 0.75rem;
+  color: var(--gedempt);
+  font-style: normal;
+}
+
+/* Actie-blok */
+.modal-actie-tekst {
+  background: linear-gradient(135deg, #f5f0e0, #fdfaf0);
+  border: 1px solid #e8d88a;
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  font-size: 0.9rem;
+  color: var(--tekst);
+  line-height: 1.6;
+}
+
+/* App-links */
+.modal-apps-lijst {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.modal-app-link {
+  display: inline-block;
+  background: var(--card-bg);
+  border: 1px solid var(--rand);
+  border-radius: 100px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--blauw);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.modal-app-link:active {
+  background: var(--rand);
+}
+
+/* ─── Desktop ────────────────────────────────────────────────────────────────── */
+
+@media (min-width: 600px) {
+  #jaar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #altijd-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #nu-blok {
+    min-height: 45vh;
+    padding: 3.5rem 2.5rem 3rem;
+  }
+
+  .nu-watermark {
+    font-size: clamp(10rem, 20vw, 18rem);
+  }
+
+  #modal-sheet {
+    max-width: 540px;
+    margin: 0 auto;
+    border-radius: 24px 24px 0 0;
+  }
+}
+
+@media (min-width: 900px) {
+  #jaar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .jaar-sectie {
+    padding: 2.5rem 2.5rem 1rem;
+  }
+
+  .altijd-sectie-wrapper {
+    padding: 1.5rem 2.5rem 3.5rem;
+  }
+
+  .nu-naam {
+    font-size: 3.5rem;
+  }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+
+#modal-sheet::-webkit-scrollbar {
+  width: 4px;
+}
+
+#modal-sheet::-webkit-scrollbar-thumb {
+  background: var(--rand);
+  border-radius: 100px;
+}
+
+/* ─── Animaties ──────────────────────────────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.maand-card {
+  animation: fadeInUp 0.4s ease both;
+}
+
+.maand-card:nth-child(1)  { animation-delay: 0.05s; }
+.maand-card:nth-child(2)  { animation-delay: 0.10s; }
+.maand-card:nth-child(3)  { animation-delay: 0.15s; }
+.maand-card:nth-child(4)  { animation-delay: 0.20s; }
+.maand-card:nth-child(5)  { animation-delay: 0.25s; }
+.maand-card:nth-child(6)  { animation-delay: 0.30s; }
+.maand-card:nth-child(7)  { animation-delay: 0.35s; }
+.maand-card:nth-child(8)  { animation-delay: 0.40s; }
+.maand-card:nth-child(9)  { animation-delay: 0.45s; }
+.maand-card:nth-child(10) { animation-delay: 0.50s; }
+.maand-card:nth-child(11) { animation-delay: 0.55s; }
+.maand-card:nth-child(12) { animation-delay: 0.60s; }

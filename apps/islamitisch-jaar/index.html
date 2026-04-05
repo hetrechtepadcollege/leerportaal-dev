@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Het Islamitische Jaar — ontdek de mawāsim al-khayr: de seizoenen van het goede door het islamitische jaar heen." />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://gc.zgo.at;
+    style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self' https://hetrechtepadcollege.goatcounter.com;
+    img-src 'self' data:;
+  " />
+  <title>Het Islamitische Jaar — Leerportaal</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Amiri:ital@0;1&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Nu-blok (hero) ───────────────────────────────────────────────────── -->
+  <section id="nu-blok" aria-label="Huidige islamitische maand">
+
+    <!-- Arabische watermark -->
+    <div class="nu-watermark" id="nu-arabisch" aria-hidden="true">رَمَضَان</div>
+
+    <!-- Bovenbalk: datum + maan -->
+    <div class="nu-top">
+      <span class="nu-datum-badge" id="nu-datum">laden…</span>
+      <div class="maan-container" aria-label="Huidige maanfase">
+        <div id="maan-svg"></div>
+        <span id="maan-label"></span>
+      </div>
+    </div>
+
+    <!-- Inhoud -->
+    <div class="nu-inhoud">
+      <h1 class="nu-naam" id="nu-maandnaam">laden…</h1>
+      <p class="nu-karakter" id="nu-karakter"></p>
+
+      <!-- Maandvoortgang -->
+      <div class="maand-voortgang" role="progressbar" aria-label="Voortgang in de huidige maand">
+        <div class="voortgang-labels">
+          <span>Dag in de maand</span>
+          <span id="maand-voortgang-tekst"></span>
+        </div>
+        <div class="voortgang-balk-bg">
+          <div class="voortgang-balk-vulling" id="maand-voortgang-balk" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Knoppen -->
+      <div class="nu-knoppen">
+        <button class="btn-primair" id="btn-actie">
+          Wat kan ik nu doen? →
+        </button>
+        <button class="btn-secundair" id="btn-ontdek-jaar">
+          Heel het jaar ↓
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Jaar-grid ─────────────────────────────────────────────────────────── -->
+  <section class="jaar-sectie" aria-label="Alle islamitische maanden">
+    <div class="sectie-header" id="jaar-grid-anker">
+      <h2 class="sectie-titel">De twaalf maanden</h2>
+      <p class="sectie-ondertitel">Tik op een maand voor inhoud, aanbevelingen en bijzondere dagen</p>
+    </div>
+    <div id="jaar-grid" role="list" aria-label="Overzicht islamitische maanden"></div>
+  </section>
+
+  <!-- ── Altijd-sectie ─────────────────────────────────────────────────────── -->
+  <section class="altijd-sectie-wrapper" aria-label="Terugkerende islamitische praktijken">
+    <div class="altijd-header">
+      <span class="altijd-icon">🔁</span>
+      <div>
+        <h2 class="sectie-titel">Altijd — het ritme van elke dag</h2>
+        <p class="sectie-ondertitel">Een moslim leeft niet alleen in jaarlijkse cycli</p>
+      </div>
+    </div>
+    <div id="altijd-content"></div>
+  </section>
+
+  <!-- ── Modal ─────────────────────────────────────────────────────────────── -->
+  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-naam">
+    <div id="modal-sheet">
+
+      <!-- Swipe hint -->
+      <div class="modal-swipe-hint" aria-hidden="true">
+        <div class="modal-swipe-pill"></div>
+      </div>
+
+      <!-- Header -->
+      <div id="modal-header">
+        <div class="modal-watermark" id="modal-watermark" aria-hidden="true"></div>
+        <button id="modal-sluit" aria-label="Sluit venster">✕</button>
+        <div id="modal-arabisch" dir="rtl"></div>
+        <h2 id="modal-naam"></h2>
+        <p id="modal-betekenis"></p>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+        <p class="modal-karakter" id="modal-karakter"></p>
+        <div id="modal-dagen"></div>
+        <div id="modal-aanbevelingen"></div>
+        <div id="modal-hadith"></div>
+        <div id="modal-actie"></div>
+        <div id="modal-apps"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Scripts ───────────────────────────────────────────────────────────── -->
+  <script src="script.js"></script>
+  <script
+    data-goatcounter="https://hetrechtepadcollege.goatcounter.com/count"
+    async
+    src="https://gc.zgo.at/count.js"
+    integrity="sha384-DGiREytotlUiLflu8vLo0vvfxKWn36pKPT1ZBhh3R+3vhwrS/4p3H9eys9Zr2bPQ"
+    crossorigin="anonymous">
+  </script>
+
+</body>
+</html>
