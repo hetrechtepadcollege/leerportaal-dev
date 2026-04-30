@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wie Ben Ik? — Dagelijks Raadspel</title>
+  <meta name="description" content="Raad elke dag een bekende islamitische figuur aan de hand van 6 hints. Profeten, ṣaḥāba, geleerden en meer." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="/icons/favicon.ico" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-logo-wrap">
+    <img class="hero-logo" src="hrpc-logo.png" alt="Het Rechte Pad College" />
+  </div>
+  <h1 class="hero-titel">Wie Ben Ik?</h1>
+  <p class="hero-slagzin">Raad elke dag een bekende islamitische figuur aan de hand van zes hints. Hoe minder hints, hoe meer sterren.</p>
+  <a href="/" class="hero-terug">← Terug naar Leerportaal</a>
+</header>
+
+<!-- ── GAME SCHERM ──────────────────────────────────────────────────────── -->
+<main id="game-scherm" class="scherm verborgen">
+
+  <div class="ornament">✦ ❖ ✦</div>
+
+  <div class="spel-meta">
+    <span id="categorie-badge" class="categorie-badge">—</span>
+    <span id="hint-teller" class="hint-teller">Hint 1 van 6</span>
+  </div>
+
+  <div id="hints-container" class="hints-container"></div>
+
+  <div class="mysterie-icoon">
+    <span id="categorie-icoon" class="icoon-symbool">✦</span>
+    <span class="vraagteken">Wie ben ik?</span>
+  </div>
+
+  <div id="al-gespeeld" class="al-gespeeld-banner verborgen">
+    <strong>Je hebt vandaag al gespeeld.</strong>
+    Morgen verschijnt een nieuwe persoon.
+  </div>
+
+  <div id="invoer-sectie" class="invoer-sectie verborgen">
+    <div class="invoer-rij">
+      <input id="raad-invoer" type="text" placeholder="Typ een naam…" autocomplete="off" autocorrect="off" spellcheck="false" />
+      <button id="raad-knop">Raad</button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <div id="sterren" class="sterren" style="text-align:center;margin-bottom:12px">☆☆☆☆☆☆</div>
+
+  <div class="actie-knoppen">
+    <button id="volgende-hint-knop" class="knop-hint verborgen">Volgende hint ↓</button>
+    <button id="onthul-knop" class="knop-onthul verborgen">Onthul (0 ★)</button>
+  </div>
+
+</main>
+
+<!-- ── ONTHULLING SCHERM ────────────────────────────────────────────────── -->
+<section id="onthulling-scherm" class="scherm verborgen">
+
+  <div class="ornament">✦ ❖ ✦</div>
+
+  <div class="onthulling-score">
+    <span id="onth-sterren" class="onth-sterren">☆☆☆☆☆☆</span>
+    <div id="onth-score-label" class="onth-score-label"></div>
+  </div>
+
+  <div class="onthulling-kaart">
+    <div class="onth-header">
+      <span id="onth-header-icoon" class="onth-header-icoon">✦</span>
+      <span id="onth-arabisch" class="onth-arabisch"></span>
+      <span id="onth-naam" class="onth-naam"></span>
+      <span id="onth-eretitel" class="onth-eretitel"></span>
+    </div>
+    <div class="onth-body">
+      <div class="onth-categorie-rij">
+        <span id="onth-categorie" class="categorie-badge"></span>
+      </div>
+      <p id="onth-biografie" class="onth-biografie"></p>
+    </div>
+  </div>
+
+  <div class="onth-alle-hints-label">Alle hints</div>
+  <div id="onth-hints-container" class="hints-container"></div>
+
+  <div class="onthulling-acties">
+    <button id="onthulling-deel-knop" class="knop-deel">Deel resultaat</button>
+    <a href="/" class="knop-terug">← Terug naar Leerportaal</a>
+  </div>
+
+</section>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  // GoatCounter
+  window.goatcounter = { path: p => 'wie-ben-ik' + p };
+</script>
+<script data-goatcounter="https://hrpc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>
