@@ -474,6 +474,115 @@ const questions = [
     // --- Nieuwe scenario-vragen (21–28) ---
     {
         type: "scenario",
+        category: "Gebedstijden",
+        scenario: "Mustafa heeft zijn Fajr-gebed (ochtendgebed) gemist. Hij wil het direct inhalen, maar op dat moment begint de zon net op te komen. Hij overweegt het gebed toch nu te verrichten.",
+        question: "Mag Mustafa zijn gemiste Fajr-gebed inhalen terwijl de zon opkomt?",
+        answers: [
+            { text: "A) Ja, een gemist gebed mag altijd direct worden ingehaald", correct: false },
+            { text: "B) Nee, het inhalen van gemiste gebeden (qaḍā) is verboden op de drie verboden tijdstippen — wacht tot de zon volledig op is", correct: true },
+            { text: "C) Ja, want het gaat om een verplicht gebed en niet om een vrijwillig gebed", correct: false }
+        ],
+        uitleg: "Qaḍā — het inhalen van gemiste farḍ-gebeden — is niet toegestaan op de drie verboden tijdstippen: bij zonsopkomst, bij zonsondergang en op het islamitische middaguur (zawāl). Mustafa moet wachten totdat de zon volledig is opgekomen voordat hij zijn Fajr inhaalt.",
+        source: "BSI_N1.pdf p.53, 126"
+    },
+    {
+        type: "scenario",
+        category: "Gebedstijden",
+        scenario: "Hamza heeft zijn ʿAṣr-gebed (namiddaggebed) uitgesteld. Wanneer hij het eindelijk wil verrichten, is de zon al aan het ondergaan en kleurt ze oranje. Hij vraagt zich af of zijn gebed nog geldig is.",
+        question: "Is het ʿAṣr-gebed van Hamza geldig als hij het verricht terwijl de zon ondergaat?",
+        answers: [
+            { text: "A) Nee, alle gebeden zijn verboden bij zonsondergang — hij moet het inhalen als qaḍā", correct: false },
+            { text: "B) Ja, het actuele ʿAṣr-gebed mag nog worden verricht bij zonsondergang — maar het onnodig uitstellen was afkeurenswaardig", correct: true },
+            { text: "C) Nee, ʿAṣr vervalt zodra de zon begint te kleuren", correct: false }
+        ],
+        uitleg: "Bij zonsondergang zijn alle gebeden in principe verboden — met één uitzondering: wie het actuele ʿAṣr-gebed nog niet heeft verricht, mag dit alsnog verrichten terwijl de zon ondergaat. Het gebed is geldig. Het onnodig uitstellen tot dit moment is echter afkeurenswaardig. Hamza had zijn ʿAṣr eerder moeten verrichten.",
+        source: "BSI_N1.pdf p.49, 53"
+    },
+    {
+        type: "scenario",
+        category: "Soenna & nafl",
+        scenario: "Yusuf arriveert bij de moskee tijdens de vrijdagse khuṭbah (preek). Omdat hij de tahiyyat al-masjid (begroetingsgebed van de moskee) wil verrichten, gaat hij zitten en begint hij twee rakʿāt (gebedseenheden) te bidden.",
+        question: "Mag Yusuf een nafl-gebed verrichten terwijl de khuṭbah (preek) aan de gang is?",
+        answers: [
+            { text: "A) Ja, de tahiyyat al-masjid is verplicht en gaat voor op de khuṭbah", correct: false },
+            { text: "B) Nee, het is verboden nafl te bidden tijdens de khuṭbah (preek)", correct: true },
+            { text: "C) Ja, maar alleen als hij stil en zittend bidt zonder anderen te storen", correct: false }
+        ],
+        uitleg: "Het verrichten van nafl-gebeden tijdens de khuṭbah (vrijdagpreek) is verboden. Wie de moskee binnenkomt terwijl de khuṭbah al begonnen is, gaat direct zitten en luistert. Yusuf had geen gebed mogen beginnen.",
+        source: "N2_BSI_GP_FINAL.pdf p.4"
+    },
+    {
+        type: "scenario",
+        category: "Soenna & nafl",
+        scenario: "Aisha bidt haar soenna-gebed na Ẓuhr zittend op een stoel, zonder dat ze ziek of moe is. Ze vraagt zich af of dit geldig is.",
+        question: "Is het toegestaan om een soenna-gebed zittend te verrichten zonder geldige reden?",
+        answers: [
+            { text: "A) Nee, soenna-gebeden moeten altijd staand worden verricht", correct: false },
+            { text: "B) Ja, nafl en soenna-gebeden mogen zittend worden verricht, maar staand bidden heeft de voorkeur", correct: true },
+            { text: "C) Ja, maar de beloning is dan de helft van een staand gebed", correct: false }
+        ],
+        uitleg: "Het is toegestaan om nafl- en soenna-gebeden zittend te verrichten, ook zonder ziekte of geldige reden. Staand bidden geniet echter de voorkeur. Aisha's gebed is geldig.",
+        source: "N2_BSI_GP_FINAL.pdf p.4-5"
+    },
+    {
+        type: "scenario",
+        category: "Sujūd al-sahw",
+        scenario: "Amina bidt haar Ẓuhr-gebed (middaggebed). Ze vergeet zowel de eerste tashahhud (de gebedsverklaring na de 2e rakʿah) als de recitatie van een soera na al-Fātiḥa in de 3e rakʿah. Ze realiseert dit pas na de salām.",
+        question: "Hoeveel sujūd al-sahw (vergissingsbuigingen) moet Amina verrichten voor deze twee vergissingen?",
+        answers: [
+            { text: "A) Vier vergissingsbuigingen — twee voor elke vergeten handeling", correct: false },
+            { text: "B) Twee vergissingsbuigingen — twee sujūd al-sahw volstaan voor alle vergissingen in één gebed", correct: true },
+            { text: "C) Geen — sujūd al-sahw geldt alleen als men één vergissing maakt", correct: false }
+        ],
+        uitleg: "Twee vergissingsbuigingen (sujūd al-sahw) volstaan voor meerdere vergissingen in één gebed — het maakt niet uit hoeveel wājib-handelingen men vergeten is. Amina verricht na de salām twee vergissingsbuigingen in de laatste zitting, gevolgd door een nieuwe taslīm. Meer dan twee buigingen zijn niet nodig.",
+        source: "BSI_N1.pdf p.121-122"
+    },
+    {
+        type: "scenario",
+        category: "Sujūd al-sahw",
+        scenario: "Dawud bidt zijn ʿAṣr-gebed (namiddaggebed). In de rukūʿ (kniebuiging) vergeet hij de soenna-recitatie 'Subḥāna Rabbiyal ʿAẓīm' te zeggen. Hij realiseert dit pas na de salām en vraagt zich af of hij sujūd al-sahw (vergissingsbuigingen) moet verrichten.",
+        question: "Moet Dawud sujūd al-sahw verrichten voor het vergeten van deze soenna-recitatie?",
+        answers: [
+            { text: "A) Ja, elke vergissing in het gebed vereist sujūd al-sahw", correct: false },
+            { text: "B) Nee, sujūd al-sahw geldt alleen bij het vergeten van een wājib-handeling — niet bij het vergeten van een soenna", correct: true },
+            { text: "C) Ja, maar alleen als hij het meerdere keren in hetzelfde gebed vergeten is", correct: false }
+        ],
+        uitleg: "Sujūd al-sahw (vergissingsbuigingen) is uitsluitend wājib (verplicht) bij het vergeten van een wājib-handeling in het gebed. Het vergeten van een soenna-handeling — zoals de recitatie 'Subḥāna Rabbiyal ʿAẓīm' in de rukūʿ — vereist geen sujūd al-sahw. Dawud hoeft niets extra's te doen.",
+        source: "BSI_N1.pdf p.121"
+    },
+    {
+        type: "scenario",
+        category: "Gemiste gebeden",
+        scenario: "Hasan was ernstig ziek en heeft daardoor zes gebeden achter elkaar gemist: ʿAṣr, Maghrib, ʿIshā, Fajr, Ẓuhr en ʿAṣr. Nu hij beter is, wil hij ze inhalen. Een vriend zegt dat hij ze per se in volgorde moet inhalen.",
+        question: "Is Hasan verplicht zijn zes gemiste gebeden in volgorde in te halen?",
+        answers: [
+            { text: "A) Ja, de volgorde is altijd verplicht bij het inhalen van gemiste gebeden", correct: false },
+            { text: "B) Nee, wie vijf of meer gebeden heeft gemist is geen Ṣāḥib al-tartīb — de volgorde is dan niet langer verplicht", correct: true },
+            { text: "C) Ja, maar alleen als de gebeden op dezelfde dag zijn gemist", correct: false }
+        ],
+        uitleg: "De verplichting tot volgorde bij het inhalen van gebeden (Ṣāḥib al-tartīb) geldt alleen voor wie minder dan vijf gebeden heeft gemist. Wie vijf of meer gebeden mist, is geen Ṣāḥib al-tartīb meer en is de volgorde niet langer verplicht. Hasan mag zijn zes gemiste gebeden in elke volgorde inhalen.",
+        source: "BSI_N1.pdf p.126-127"
+    },
+    {
+        type: "scenario",
+        category: "Gemiste gebeden",
+        scenario: "Layla heeft haar Ẓuhr-gebed (middaggebed) gemist. Ze wil bij het inhalen ook de soenna-rakʿāt van Ẓuhr meenemen, omdat ze denkt dat een volledig gemist gebed ook de soenna omvat.",
+        question: "Is Layla verplicht de soenna-rakʿāt van Ẓuhr in te halen samen met het farḍ-gebed?",
+        answers: [
+            { text: "A) Ja, wie het farḍ-gebed mist, moet ook de bijbehorende soenna inhalen", correct: false },
+            { text: "B) Nee, soenna-gebeden hoeven niet te worden ingehaald — alleen het gemiste farḍ-gebed is verplicht in te halen", correct: true },
+            { text: "C) Ja, maar alleen de soenna vóór het gebed, niet de soenna erna", correct: false }
+        ],
+        uitleg: "Bij het inhalen van gemiste gebeden (qaḍā) is alleen het inhalen van farḍ- en wājib-gebeden verplicht. Soenna-gebeden hoeven niet te worden ingehaald — met uitzondering van de soenna van Fajr, die vóór zawāl (het middaguur) nog kan worden ingehaald. Layla hoeft alleen haar Ẓuhr-farḍ in te halen.",
+        source: "BSI_N1.pdf p.126"
+    }
+];
+
+// --- Rotatieset scenario-vragen (uitgecommentarieerd) ---
+// Kan worden geactiveerd als vervanging of aanvulling van de bovenstaande scenario's.
+/*
+    {
+        type: "scenario",
         category: "Reizigersgebed",
         scenario: "Khalid is op reis van Amsterdam naar Maastricht (ruim 200 km). Hij bidt zijn Ẓuhr-gebed (middaggebed) en besluit het vrijwillig niet in te korten, omdat hij denkt dat qaṣr (het inkorten) een persoonlijke keuze is.",
         question: "Heeft Khalid zijn Ẓuhr-gebed correct verricht?",
@@ -575,8 +684,8 @@ const questions = [
         ],
         uitleg: "Wie minder dan vijf gebeden heeft gemist, is een Ṣāḥib al-tartīb: hij moet de gemiste gebeden in volgorde inhalen vóór het actuele gebed. Tariq heeft Ẓuhr en ʿAṣr gemist — dat zijn twee gebeden. Hij moet eerst Ẓuhr (qaḍā) en daarna ʿAṣr (qaḍā) inhalen, en vervolgens pas Maghrib verrichten. Gemiste farḍ-gebeden vervallen niet.",
         source: "BSI_N1.pdf p.126-127"
-    }
-];
+    },
+*/
 
 // Reserve-set (niet actief in de quiz)
 const inactiveQuestionBank = [
