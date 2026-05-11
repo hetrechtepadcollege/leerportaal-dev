@@ -356,9 +356,17 @@ document.addEventListener("DOMContentLoaded", () => {
         setSceneForQuestion(currentQuestion, state.answered);
         updateNavActions();
 
+        const LETTERS = ['A', 'B', 'C', 'D', 'E'];
         currentQuestion.answers.forEach((answer, answerIndex) => {
             const button = document.createElement("button");
-            button.innerText = answer.text;
+            const ltr = document.createElement("span");
+            ltr.className = "btn-letter";
+            ltr.textContent = LETTERS[answerIndex] || String(answerIndex + 1);
+            const txt = document.createElement("span");
+            txt.className = "btn-text";
+            txt.textContent = answer.text.replace(/^[A-E]\)\s*/, '');
+            button.appendChild(ltr);
+            button.appendChild(txt);
             button.classList.add("btn");
             if (state.answered) {
                 button.disabled = true;
@@ -368,6 +376,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     button.classList.add("wrong");
                 }
             } else {
+                button.style.cssText = `animation: optionIn 0.28s ${0.04 + answerIndex * 0.055}s ease both`;
+                button.addEventListener('animationend', () => { button.style.animation = ''; }, { once: true });
                 button.onclick = () => selectAnswer(button, answer.correct, answerIndex);
             }
             btnContainer.appendChild(button);
