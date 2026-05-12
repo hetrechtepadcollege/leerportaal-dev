@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/icons/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+  <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/icons/site.webmanifest">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://hetrechtepadcollege.goatcounter.com;">
+  <title>De 99 Namen van Allah | Het Rechte Pad College</title>
+
+  <meta name="description" content="Leer de 99 Namen van Allah (Asmā' ul-Ḥusnā) met Arabisch schrift, transliteratie en uitgebreide Nederlandse betekenis.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://leer.hetrechtepadcollege.nl/apps/99-namen-van-allah/">
+  <meta property="og:title" content="De 99 Namen van Allah — Asmā' ul-Ḥusnā">
+  <meta property="og:description" content="Ontdek de 99 Schone Namen van Allah met Arabisch, transliteratie en uitgebreide betekenis.">
+  <meta property="og:image" content="https://leer.hetrechtepadcollege.nl/images/share-banner.png">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="De 99 Namen van Allah — Asmā' ul-Ḥusnā">
+  <meta property="twitter:description" content="Ontdek de 99 Schone Namen van Allah met Arabisch, transliteratie en uitgebreide betekenis.">
+  <meta property="twitter:image" content="https://leer.hetrechtepadcollege.nl/images/share-banner.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ══ HERO ══════════════════════════════════════════════ -->
+  <header class="hero" role="banner">
+    <div class="hero-logo-wrap">
+      <img class="hero-logo" src="images/hrpc-logo.png" alt="Het Rechte Pad College">
+    </div>
+    <h1 class="hero-titel">De 99 Namen van Allah</h1>
+    <p class="hero-arabisch" dir="rtl" lang="ar">الأسماء الحسنى</p>
+    <p class="hero-slagzin">Elk naam is een venster naar wie Allah is.<br>Leer ze kennen — en kom dichterbij.</p>
+    <a href="../../" class="hero-terug" aria-label="Terug naar het Leerportaal">← Terug naar Leerportaal</a>
+  </header>
+
+  <!-- ══ INHOUD ════════════════════════════════════════════ -->
+  <main class="content">
+
+    <!-- Stats balk -->
+    <div class="stats-balk" role="status" aria-live="polite" aria-label="Voortgangsoverzicht">
+      <div class="stat-chip">
+        <span class="stat-icoon" aria-hidden="true">👁</span>
+        <span><span class="stat-getal" id="statGezien">0</span> van 99 bekeken</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-icoon" aria-hidden="true">★</span>
+        <span><span class="stat-getal" id="statFav">0</span> favorieten</span>
+      </div>
+    </div>
+
+    <!-- Zoek & filter -->
+    <div class="zoek-rij" role="search">
+      <div class="zoek-wrap">
+        <span class="zoek-icoon" aria-hidden="true">🔍</span>
+        <label for="zoekInput" class="sr-only">Zoek op naam, transliteratie of betekenis</label>
+        <input
+          type="search"
+          id="zoekInput"
+          class="zoek-input"
+          placeholder="Zoek op naam, transliteratie of betekenis…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Zoek namen">
+      </div>
+      <div class="filter-tabs" role="tablist" aria-label="Filter">
+        <button class="filter-tab actief" role="tab" data-filter="alle"
+                aria-selected="true">Alle namen</button>
+        <button class="filter-tab" role="tab" data-filter="favorieten"
+                aria-selected="false">★ Favorieten</button>
+      </div>
+    </div>
+
+    <!-- Resultateninfo -->
+    <p class="resultaten-info" id="resultatenInfo" aria-live="polite"></p>
+
+    <!-- Namen grid -->
+    <div class="namen-grid" id="namenGrid" role="list" aria-label="De 99 Namen van Allah"></div>
+
+  </main>
+
+  <!-- ══ MODAL ════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true"
+       aria-label="Naam detail" aria-hidden="true">
+    <div class="modal">
+
+      <header class="modal-header">
+        <button class="modal-sluiten" id="modalSluiten" aria-label="Sluit detail">✕</button>
+        <p class="modal-nr" id="modalNr">Naam 01 van 99</p>
+        <p class="modal-arabisch" dir="rtl" lang="ar" id="modalArabisch"></p>
+        <p class="modal-translit" id="modalTranslit"></p>
+        <p class="modal-betekenis" id="modalBetekenis"></p>
+      </header>
+
+      <div class="modal-body">
+        <p class="modal-uitleg" id="modalUitleg"></p>
+        <p class="modal-bron">Bron: Ṣaḥīḥ at-Tirmidhī 3507 · Al-Asmāʾ waṣ-Ṣifāt van Imam al-Bayhaqī</p>
+
+        <div class="modal-acties">
+          <button class="modal-fav-btn" id="modalFavBtn">☆ Voeg toe aan favorieten</button>
+        </div>
+
+        <div class="modal-nav" style="margin-top:12px">
+          <button class="modal-nav-btn" id="modalVorige" aria-label="Vorige naam">← Vorige</button>
+          <button class="modal-nav-btn" id="modalVolgende" aria-label="Volgende naam">Volgende →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ TERUG NAAR TOP ═══════════════════════════════════ -->
+  <button class="to-top-btn" id="toTopBtn" aria-label="Scroll terug naar boven">↑</button>
+
+  <!-- Screen-reader only utility -->
+  <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}</style>
+
+  <script src="script.js"></script>
+
+  <!-- GoatCounter -->
+  <script data-goatcounter="https://hetrechtepadcollege.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>

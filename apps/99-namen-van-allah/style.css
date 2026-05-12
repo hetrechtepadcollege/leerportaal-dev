@@ -1,0 +1,523 @@
+/* ============================================================
+   De 99 Namen van Allah — Stylesheet
+   HRPC Leerportaal | vlakke kleuren, geen gradients
+   ============================================================ */
+
+:root {
+  --bg:           #fdfaf4;
+  --card-bg:      #fdfaf4;
+  --card-border:  #C9A84C;
+  --gold:         #C9A84C;
+  --gold-dark:    #a07a28;
+  --hero-bg:      #1f294d;
+  --hero-border:  rgba(255,255,255,.12);
+  --text:         #1a1a1a;
+  --text-muted:   #6b6360;
+  --text-light:   #9e9690;
+  --divider:      #e8e0cc;
+  --modal-overlay: rgba(10, 16, 32, 0.72);
+  --shadow-sm:    0 2px 8px rgba(30,20,10,.07);
+  --shadow-md:    0 6px 20px rgba(30,20,10,.10);
+  --shadow-lg:    0 16px 40px rgba(30,20,10,.14);
+  --radius:       12px;
+  --radius-sm:    8px;
+  --font-body:    'Noto Sans', sans-serif;
+  --font-display: 'Cinzel', serif;
+  --font-arabic:  'Noto Naskh Arabic', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Focus ─────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+.hero {
+  background: var(--hero-bg);
+  border: 1px solid var(--hero-border);
+  border-radius: 16px;
+  margin: 20px auto 0;
+  max-width: 580px;
+  padding: 28px 28px 24px;
+  box-shadow: 0 8px 28px rgba(8,26,51,.28);
+  color: #fff;
+  text-align: center;
+}
+
+.hero-logo-wrap { margin-bottom: 16px; }
+.hero-logo {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.hero-titel {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  margin: 0 0 6px;
+  color: #fff;
+}
+
+.hero-arabisch {
+  font-family: var(--font-arabic);
+  font-size: 1.5rem;
+  direction: rtl;
+  color: var(--gold);
+  margin: 0 0 8px;
+  line-height: 1.6;
+}
+
+.hero-slagzin {
+  font-size: .88rem;
+  color: rgba(255,255,255,.66);
+  line-height: 1.65;
+  margin: 0 0 18px;
+}
+
+.hero-terug {
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.50);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  padding: 5px 14px;
+  transition: color .2s, border-color .2s;
+}
+.hero-terug:hover { color: #fff; border-color: rgba(255,255,255,.45); }
+
+/* ── Main wrapper ───────────────────────────────────────────── */
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 16px 60px;
+}
+
+/* ── Stats balk ─────────────────────────────────────────────── */
+.stats-balk {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.stat-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #fff;
+  border: 1px solid var(--divider);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: .82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.stat-chip .stat-getal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--gold-dark);
+  font-size: .9rem;
+}
+.stat-chip .stat-icoon { font-size: 1rem; }
+
+/* ── Zoekbalk + filter ─────────────────────────────────────── */
+.zoek-rij {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.zoek-wrap {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+.zoek-icoon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  pointer-events: none;
+  font-size: .95rem;
+}
+.zoek-input {
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: .9rem;
+  background: #fff;
+  color: var(--text);
+  transition: border-color .2s;
+}
+.zoek-input:focus { outline: none; border-color: var(--gold); }
+.zoek-input::placeholder { color: var(--text-light); }
+
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.filter-tab {
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--divider);
+  background: #fff;
+  font-family: var(--font-body);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.filter-tab:hover { border-color: var(--gold); color: var(--gold-dark); }
+.filter-tab.actief {
+  background: var(--hero-bg);
+  border-color: var(--hero-bg);
+  color: #fff;
+}
+
+/* ── Resultatenteller ──────────────────────────────────────── */
+.resultaten-info {
+  font-size: .82rem;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+.resultaten-info strong { color: var(--text-muted); }
+
+/* ── Namen grid ─────────────────────────────────────────────── */
+.namen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 14px;
+}
+
+/* ── Naam kaart ─────────────────────────────────────────────── */
+.naam-kaart {
+  background: var(--card-bg);
+  border: 1px solid var(--divider);
+  border-left: 4px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  cursor: pointer;
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .2s ease,
+              border-left-color .2s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  animation: fadeInUp .35s ease both;
+}
+.naam-kaart:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-left-color: var(--gold-dark);
+}
+.naam-kaart:nth-child(1)  { animation-delay: .02s }
+.naam-kaart:nth-child(2)  { animation-delay: .04s }
+.naam-kaart:nth-child(3)  { animation-delay: .06s }
+.naam-kaart:nth-child(4)  { animation-delay: .08s }
+.naam-kaart:nth-child(5)  { animation-delay: .10s }
+.naam-kaart:nth-child(6)  { animation-delay: .12s }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.kaart-nummmer {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .05em;
+}
+
+.kaart-arabisch {
+  font-family: var(--font-arabic);
+  font-size: 1.7rem;
+  direction: rtl;
+  text-align: right;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.kaart-ondertitels {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.kaart-translit {
+  font-size: .82rem;
+  color: var(--gold-dark);
+  font-style: italic;
+  font-weight: 600;
+}
+.kaart-betekenis {
+  font-size: .88rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.kaart-fav-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 4px;
+  transition: transform .2s;
+  color: var(--divider);
+}
+.kaart-fav-btn:hover { transform: scale(1.2); }
+.kaart-fav-btn.actief { color: var(--gold); }
+
+.kaart-bekeken-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: .68rem;
+  color: var(--text-light);
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+
+/* ── Leeg resultaat ─────────────────────────────────────────── */
+.leeg-melding {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-light);
+}
+.leeg-melding p { font-size: .95rem; }
+.leeg-melding strong { color: var(--text-muted); }
+
+/* ── Modal ──────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--modal-overlay);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.modal-overlay.zichtbaar {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(20px) scale(.97);
+  transition: transform .28s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.zichtbaar .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-header {
+  background: var(--hero-bg);
+  border-radius: 16px 16px 0 0;
+  padding: 28px 24px 24px;
+  text-align: center;
+  position: relative;
+  color: #fff;
+}
+.modal-nr {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.modal-arabisch {
+  font-family: var(--font-arabic);
+  font-size: 2.6rem;
+  direction: rtl;
+  color: #fff;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.modal-translit {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.modal-betekenis {
+  font-size: .9rem;
+  color: rgba(255,255,255,.72);
+}
+
+.modal-sluiten {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: rgba(255,255,255,.12);
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+.modal-sluiten:hover { background: rgba(255,255,255,.22); }
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-uitleg {
+  font-size: .93rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  border-left: 3px solid var(--divider);
+  padding-left: 14px;
+}
+
+.modal-bron {
+  font-size: .78rem;
+  color: var(--text-light);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.modal-acties {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.modal-fav-btn {
+  flex: 1;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--divider);
+  background: #fff;
+  font-family: var(--font-body);
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.modal-fav-btn:hover { border-color: var(--gold); color: var(--gold-dark); }
+.modal-fav-btn.actief {
+  background: #fdf5e0;
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+
+.modal-nav {
+  display: flex;
+  gap: 10px;
+}
+.modal-nav-btn {
+  flex: 1;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--divider);
+  background: #fff;
+  font-family: var(--font-body);
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.modal-nav-btn:hover { border-color: var(--hero-bg); color: var(--hero-bg); }
+.modal-nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+.modal-nav-btn:disabled:hover { border-color: var(--divider); color: var(--text-muted); }
+
+/* ── Terug-naar-top knop ─────────────────────────────────────── */
+.to-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  background: var(--hero-bg);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  width: 42px;
+  height: 42px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s;
+}
+.to-top-btn.zichtbaar { opacity: 1; pointer-events: all; }
+
+/* ── Responsief ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .hero { margin: 12px 12px 0; padding: 22px 18px 20px; }
+  .hero-titel { font-size: 1.35rem; }
+  .content { padding: 20px 12px 48px; }
+  .zoek-rij { flex-direction: column; }
+  .filter-tabs { flex-wrap: wrap; }
+  .modal-arabisch { font-size: 2rem; }
+  .modal-nav { flex-direction: column; }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
