@@ -502,10 +502,20 @@ document.addEventListener("DOMContentLoaded", () => {
         qTextElement.innerText = currentQuestion.question;
         progressBar.style.width = `${(currentIdx / questions.length) * 100}%`;
 
-        currentQuestion.answers.forEach((answer) => {
+        const LETTERS = ['A', 'B', 'C', 'D', 'E'];
+        currentQuestion.answers.forEach((answer, i) => {
             const button = document.createElement("button");
-            button.innerText = answer.text;
+            const ltr = document.createElement("span");
+            ltr.className = "btn-letter";
+            ltr.textContent = LETTERS[i] || String(i + 1);
+            const txt = document.createElement("span");
+            txt.className = "btn-text";
+            txt.textContent = answer.text.replace(/^[A-E]\)\s*/, '');
+            button.appendChild(ltr);
+            button.appendChild(txt);
             button.classList.add("btn");
+            button.style.cssText = `animation: optionIn 0.28s ${0.04 + i * 0.055}s ease both`;
+            button.addEventListener('animationend', () => { button.style.animation = ''; }, { once: true });
             button.onclick = () => selectAnswer(button, answer.correct);
             btnContainer.appendChild(button);
         });
