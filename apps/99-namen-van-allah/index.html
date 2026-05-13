@@ -16,49 +16,64 @@
   <meta property="og:url" content="https://leer.hetrechtepadcollege.nl/apps/99-namen-van-allah/">
   <meta property="og:title" content="De 99 Namen van Allah — Asmā' ul-Ḥusnā">
   <meta property="og:description" content="Ontdek de 99 Schone Namen van Allah met Arabisch, transliteratie en uitgebreide betekenis.">
-  <meta property="og:image" content="https://leer.hetrechtepadcollege.nl/images/share-banner.png">
+  <meta property="og:image" content="https://leer.hetrechtepadcollege.nl/apps/99-namen-van-allah/images/share-banner.png">
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="De 99 Namen van Allah — Asmā' ul-Ḥusnā">
   <meta property="twitter:description" content="Ontdek de 99 Schone Namen van Allah met Arabisch, transliteratie en uitgebreide betekenis.">
-  <meta property="twitter:image" content="https://leer.hetrechtepadcollege.nl/images/share-banner.png">
+  <meta property="twitter:image" content="https://leer.hetrechtepadcollege.nl/apps/99-namen-van-allah/images/share-banner.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;700;800&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ══ HERO ══════════════════════════════════════════════ -->
-  <header class="hero" role="banner">
-    <div class="hero-logo-wrap">
-      <img class="hero-logo" src="images/hrpc-logo.png" alt="Het Rechte Pad College">
-    </div>
-    <h1 class="hero-titel">De 99 Namen van Allah</h1>
-    <p class="hero-arabisch" dir="rtl" lang="ar">الأسماء الحسنى</p>
-    <p class="hero-slagzin">Elk naam is een venster naar wie Allah is.<br>Leer ze kennen — en kom dichterbij.</p>
-    <a href="../../" class="hero-terug" aria-label="Terug naar het Leerportaal">← Terug naar Leerportaal</a>
+  <!-- ══ HERO ══════════════════════════════════════════════════ -->
+  <header class="app-header" role="banner">
+    <a href="../../" class="header-logo-link" title="Terug naar Leerportaal">
+      <img src="../../images/HRPC-logo.png" alt="Het Rechte Pad College" class="header-logo">
+    </a>
+    <h1 class="header-title">De 99 Namen van Allah</h1>
+    <p class="header-arabic" dir="rtl" lang="ar">الأسماء الحسنى</p>
+    <p class="header-subtitle">Elk naam is een venster naar wie Allah is. Leer ze kennen — en kom dichterbij.</p>
+    <a href="../../" class="header-terug" aria-label="Terug naar het Leerportaal">← Terug naar Leerportaal</a>
   </header>
 
-  <!-- ══ INHOUD ════════════════════════════════════════════ -->
+  <!-- ══ INHOUD ════════════════════════════════════════════════ -->
   <main class="content">
+
+    <!-- Memorisatie voortgang -->
+    <div class="mem-voortgang-wrap" role="status" aria-label="Memorisatievoortgang">
+      <div class="mem-voortgang-header">
+        <span class="mem-voortgang-label">Gememoriseerd</span>
+        <span class="mem-voortgang-teller"><span id="memGetal">0</span> / 99</span>
+      </div>
+      <div class="mem-voortgang-track" role="progressbar" aria-valuemin="0" aria-valuemax="99" aria-valuenow="0" id="memProgressBar">
+        <div class="mem-voortgang-fill" id="memVoortgangFill" style="width:0%"></div>
+      </div>
+    </div>
 
     <!-- Stats balk -->
     <div class="stats-balk" role="status" aria-live="polite" aria-label="Voortgangsoverzicht">
       <div class="stat-chip">
-        <span class="stat-icoon" aria-hidden="true">👁</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         <span><span class="stat-getal" id="statGezien">0</span> van 99 bekeken</span>
       </div>
       <div class="stat-chip">
-        <span class="stat-icoon" aria-hidden="true">★</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <span><span class="stat-getal" id="statFav">0</span> favorieten</span>
       </div>
+      <button class="leermodus-start-btn" id="leermodusStartBtn" aria-label="Leermodus starten">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Leermodus
+      </button>
     </div>
 
-    <!-- Zoek & filter -->
-    <div class="zoek-rij" role="search">
+    <!-- Zoek & filter toolbar -->
+    <div class="toolbar" role="search">
       <div class="zoek-wrap">
-        <span class="zoek-icoon" aria-hidden="true">🔍</span>
+        <svg class="zoek-icoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <label for="zoekInput" class="sr-only">Zoek op naam, transliteratie of betekenis</label>
         <input
           type="search"
@@ -70,10 +85,12 @@
           aria-label="Zoek namen">
       </div>
       <div class="filter-tabs" role="tablist" aria-label="Filter">
-        <button class="filter-tab actief" role="tab" data-filter="alle"
-                aria-selected="true">Alle namen</button>
-        <button class="filter-tab" role="tab" data-filter="favorieten"
-                aria-selected="false">★ Favorieten</button>
+        <button class="filter-tab actief" role="tab" data-filter="alle" aria-selected="true">Alle namen</button>
+        <button class="filter-tab" role="tab" data-filter="favorieten" aria-selected="false">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Favorieten
+        </button>
+        <button class="filter-tab" role="tab" data-filter="nog-te-leren" aria-selected="false">Nog te leren</button>
       </div>
     </div>
 
@@ -85,40 +102,90 @@
 
   </main>
 
-  <!-- ══ MODAL ════════════════════════════════════════════ -->
-  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true"
-       aria-label="Naam detail" aria-hidden="true">
-    <div class="modal">
+  <!-- ══ LEERMODUS OVERLAY ══════════════════════════════════════ -->
+  <div class="lm-overlay" id="lmOverlay" role="dialog" aria-modal="true" aria-label="Leermodus" aria-hidden="true">
+    <div class="lm-panel">
 
-      <header class="modal-header">
-        <button class="modal-sluiten" id="modalSluiten" aria-label="Sluit detail">✕</button>
-        <p class="modal-nr" id="modalNr">Naam 01 van 99</p>
-        <p class="modal-arabisch" dir="rtl" lang="ar" id="modalArabisch"></p>
-        <p class="modal-translit" id="modalTranslit"></p>
-        <p class="modal-betekenis" id="modalBetekenis"></p>
-      </header>
+      <!-- Header -->
+      <div class="lm-header">
+        <button class="lm-sluiten" id="lmSluiten" aria-label="Leermodus sluiten">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="lm-voortgang-wrap">
+          <div class="lm-voortgang-info">
+            <span id="lmNaamTeller">1 van 99</span>
+            <span id="lmMemCount" class="lm-mem-count">0 gememoriseerd</span>
+          </div>
+          <div class="lm-voortgang-track">
+            <div class="lm-voortgang-fill" id="lmVoortgangFill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
 
-      <div class="modal-body">
-        <p class="modal-uitleg" id="modalUitleg"></p>
-        <p class="modal-bron">Bron: Ṣaḥīḥ at-Tirmidhī 3507 · Al-Asmāʾ waṣ-Ṣifāt van Imam al-Bayhaqī</p>
+      <!-- Kaart area -->
+      <div class="lm-kaart-area">
+        <div class="lm-kaart" id="lmKaart" role="button" tabindex="0" aria-label="Klik om de betekenis te onthullen">
+          <div class="lm-kaart-inner" id="lmKaartInner">
 
-        <div class="modal-acties">
-          <button class="modal-fav-btn" id="modalFavBtn">☆ Voeg toe aan favorieten</button>
+            <!-- Voorkant: alleen Arabisch -->
+            <div class="lm-voorkant">
+              <span class="lm-kaart-nr" id="lmKaartNr">01</span>
+              <p class="lm-arabisch" dir="rtl" lang="ar" id="lmArabisch"></p>
+              <p class="lm-hint-tekst">Klik om te onthullen</p>
+            </div>
+
+            <!-- Achterkant: volledige info -->
+            <div class="lm-achterkant">
+              <span class="lm-kaart-nr achterkant-nr" id="lmAchterkantNr">01</span>
+              <p class="lm-achterkant-arabisch" dir="rtl" lang="ar" id="lmAchterArabisch"></p>
+              <p class="lm-translit" id="lmTranslit"></p>
+              <p class="lm-betekenis" id="lmBetekenis"></p>
+              <div class="lm-divider"></div>
+              <p class="lm-uitleg" id="lmUitleg"></p>
+              <p class="lm-bron">Bron: Ṣaḥīḥ at-Tirmidhī 3507 · Al-Asmāʾ waṣ-Ṣifāt van Imam al-Bayhaqī</p>
+            </div>
+
+          </div>
         </div>
 
-        <div class="modal-nav" style="margin-top:12px">
-          <button class="modal-nav-btn" id="modalVorige" aria-label="Vorige naam">← Vorige</button>
-          <button class="modal-nav-btn" id="modalVolgende" aria-label="Volgende naam">Volgende →</button>
+        <!-- Acties (verschijnen na flip) -->
+        <div class="lm-acties" id="lmActies">
+          <button class="lm-btn-oefenen" id="lmBtnOefenen">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+            Nog oefenen
+          </button>
+          <button class="lm-btn-gemem" id="lmBtnGemem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Gememoriseerd
+          </button>
         </div>
+      </div>
+
+      <!-- Navigatie -->
+      <div class="lm-nav">
+        <button class="lm-nav-btn" id="lmVorige" aria-label="Vorige naam">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          Vorige
+        </button>
+        <div class="lm-fav-wrap">
+          <button class="lm-fav-btn" id="lmFavBtn" aria-label="Voeg toe aan favorieten">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="lmFavIcon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </button>
+        </div>
+        <button class="lm-nav-btn" id="lmVolgende" aria-label="Volgende naam">
+          Volgende
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
 
     </div>
   </div>
 
-  <!-- ══ TERUG NAAR TOP ═══════════════════════════════════ -->
-  <button class="to-top-btn" id="toTopBtn" aria-label="Scroll terug naar boven">↑</button>
+  <!-- ══ TERUG NAAR TOP ═════════════════════════════════════════ -->
+  <button class="to-top-btn" id="toTopBtn" aria-label="Scroll terug naar boven">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
-  <!-- Screen-reader only utility -->
   <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}</style>
 
   <script src="script.js"></script>

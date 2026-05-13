@@ -1,7 +1,18 @@
 /* ============================================================
    De 99 Namen van Allah — Stylesheet
-   HRPC Leerportaal | vlakke kleuren, geen gradients
+   HRPC Leerportaal | crème stijl, flip-cards, leermodus
    ============================================================ */
+
+@font-face {
+  font-family: 'IndoPakNastaleeq';
+  src: url('fonts/indopak-nastaleeq.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'AlQalamQuranMajeed';
+  src: url('fonts/AlQalamQuranMajeed.ttf') format('truetype');
+  font-display: swap;
+}
 
 :root {
   --bg:           #fdfaf4;
@@ -9,27 +20,31 @@
   --card-border:  #C9A84C;
   --gold:         #C9A84C;
   --gold-dark:    #a07a28;
+  --gold-light:   #fdf5e0;
   --hero-bg:      #1f294d;
-  --hero-border:  rgba(255,255,255,.12);
+  --hero-border:  rgba(255,255,255,.10);
   --text:         #1a1a1a;
-  --text-muted:   #6b6360;
+  --text-muted:   #5a5550;
   --text-light:   #9e9690;
   --divider:      #e8e0cc;
-  --modal-overlay: rgba(10, 16, 32, 0.72);
+  --white:        #ffffff;
+  --green:        #2d7a4f;
+  --green-light:  #e8f5ee;
   --shadow-sm:    0 2px 8px rgba(30,20,10,.07);
-  --shadow-md:    0 6px 20px rgba(30,20,10,.10);
-  --shadow-lg:    0 16px 40px rgba(30,20,10,.14);
-  --radius:       12px;
+  --shadow-md:    0 6px 24px rgba(30,20,10,.10);
+  --shadow-lg:    0 20px 48px rgba(30,20,10,.14);
+  --radius:       14px;
   --radius-sm:    8px;
+  --radius-xs:    6px;
   --font-body:    'Noto Sans', sans-serif;
   --font-display: 'Cinzel', serif;
-  --font-arabic:  'Noto Naskh Arabic', serif;
+  --font-arabic:  'IndoPakNastaleeq', 'AlQalamQuranMajeed', serif;
+  --ease-spring:  cubic-bezier(.34,1.56,.64,1);
+  --ease-out:     cubic-bezier(.4,0,.2,1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   font-family: var(--font-body);
   background: var(--bg);
@@ -38,113 +53,206 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Focus ─────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* ── Hero ───────────────────────────────────────────────────── */
-.hero {
-  background: var(--hero-bg);
-  border: 1px solid var(--hero-border);
-  border-radius: 16px;
-  margin: 20px auto 0;
-  max-width: 580px;
-  padding: 28px 28px 24px;
-  box-shadow: 0 8px 28px rgba(8,26,51,.28);
-  color: #fff;
+/* ── Hero (editorial stijl — gelijk aan De Waardevolle Tien) ──── */
+.app-header {
+  background:
+    linear-gradient(rgba(31, 41, 77, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 41, 77, .045) 1px, transparent 1px),
+    #f9f8f6;
+  background-size: 48px 48px, 48px 48px, auto;
+  padding: 28px 20px 52px;
+  border-bottom: 1px solid rgba(31, 41, 77, .09);
+  width: 100%;
+  margin-bottom: 36px;
+  box-sizing: border-box;
+  color: #1c2340;
   text-align: center;
 }
 
-.hero-logo-wrap { margin-bottom: 16px; }
-.hero-logo {
-  width: 100%;
-  max-width: 240px;
+.header-logo-link {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 2.5rem;
+  border-radius: 6px;
+  transition: opacity 0.2s;
+}
+.header-logo-link:hover,
+.header-logo-link:focus-visible {
+  opacity: 0.85;
+  outline: 2px solid #d4af37;
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+.header-logo {
+  width: min(320px, 72vw);
   height: auto;
   display: block;
+  filter: invert(1);
+  opacity: .92;
+}
+.header-logo-link .header-logo { margin: 0; }
+
+.header-title {
+  font-family: 'Newsreader', serif;
+  font-size: clamp(3.2rem, 10vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: .86;
+  color: #0d0e14;
+  text-transform: none;
+  text-shadow: none;
+  max-width: 940px;
   margin: 0 auto;
 }
 
-.hero-titel {
-  font-family: var(--font-display);
-  font-size: 1.65rem;
-  font-weight: 700;
-  letter-spacing: .02em;
-  margin: 0 0 6px;
-  color: #fff;
-}
-
-.hero-arabisch {
+.header-arabic {
   font-family: var(--font-arabic);
-  font-size: 1.5rem;
+  color: #b8860b;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  margin-top: .6rem;
+  line-height: 1.5;
   direction: rtl;
-  color: var(--gold);
-  margin: 0 0 8px;
-  line-height: 1.6;
 }
 
-.hero-slagzin {
-  font-size: .88rem;
-  color: rgba(255,255,255,.66);
+.header-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: .98rem;
+  color: #5c6e8a;
+  font-style: normal;
+  max-width: 560px;
+  margin: .8rem auto 0;
   line-height: 1.65;
-  margin: 0 0 18px;
 }
 
-.hero-terug {
+.header-terug {
   display: inline-block;
-  font-size: .78rem;
+  margin-top: 1.6rem;
+  font-size: .775rem;
   font-weight: 600;
-  color: rgba(255,255,255,.50);
+  color: rgba(31,41,77,.45);
   text-decoration: none;
-  border: 1px solid rgba(255,255,255,.18);
+  border: 1px solid rgba(31,41,77,.18);
   border-radius: 999px;
-  padding: 5px 14px;
+  padding: 6px 16px;
   transition: color .2s, border-color .2s;
 }
-.hero-terug:hover { color: #fff; border-color: rgba(255,255,255,.45); }
+.header-terug:hover { color: #1f294d; border-color: rgba(31,41,77,.45); }
 
-/* ── Main wrapper ───────────────────────────────────────────── */
+/* ── Main content ─────────────────────────────────────────────── */
 .content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 28px 16px 60px;
+  padding: 28px 16px 80px;
 }
 
-/* ── Stats balk ─────────────────────────────────────────────── */
+/* ── Memorisatie voortgangsbalk ───────────────────────────────── */
+.mem-voortgang-wrap {
+  background: var(--white);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.mem-voortgang-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.mem-voortgang-label {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.mem-voortgang-teller {
+  font-family: var(--font-display);
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+.mem-voortgang-teller #memGetal {
+  font-size: 1rem;
+}
+
+.mem-voortgang-track {
+  height: 8px;
+  background: var(--divider);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mem-voortgang-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 999px;
+  transition: width .6s var(--ease-out);
+}
+
+/* ── Stats balk ───────────────────────────────────────────────── */
 .stats-balk {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .stat-chip {
   display: flex;
   align-items: center;
-  gap: 7px;
-  background: #fff;
+  gap: 6px;
+  background: var(--white);
   border: 1px solid var(--divider);
   border-radius: 999px;
   padding: 6px 14px;
-  font-size: .82rem;
+  font-size: .80rem;
   color: var(--text-muted);
   font-weight: 500;
 }
+.stat-chip svg { color: var(--text-light); flex-shrink: 0; }
 .stat-chip .stat-getal {
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--gold-dark);
-  font-size: .9rem;
 }
-.stat-chip .stat-icoon { font-size: 1rem; }
 
-/* ── Zoekbalk + filter ─────────────────────────────────────── */
-.zoek-rij {
+.leermodus-start-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  background: var(--hero-bg);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: .82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .2s;
+  margin-left: auto;
+}
+.leermodus-start-btn:hover { opacity: .88; }
+.leermodus-start-btn svg { flex-shrink: 0; }
+
+/* ── Toolbar ──────────────────────────────────────────────────── */
+.toolbar {
   display: flex;
   gap: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
@@ -160,20 +268,23 @@ body {
   transform: translateY(-50%);
   color: var(--text-light);
   pointer-events: none;
-  font-size: .95rem;
 }
 .zoek-input {
   width: 100%;
-  padding: 10px 12px 10px 36px;
+  padding: 10px 12px 10px 38px;
   border: 1px solid var(--divider);
   border-radius: var(--radius-sm);
   font-family: var(--font-body);
   font-size: .9rem;
-  background: #fff;
+  background: var(--white);
   color: var(--text);
-  transition: border-color .2s;
+  transition: border-color .2s, box-shadow .2s;
 }
-.zoek-input:focus { outline: none; border-color: var(--gold); }
+.zoek-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,.12);
+}
 .zoek-input::placeholder { color: var(--text-light); }
 
 .filter-tabs {
@@ -182,86 +293,164 @@ body {
   align-items: center;
 }
 .filter-tab {
-  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 16px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--divider);
-  background: #fff;
+  background: var(--white);
   font-family: var(--font-body);
-  font-size: .82rem;
+  font-size: .80rem;
   font-weight: 600;
   color: var(--text-muted);
   cursor: pointer;
   transition: background .15s, color .15s, border-color .15s;
+  white-space: nowrap;
 }
+.filter-tab svg { color: var(--text-light); transition: color .15s; }
 .filter-tab:hover { border-color: var(--gold); color: var(--gold-dark); }
+.filter-tab:hover svg { color: var(--gold); }
 .filter-tab.actief {
   background: var(--hero-bg);
   border-color: var(--hero-bg);
   color: #fff;
 }
+.filter-tab.actief svg { color: var(--gold); }
 
-/* ── Resultatenteller ──────────────────────────────────────── */
+/* ── Resultateninfo ───────────────────────────────────────────── */
 .resultaten-info {
-  font-size: .82rem;
+  font-size: .80rem;
   color: var(--text-light);
   margin-bottom: 16px;
 }
 .resultaten-info strong { color: var(--text-muted); }
 
-/* ── Namen grid ─────────────────────────────────────────────── */
+/* ── Namen grid ───────────────────────────────────────────────── */
 .namen-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
   gap: 14px;
 }
 
-/* ── Naam kaart ─────────────────────────────────────────────── */
+/* ── Flip kaart ───────────────────────────────────────────────── */
 .naam-kaart {
-  background: var(--card-bg);
-  border: 1px solid var(--divider);
-  border-left: 4px solid var(--card-border);
-  border-radius: var(--radius);
-  padding: 16px;
+  height: 280px;
+  perspective: 1000px;
   cursor: pointer;
-  transition: transform .2s cubic-bezier(.34,1.56,.64,1),
-              box-shadow .2s ease,
-              border-left-color .2s;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-  animation: fadeInUp .35s ease both;
+  animation: fadeInUp .35s var(--ease-out) both;
 }
-.naam-kaart:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-left-color: var(--gold-dark);
-}
-.naam-kaart:nth-child(1)  { animation-delay: .02s }
-.naam-kaart:nth-child(2)  { animation-delay: .04s }
-.naam-kaart:nth-child(3)  { animation-delay: .06s }
-.naam-kaart:nth-child(4)  { animation-delay: .08s }
-.naam-kaart:nth-child(5)  { animation-delay: .10s }
-.naam-kaart:nth-child(6)  { animation-delay: .12s }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.kaart-nummmer {
+.naam-kaart:nth-child(1)  { animation-delay: .03s }
+.naam-kaart:nth-child(2)  { animation-delay: .06s }
+.naam-kaart:nth-child(3)  { animation-delay: .09s }
+.naam-kaart:nth-child(4)  { animation-delay: .12s }
+.naam-kaart:nth-child(5)  { animation-delay: .15s }
+.naam-kaart:nth-child(6)  { animation-delay: .18s }
+
+.kaart-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .55s cubic-bezier(.4,0,.2,1);
+}
+.naam-kaart.omgedraaid .kaart-inner {
+  transform: rotateY(180deg);
+}
+
+.kaart-voorkant,
+.kaart-achterkant {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--divider);
+  border-left: 4px solid var(--card-border);
+  background: var(--card-bg);
+  overflow: hidden;
+}
+
+/* Voorkant */
+.kaart-voorkant {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  transition: box-shadow .2s, border-left-color .2s;
+}
+.naam-kaart:hover:not(.omgedraaid) .kaart-voorkant {
+  box-shadow: var(--shadow-md);
+  border-left-color: var(--gold-dark);
+}
+
+.kaart-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.kaart-nummer {
   font-family: var(--font-display);
-  font-size: .72rem;
+  font-size: .68rem;
   font-weight: 700;
   color: var(--gold);
-  letter-spacing: .05em;
+  letter-spacing: .06em;
+}
+
+.kaart-badges {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.kaart-fav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 4px;
+  color: var(--divider);
+  transition: color .2s, transform .2s;
+  line-height: 0;
+}
+.kaart-fav-btn:hover { color: var(--gold); transform: scale(1.2); }
+.kaart-fav-btn.actief { color: var(--gold); }
+.kaart-fav-btn svg { display: block; }
+.kaart-fav-btn.actief svg { fill: var(--gold); }
+
+.kaart-mem-badge {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--green-light);
+  color: var(--green);
+  border-radius: 999px;
+  padding: 2px 7px;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+}
+.kaart-mem-badge svg { fill: var(--green); }
+
+.kaart-arabisch-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .kaart-arabisch {
   font-family: var(--font-arabic);
-  font-size: 1.7rem;
+  font-size: 4rem;
   direction: rtl;
-  text-align: right;
+  text-align: center;
   color: var(--text);
   line-height: 1.5;
 }
@@ -270,47 +459,148 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  padding-top: 8px;
+  border-top: 1px solid var(--divider);
 }
 .kaart-translit {
-  font-size: .82rem;
+  font-size: .78rem;
   color: var(--gold-dark);
   font-style: italic;
   font-weight: 600;
 }
 .kaart-betekenis {
-  font-size: .88rem;
+  font-size: .82rem;
   color: var(--text-muted);
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.kaart-fav-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  line-height: 1;
-  padding: 4px;
-  border-radius: 4px;
-  transition: transform .2s;
-  color: var(--divider);
+/* Achterkant */
+.kaart-achterkant {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
 }
-.kaart-fav-btn:hover { transform: scale(1.2); }
-.kaart-fav-btn.actief { color: var(--gold); }
 
-.kaart-bekeken-badge {
-  position: absolute;
-  bottom: 10px;
-  right: 12px;
+.kaart-achter-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid var(--divider);
+  flex-shrink: 0;
+  position: relative;
+}
+.kaart-achter-arabisch {
+  font-family: var(--font-arabic);
+  font-size: 2.6rem;
+  direction: rtl;
+  text-align: center;
+  color: var(--text);
+  line-height: 1.4;
+}
+.kaart-achter-translit {
+  font-size: .75rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gold-dark);
+  text-align: center;
+  margin-top: 2px;
+}
+
+.kaart-achter-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 14px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--divider) transparent;
+}
+.kaart-achter-body::-webkit-scrollbar { width: 4px; }
+.kaart-achter-body::-webkit-scrollbar-track { background: transparent; }
+.kaart-achter-body::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 2px; }
+
+.kaart-uitleg {
+  font-size: .78rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.kaart-bron {
   font-size: .68rem;
   color: var(--text-light);
-  font-weight: 600;
-  letter-spacing: .04em;
+  font-style: italic;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--divider);
 }
 
-/* ── Leeg resultaat ─────────────────────────────────────────── */
+.kaart-achter-acties {
+  display: flex;
+  gap: 6px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--divider);
+  flex-shrink: 0;
+}
+.kaart-achter-btn {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--divider);
+  background: var(--bg);
+  font-family: var(--font-body);
+  font-size: .72rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: background .15s, border-color .15s, color .15s;
+  color: var(--text-muted);
+}
+.kaart-achter-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+.kaart-achter-btn.actief-fav {
+  background: var(--gold-light);
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+.kaart-achter-btn.actief-fav svg { fill: var(--gold); color: var(--gold); }
+.kaart-achter-btn.actief-mem {
+  background: var(--green-light);
+  border-color: var(--green);
+  color: var(--green);
+}
+.kaart-achter-btn.actief-mem svg { color: var(--green); stroke: var(--green); }
+.kaart-achter-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* Terug-knop op achterkant (visuele hint) */
+.kaart-flip-terug {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--divider);
+  border: none;
+  color: var(--text-muted);
+  border-radius: 4px;
+  width: 22px;
+  height: 22px;
+  font-size: .75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+  z-index: 2;
+}
+.kaart-flip-terug:hover { background: var(--gold-light); color: var(--gold-dark); }
+
+/* ── Leeg resultaat ───────────────────────────────────────────── */
 .leeg-melding {
   grid-column: 1 / -1;
   text-align: center;
@@ -320,167 +610,370 @@ body {
 .leeg-melding p { font-size: .95rem; }
 .leeg-melding strong { color: var(--text-muted); }
 
-/* ── Modal ──────────────────────────────────────────────────── */
-.modal-overlay {
+/* ══ LEERMODUS OVERLAY ═══════════════════════════════════════════ */
+.lm-overlay {
   position: fixed;
   inset: 0;
-  background: var(--modal-overlay);
-  z-index: 100;
+  background: rgba(12, 18, 38, 0.92);
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .25s ease;
+  transition: opacity .3s var(--ease-out);
 }
-.modal-overlay.zichtbaar {
+.lm-overlay.zichtbaar {
   opacity: 1;
   pointer-events: all;
 }
 
-.modal {
-  background: #fff;
-  border-radius: 16px;
-  max-width: 520px;
+.lm-panel {
+  background: var(--bg);
+  border-radius: 20px;
+  max-width: 540px;
   width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   box-shadow: var(--shadow-lg);
-  transform: translateY(20px) scale(.97);
-  transition: transform .28s cubic-bezier(.34,1.56,.64,1);
+  transform: translateY(24px) scale(.97);
+  transition: transform .35s var(--ease-spring);
 }
-.modal-overlay.zichtbaar .modal {
+.lm-overlay.zichtbaar .lm-panel {
   transform: translateY(0) scale(1);
 }
 
-.modal-header {
-  background: var(--hero-bg);
-  border-radius: 16px 16px 0 0;
-  padding: 28px 24px 24px;
-  text-align: center;
-  position: relative;
-  color: #fff;
-}
-.modal-nr {
-  font-family: var(--font-display);
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .08em;
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-.modal-arabisch {
-  font-family: var(--font-arabic);
-  font-size: 2.6rem;
-  direction: rtl;
-  color: #fff;
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
-.modal-translit {
-  font-size: 1rem;
-  font-style: italic;
-  font-weight: 600;
-  color: var(--gold);
-  margin-bottom: 4px;
-}
-.modal-betekenis {
-  font-size: .9rem;
-  color: rgba(255,255,255,.72);
+/* Leermodus header */
+.lm-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--divider);
+  flex-shrink: 0;
 }
 
-.modal-sluiten {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  background: rgba(255,255,255,.12);
+.lm-sluiten {
+  background: none;
   border: none;
-  color: #fff;
-  border-radius: 6px;
-  width: 30px;
-  height: 30px;
-  font-size: 1rem;
+  color: var(--text-light);
   cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-xs);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background .15s;
+  transition: color .15s;
+  flex-shrink: 0;
 }
-.modal-sluiten:hover { background: rgba(255,255,255,.22); }
+.lm-sluiten:hover { color: var(--text); }
 
-.modal-body {
+.lm-voortgang-wrap { flex: 1; }
+.lm-voortgang-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.lm-voortgang-info span {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.lm-mem-count {
+  color: var(--green) !important;
+  font-family: var(--font-display);
+}
+
+.lm-voortgang-track {
+  height: 6px;
+  background: var(--divider);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.lm-voortgang-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 999px;
+  transition: width .4s var(--ease-out);
+}
+
+/* Leermodus kaart area */
+.lm-kaart-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px 16px;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.lm-kaart {
+  width: 100%;
+  max-width: 460px;
+  height: 300px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.lm-kaart-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .55s cubic-bezier(.4,0,.2,1);
+}
+.lm-kaart.omgedraaid .lm-kaart-inner {
+  transform: rotateY(180deg);
+}
+
+.lm-voorkant,
+.lm-achterkant {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--divider);
+  border-left: 5px solid var(--gold);
+}
+
+/* Leermodus voorkant */
+.lm-voorkant {
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
   padding: 24px;
 }
 
-.modal-uitleg {
-  font-size: .93rem;
-  line-height: 1.75;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-  border-left: 3px solid var(--divider);
-  padding-left: 14px;
+.lm-kaart-nr {
+  font-family: var(--font-display);
+  font-size: .70rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .08em;
+  align-self: flex-start;
 }
 
-.modal-bron {
+.lm-arabisch {
+  font-family: var(--font-arabic);
+  font-size: 3rem;
+  direction: rtl;
+  text-align: center;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.lm-hint-tekst {
   font-size: .78rem;
   color: var(--text-light);
-  margin-bottom: 24px;
   font-style: italic;
 }
 
-.modal-acties {
+/* Leermodus achterkant */
+.lm-achterkant {
+  background: var(--white);
+  transform: rotateY(180deg);
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 20px 22px;
+  overflow-y: auto;
+  gap: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--divider) transparent;
+}
+.lm-achterkant::-webkit-scrollbar { width: 4px; }
+.lm-achterkant::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 2px; }
+
+.achterkant-nr { align-self: flex-start; }
+
+.lm-achterkant-arabisch {
+  font-family: var(--font-arabic);
+  font-size: 1.9rem;
+  direction: rtl;
+  text-align: center;
+  color: var(--text);
+  line-height: 1.4;
 }
 
-.modal-fav-btn {
-  flex: 1;
-  padding: 10px 18px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--divider);
-  background: #fff;
-  font-family: var(--font-body);
-  font-size: .85rem;
-  font-weight: 600;
+.lm-translit {
+  font-size: .9rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--gold-dark);
+  text-align: center;
+}
+
+.lm-betekenis {
+  font-size: .88rem;
   color: var(--text-muted);
-  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+}
+
+.lm-divider {
+  height: 1px;
+  background: var(--divider);
+  margin: 6px 0;
+}
+
+.lm-uitleg {
+  font-size: .82rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.lm-bron {
+  font-size: .72rem;
+  color: var(--text-light);
+  font-style: italic;
+  padding-top: 8px;
+  border-top: 1px solid var(--divider);
+  margin-top: auto;
+}
+
+/* Leermodus actieknoppen */
+.lm-acties {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 460px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .25s var(--ease-out), transform .25s var(--ease-out);
+}
+.lm-acties.zichtbaar {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.lm-btn-oefenen,
+.lm-btn-gemem {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  transition: background .15s, border-color .15s, color .15s;
-}
-.modal-fav-btn:hover { border-color: var(--gold); color: var(--gold-dark); }
-.modal-fav-btn.actief {
-  background: #fdf5e0;
-  border-color: var(--gold);
-  color: var(--gold-dark);
-}
-
-.modal-nav {
-  display: flex;
-  gap: 10px;
-}
-.modal-nav-btn {
-  flex: 1;
-  padding: 10px 18px;
+  gap: 8px;
+  padding: 12px 18px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--divider);
-  background: #fff;
+  border: none;
   font-family: var(--font-body);
   font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s, transform .15s;
+}
+.lm-btn-oefenen:hover, .lm-btn-gemem:hover { opacity: .88; transform: translateY(-1px); }
+.lm-btn-oefenen:active, .lm-btn-gemem:active { transform: translateY(0); }
+
+.lm-btn-oefenen {
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 1px solid var(--divider);
+}
+.lm-btn-gemem {
+  background: var(--hero-bg);
+  color: #fff;
+}
+.lm-btn-gemem svg { stroke: var(--gold); }
+
+/* Leermodus navigatie */
+.lm-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--divider);
+  flex-shrink: 0;
+}
+
+.lm-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--divider);
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: .82rem;
   font-weight: 600;
   color: var(--text-muted);
   cursor: pointer;
   transition: background .15s, border-color .15s, color .15s;
 }
-.modal-nav-btn:hover { border-color: var(--hero-bg); color: var(--hero-bg); }
-.modal-nav-btn:disabled { opacity: .35; cursor: not-allowed; }
-.modal-nav-btn:disabled:hover { border-color: var(--divider); color: var(--text-muted); }
+.lm-nav-btn:hover { border-color: var(--hero-bg); color: var(--hero-bg); }
+.lm-nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+.lm-nav-btn:disabled:hover { border-color: var(--divider); color: var(--text-muted); }
 
-/* ── Terug-naar-top knop ─────────────────────────────────────── */
+.lm-fav-wrap { display: flex; align-items: center; }
+.lm-fav-btn {
+  background: none;
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: color .2s, border-color .2s;
+  display: flex;
+  align-items: center;
+}
+.lm-fav-btn:hover { color: var(--gold); border-color: var(--gold); }
+.lm-fav-btn.actief { color: var(--gold); border-color: var(--gold); }
+.lm-fav-btn.actief #lmFavIcon { fill: var(--gold); }
+
+/* ── Leermodus eindscherm ────────────────────────────────────── */
+.lm-einde-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 24px 20px;
+}
+.lm-einde-arabisch {
+  font-family: var(--font-arabic);
+  font-size: 2.2rem;
+  direction: rtl;
+  color: var(--gold-dark);
+  line-height: 1.4;
+}
+.lm-einde-tekst {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.lm-einde-sub {
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+.lm-einde-opnieuw {
+  margin-top: 8px;
+  padding: 10px 24px;
+  background: var(--hero-bg);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+.lm-einde-opnieuw:hover { opacity: .88; }
+
+/* ── Terug-naar-top knop ──────────────────────────────────────── */
 .to-top-btn {
   position: fixed;
   bottom: 24px;
@@ -491,7 +984,6 @@ body {
   border-radius: 999px;
   width: 42px;
   height: 42px;
-  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -503,18 +995,27 @@ body {
 }
 .to-top-btn.zichtbaar { opacity: 1; pointer-events: all; }
 
-/* ── Responsief ─────────────────────────────────────────────── */
-@media (max-width: 600px) {
-  .hero { margin: 12px 12px 0; padding: 22px 18px 20px; }
-  .hero-titel { font-size: 1.35rem; }
-  .content { padding: 20px 12px 48px; }
-  .zoek-rij { flex-direction: column; }
+/* ── Responsief ───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .app-header { padding: 20px 16px 36px; margin-bottom: 24px; }
+  .header-title { letter-spacing: -0.04em; }
+  .content { padding: 20px 12px 60px; }
+  .toolbar { flex-direction: column; }
   .filter-tabs { flex-wrap: wrap; }
-  .modal-arabisch { font-size: 2rem; }
-  .modal-nav { flex-direction: column; }
+  .leermodus-start-btn { margin-left: 0; }
+  .stats-balk { gap: 6px; }
+  .lm-arabisch { font-size: 2.4rem; }
+  .lm-acties { flex-direction: column; }
+  .naam-kaart { height: 260px; }
+  .kaart-arabisch { font-size: 3.2rem; }
 }
 
-/* ── Reduced motion ─────────────────────────────────────────── */
+@media (max-width: 400px) {
+  .filter-tabs { flex-direction: column; width: 100%; }
+  .filter-tab { justify-content: center; }
+}
+
+/* ── Reduced motion ───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;

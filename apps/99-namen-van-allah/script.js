@@ -40,7 +40,7 @@ const NAMEN = [
   { nr: 25, arabisch: 'الْمُعِزُّ',         transliteratie: 'Al-Mu\'izz',          betekenis: 'De Vereerder',                               uitleg: 'Allah schenkt eer en aanzien aan wie Hij wil. Ware eer is niet van mensen maar van Allah. Wie eer zoekt zonder Allah hoeft het nergens anders te zoeken — eer behoort Allah geheel toe.' },
   { nr: 26, arabisch: 'الْمُذِلُّ',         transliteratie: 'Al-Mudhill',           betekenis: 'De Vernederaar',                             uitleg: 'Allah vernedert wie Hij wil, naar Zijn wijsheid en rechtvaardigheid. Wie trots op Allah loochent of de gelovigen onderdrukt, wordt door Hem vernederd. Dit benadrukt dat echte macht uitsluitend bij Allah berust.' },
   { nr: 27, arabisch: 'السَّمِيعُ',         transliteratie: 'As-Samī\'',           betekenis: 'De Alhorende',                               uitleg: 'Allah hoort elke smeekbede, elk gefluister, elk geheim gesprek en elke kreun van verdriet. Zijn gehoor heeft geen orgaan en kent geen afstand. Hij hoort de du\'ā\' die in de diepte van het hart wordt gesproken.' },
-  { nr: 28, arabisch: 'الْبَصِيرُ',         transliteratie: 'Al-Baṣīr',            betekenis: 'De Alziende',                                uitleg: 'Allah ziet alles — wat openbaar is en wat verborgen is. Geen duisternis, geen diepte en geen innerlijk geheim onttrekkt zich aan Zijn zicht. Hij ziet de mieren die 's nachts over de zwarte rots lopen.' },
+  { nr: 28, arabisch: 'الْبَصِيرُ',         transliteratie: 'Al-Baṣīr',            betekenis: 'De Alziende',                                uitleg: 'Allah ziet alles — wat openbaar is en wat verborgen is. Geen duisternis, geen diepte en geen innerlijk geheim onttrekkt zich aan Zijn zicht. Hij ziet de mieren die \'s nachts over de zwarte rots lopen.' },
   { nr: 29, arabisch: 'الْحَكَمُ',          transliteratie: 'Al-Ḥakam',            betekenis: 'De Rechter',                                 uitleg: 'Allah is de uiteindelijke Rechter over alle zaken. Zijn oordeel is onherroepelijk en volkomen rechtvaardig. In dit leven worden oordelen soms onrechtvaardig uitgesproken — maar bij Allah is het oordeel absoluut zuiver.' },
   { nr: 30, arabisch: 'الْعَدْلُ',          transliteratie: 'Al-\'Adl',            betekenis: 'De Rechtvaardige',                           uitleg: 'Allah handelt in alles met absolute rechtvaardigheid. Er is bij Hem geen willekeur, geen vriendjespolitiek en geen onrecht. Al-\'Adl benadrukt dat Zijn rechtvaardigheid een inherente eigenschap is — niet iets dat Hij bereikt maar iets dat Hij is.' },
   { nr: 31, arabisch: 'اللَّطِيفُ',         transliteratie: 'Al-Laṭīf',            betekenis: 'De Subtiele, de Vriendelijke',               uitleg: 'Allah kent de fijnste details van alle dingen en handelt met uiterste zachtheid en zachtzinnigheid. Hij bereikt Zijn doelen op manieren die wij niet zien of verwachten — subtiel en vol medeleven.' },
@@ -117,61 +117,89 @@ const NAMEN = [
 /* ──────────────────────────────────────────────────────────
    STATE
    ────────────────────────────────────────────────────────── */
-const STORAGE_FAV    = '99namen_favorieten';
-const STORAGE_GEZIEN = '99namen_gezien';
+const STORAGE_FAV  = '99namen_favorieten';
+const STORAGE_GEZ  = '99namen_gezien';
+const STORAGE_MEM  = '99namen_gememoriseerd';
 
-let favorieten = new Set(JSON.parse(localStorage.getItem(STORAGE_FAV)    || '[]'));
-let gezien      = new Set(JSON.parse(localStorage.getItem(STORAGE_GEZIEN) || '[]'));
-let zoekTerm    = '';
-let actieveFilter = 'alle'; // 'alle' | 'favorieten'
-let huidigModalNr = null;
+let favorieten    = new Set(JSON.parse(localStorage.getItem(STORAGE_FAV) || '[]'));
+let gezien        = new Set(JSON.parse(localStorage.getItem(STORAGE_GEZ) || '[]'));
+let gememoriseerd = new Set(JSON.parse(localStorage.getItem(STORAGE_MEM) || '[]'));
+let zoekTerm      = '';
+let actieveFilter = 'alle';
+
+/* Leermodus state */
+let leerLijst     = [];
+let leerIndex     = 0;
+let leerOmgedraaid = false;
+let leerMemoCount = 0;
 
 /* ──────────────────────────────────────────────────────────
-   DOM REFERENTIES
+   DOM
    ────────────────────────────────────────────────────────── */
-const gridEl          = document.getElementById('namenGrid');
-const zoekInput       = document.getElementById('zoekInput');
-const filterTabs      = document.querySelectorAll('.filter-tab');
-const statGezien      = document.getElementById('statGezien');
-const statFav         = document.getElementById('statFav');
-const resultatenInfo  = document.getElementById('resultatenInfo');
-const modalOverlay    = document.getElementById('modalOverlay');
-const modalNr         = document.getElementById('modalNr');
-const modalArabisch   = document.getElementById('modalArabisch');
-const modalTranslit   = document.getElementById('modalTranslit');
-const modalBetekenis  = document.getElementById('modalBetekenis');
-const modalUitleg     = document.getElementById('modalUitleg');
-const modalFavBtn     = document.getElementById('modalFavBtn');
-const modalVorige     = document.getElementById('modalVorige');
-const modalVolgende   = document.getElementById('modalVolgende');
-const toTopBtn        = document.getElementById('toTopBtn');
+const gridEl            = document.getElementById('namenGrid');
+const zoekInput         = document.getElementById('zoekInput');
+const filterTabs        = document.querySelectorAll('.filter-tab');
+const statGezien        = document.getElementById('statGezien');
+const statFav           = document.getElementById('statFav');
+const resultatenInfo    = document.getElementById('resultatenInfo');
+const memGetal          = document.getElementById('memGetal');
+const memFill           = document.getElementById('memVoortgangFill');
+const memBar            = document.getElementById('memProgressBar');
+const leerStartBtn      = document.getElementById('leermodusStartBtn');
+const toTopBtn          = document.getElementById('toTopBtn');
+
+/* Leermodus DOM */
+const lmOverlay    = document.getElementById('lmOverlay');
+const lmSluiten    = document.getElementById('lmSluiten');
+const lmKaart      = document.getElementById('lmKaart');
+const lmKaartInner = document.getElementById('lmKaartInner');
+const lmNr         = document.getElementById('lmKaartNr');
+const lmAchtNr     = document.getElementById('lmAchterkantNr');
+const lmArabisch   = document.getElementById('lmArabisch');
+const lmAchArab    = document.getElementById('lmAchterArabisch');
+const lmTranslit   = document.getElementById('lmTranslit');
+const lmBetekenis  = document.getElementById('lmBetekenis');
+const lmUitleg     = document.getElementById('lmUitleg');
+const lmActies     = document.getElementById('lmActies');
+const lmBtnOefenen = document.getElementById('lmBtnOefenen');
+const lmBtnGemem   = document.getElementById('lmBtnGemem');
+const lmVorige     = document.getElementById('lmVorige');
+const lmVolgende   = document.getElementById('lmVolgende');
+const lmFavBtn     = document.getElementById('lmFavBtn');
+const lmFavIcon    = document.getElementById('lmFavIcon');
+const lmNaamTeller = document.getElementById('lmNaamTeller');
+const lmMemCount   = document.getElementById('lmMemCount');
+const lmVoortFill  = document.getElementById('lmVoortgangFill');
 
 /* ──────────────────────────────────────────────────────────
    OPSLAAN
    ────────────────────────────────────────────────────────── */
-function slaFavorietenOp() {
-  localStorage.setItem(STORAGE_FAV, JSON.stringify([...favorieten]));
-}
-function slaGezienOp() {
-  localStorage.setItem(STORAGE_GEZIEN, JSON.stringify([...gezien]));
+function slaOp(key, set) {
+  localStorage.setItem(key, JSON.stringify([...set]));
 }
 
 /* ──────────────────────────────────────────────────────────
-   STATS BIJWERKEN
+   STATS + VOORTGANG
    ────────────────────────────────────────────────────────── */
 function updateStats() {
   statGezien.textContent = gezien.size;
   statFav.textContent    = favorieten.size;
+  const pct = (gememoriseerd.size / 99) * 100;
+  memGetal.textContent   = gememoriseerd.size;
+  memFill.style.width    = pct + '%';
+  memBar.setAttribute('aria-valuenow', gememoriseerd.size);
 }
 
 /* ──────────────────────────────────────────────────────────
-   GEFILTERDE LIJST
+   FILTER
    ────────────────────────────────────────────────────────── */
 function gefilterdeLijst() {
   let lijst = NAMEN;
 
   if (actieveFilter === 'favorieten') {
     lijst = lijst.filter(n => favorieten.has(n.nr));
+  } else if (actieveFilter === 'nog-te-leren') {
+    lijst = lijst.filter(n => !gememoriseerd.has(n.nr));
   }
 
   if (zoekTerm.trim()) {
@@ -194,7 +222,7 @@ function renderGrid() {
   const lijst = gefilterdeLijst();
   gridEl.innerHTML = '';
 
-  resultatenInfo.textContent = zoekTerm || actieveFilter === 'favorieten'
+  resultatenInfo.textContent = zoekTerm || actieveFilter !== 'alle'
     ? `${lijst.length} naam${lijst.length !== 1 ? 'en' : ''} gevonden`
     : '';
 
@@ -203,126 +231,305 @@ function renderGrid() {
       <div class="leeg-melding">
         <p>${actieveFilter === 'favorieten'
           ? 'Je hebt nog geen favorieten opgeslagen.'
+          : actieveFilter === 'nog-te-leren'
+          ? 'Goed gedaan — alle namen zijn gememoriseerd!'
           : `Geen namen gevonden voor <strong>"${zoekTerm}"</strong>.`}</p>
       </div>`;
     return;
   }
 
   lijst.forEach((naam, i) => {
-    const isFav  = favorieten.has(naam.nr);
-    const isGezien = gezien.has(naam.nr);
+    const isFav = favorieten.has(naam.nr);
+    const isMem = gememoriseerd.has(naam.nr);
+
     const kaart = document.createElement('article');
     kaart.className = 'naam-kaart';
-    kaart.setAttribute('role', 'button');
-    kaart.setAttribute('tabindex', '0');
+    kaart.setAttribute('role', 'listitem');
     kaart.setAttribute('aria-label', `Naam ${naam.nr}: ${naam.transliteratie} — ${naam.betekenis}`);
-    kaart.style.animationDelay = `${Math.min(i * 0.025, 0.3)}s`;
+    kaart.style.animationDelay = `${Math.min(i * 0.03, 0.4)}s`;
+
     kaart.innerHTML = `
-      <span class="kaart-nummmer">${String(naam.nr).padStart(2,'0')}</span>
-      <p class="kaart-arabisch" dir="rtl" lang="ar">${naam.arabisch}</p>
-      <div class="kaart-ondertitels">
-        <span class="kaart-translit">${naam.transliteratie}</span>
-        <span class="kaart-betekenis">${naam.betekenis}</span>
+      <div class="kaart-inner">
+
+        <!-- Voorkant -->
+        <div class="kaart-voorkant">
+          <div class="kaart-top">
+            <span class="kaart-nummer">${String(naam.nr).padStart(2,'0')}</span>
+            <div class="kaart-badges">
+              ${isMem ? `<span class="kaart-mem-badge" aria-label="Gememoriseerd">
+                <svg width="9" height="9" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                gememoriseerd
+              </span>` : ''}
+              <button class="kaart-fav-btn ${isFav ? 'actief' : ''}"
+                      aria-label="${isFav ? 'Verwijder uit favorieten' : 'Voeg toe aan favorieten'}"
+                      data-nr="${naam.nr}">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="kaart-arabisch-wrap">
+            <p class="kaart-arabisch" dir="rtl" lang="ar">${naam.arabisch}</p>
+          </div>
+
+          <div class="kaart-ondertitels">
+            <span class="kaart-translit">${naam.transliteratie}</span>
+            <span class="kaart-betekenis">${naam.betekenis}</span>
+          </div>
+        </div>
+
+        <!-- Achterkant -->
+        <div class="kaart-achterkant">
+          <div class="kaart-achter-header">
+            <button class="kaart-flip-terug" aria-label="Terug naar voorkant" title="Terug draaien">✕</button>
+            <p class="kaart-achter-arabisch" dir="rtl" lang="ar">${naam.arabisch}</p>
+            <p class="kaart-achter-translit">${naam.transliteratie} — ${naam.betekenis}</p>
+          </div>
+          <div class="kaart-achter-body">
+            <p class="kaart-uitleg">${naam.uitleg}</p>
+            <p class="kaart-bron">Bron: Ṣaḥīḥ at-Tirmidhī 3507 · Al-Asmāʾ waṣ-Ṣifāt van Imam al-Bayhaqī</p>
+          </div>
+          <div class="kaart-achter-acties">
+            <button class="kaart-achter-btn ${isFav ? 'actief-fav' : ''}" data-nr="${naam.nr}" data-actie="fav">
+              <svg viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              ${isFav ? 'Favoriet' : 'Favoriet'}
+            </button>
+            <button class="kaart-achter-btn ${isMem ? 'actief-mem' : ''}" data-nr="${naam.nr}" data-actie="mem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              ${isMem ? 'Gememoriseerd' : 'Memoriseren'}
+            </button>
+          </div>
+        </div>
+
       </div>
-      <button class="kaart-fav-btn ${isFav ? 'actief' : ''}"
-              aria-label="${isFav ? 'Verwijder uit favorieten' : 'Voeg toe aan favorieten'}"
-              title="${isFav ? 'Verwijder favoriet' : 'Favoriet'}"
-              data-nr="${naam.nr}">
-        ${isFav ? '★' : '☆'}
-      </button>
-      ${isGezien ? '<span class="kaart-bekeken-badge" aria-hidden="true">✓ gezien</span>' : ''}
     `;
 
+    /* Kaart klik → flip */
     kaart.addEventListener('click', (e) => {
-      if (e.target.classList.contains('kaart-fav-btn')) return;
-      openModal(naam.nr);
-    });
-    kaart.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openModal(naam.nr);
+      const actieBtns = e.target.closest('[data-actie]');
+      const favBtnEl  = e.target.closest('.kaart-fav-btn');
+      const terugBtn  = e.target.closest('.kaart-flip-terug');
+
+      if (terugBtn) {
+        e.stopPropagation();
+        kaart.classList.remove('omgedraaid');
+        return;
+      }
+      if (favBtnEl) {
+        e.stopPropagation();
+        toggleFavoriet(naam.nr);
+        renderGrid();
+        return;
+      }
+      if (actieBtns) {
+        e.stopPropagation();
+        if (actieBtns.dataset.actie === 'fav') {
+          toggleFavoriet(naam.nr);
+          renderGrid();
+        } else if (actieBtns.dataset.actie === 'mem') {
+          toggleGememoriseerd(naam.nr);
+          renderGrid();
+        }
+        return;
+      }
+
+      /* Flip */
+      kaart.classList.toggle('omgedraaid');
+
+      /* Markeer als gezien */
+      if (!gezien.has(naam.nr)) {
+        gezien.add(naam.nr);
+        slaOp(STORAGE_GEZ, gezien);
+        updateStats();
+        gc('99-namen/naam-bekeken/' + naam.transliteratie.replace(/[^a-zA-Z]/g,''));
       }
     });
 
-    const favBtn = kaart.querySelector('.kaart-fav-btn');
-    favBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleFavoriet(naam.nr, favBtn);
+    /* Toetsenbord */
+    kaart.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        kaart.classList.toggle('omgedraaid');
+      }
+      if (e.key === 'Escape') kaart.classList.remove('omgedraaid');
     });
+    kaart.setAttribute('tabindex', '0');
 
     gridEl.appendChild(kaart);
   });
 }
 
 /* ──────────────────────────────────────────────────────────
-   FAVORIET TOGGLE
+   TOGGLE FAVORIET
    ────────────────────────────────────────────────────────── */
-function toggleFavoriet(nr, btn) {
+function toggleFavoriet(nr) {
   if (favorieten.has(nr)) {
     favorieten.delete(nr);
-    if (btn) { btn.textContent = '☆'; btn.classList.remove('actief'); btn.setAttribute('aria-label','Voeg toe aan favorieten'); }
-    if (modalFavBtn && huidigModalNr === nr) updateModalFavBtn();
   } else {
     favorieten.add(nr);
-    if (btn) { btn.textContent = '★'; btn.classList.add('actief'); btn.setAttribute('aria-label','Verwijder uit favorieten'); }
-    if (modalFavBtn && huidigModalNr === nr) updateModalFavBtn();
-    // GoatCounter
     const naam = NAMEN.find(n => n.nr === nr);
     if (naam) gc('99-namen/gefavoriet/' + naam.transliteratie.replace(/[^a-zA-Z]/g,''));
   }
-  slaFavorietenOp();
+  slaOp(STORAGE_FAV, favorieten);
   updateStats();
   if (actieveFilter === 'favorieten') renderGrid();
 }
 
-function updateModalFavBtn() {
-  if (!modalFavBtn || !huidigModalNr) return;
-  const isFav = favorieten.has(huidigModalNr);
-  modalFavBtn.classList.toggle('actief', isFav);
-  modalFavBtn.innerHTML = isFav ? '★ Verwijder favoriet' : '☆ Voeg toe aan favorieten';
+/* ──────────────────────────────────────────────────────────
+   TOGGLE GEMEMORISEERD
+   ────────────────────────────────────────────────────────── */
+function toggleGememoriseerd(nr) {
+  if (gememoriseerd.has(nr)) {
+    gememoriseerd.delete(nr);
+  } else {
+    gememoriseerd.add(nr);
+    gc('99-namen/gememoriseerd/' + nr);
+  }
+  slaOp(STORAGE_MEM, gememoriseerd);
+  updateStats();
+  if (actieveFilter === 'nog-te-leren') renderGrid();
 }
 
 /* ──────────────────────────────────────────────────────────
-   MODAL
+   LEERMODUS
    ────────────────────────────────────────────────────────── */
-function openModal(nr) {
-  const naam = NAMEN.find(n => n.nr === nr);
-  if (!naam) return;
-  huidigModalNr = nr;
+function startLeermodus() {
+  leerLijst = gefilterdeLijst();
+  if (leerLijst.length === 0) return;
+  leerIndex    = 0;
+  leerMemoCount = 0;
+  leerOmgedraaid = false;
 
-  modalNr.textContent         = `Naam ${String(nr).padStart(2,'0')} van 99`;
-  modalArabisch.textContent   = naam.arabisch;
-  modalTranslit.textContent   = naam.transliteratie;
-  modalBetekenis.textContent  = naam.betekenis;
-  modalUitleg.textContent     = naam.uitleg;
-  updateModalFavBtn();
-
-  modalVorige.disabled   = nr <= 1;
-  modalVolgende.disabled = nr >= 99;
-
-  modalOverlay.classList.add('zichtbaar');
-  modalOverlay.setAttribute('aria-hidden', 'false');
+  lmOverlay.classList.add('zichtbaar');
+  lmOverlay.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 
-  // Markeer als gezien
-  if (!gezien.has(nr)) {
-    gezien.add(nr);
-    slaGezienOp();
+  laadLeerKaart(leerIndex);
+  gc('99-namen/leermodus-gestart');
+}
+
+function sluitLeermodus() {
+  lmOverlay.classList.remove('zichtbaar');
+  lmOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  resetLeerKaart();
+}
+
+function laadLeerKaart(idx) {
+  const naam = leerLijst[idx];
+  if (!naam) return;
+
+  resetLeerKaart();
+
+  const nr = String(naam.nr).padStart(2,'0');
+  lmNr.textContent         = nr;
+  lmAchtNr.textContent     = nr;
+  lmArabisch.textContent   = naam.arabisch;
+  lmAchArab.textContent    = naam.arabisch;
+  lmTranslit.textContent   = naam.transliteratie;
+  lmBetekenis.textContent  = naam.betekenis;
+  lmUitleg.textContent     = naam.uitleg;
+
+  /* Navigatie knoppen */
+  lmVorige.disabled   = idx <= 0;
+  lmVolgende.disabled = idx >= leerLijst.length - 1;
+
+  /* Teller */
+  lmNaamTeller.textContent = `${idx + 1} van ${leerLijst.length}`;
+  lmMemCount.textContent   = `${leerMemoCount} gememoriseerd`;
+
+  /* Voortgangsbalk */
+  lmVoortFill.style.width = ((idx / leerLijst.length) * 100) + '%';
+
+  /* Favoriet knop */
+  updateLmFavBtn(naam.nr);
+
+  /* Gezien markeren */
+  if (!gezien.has(naam.nr)) {
+    gezien.add(naam.nr);
+    slaOp(STORAGE_GEZ, gezien);
     updateStats();
-    renderGrid(); // badge tonen
-    gc('99-namen/naam-bekeken/' + naam.transliteratie.replace(/[^a-zA-Z]/g,''));
   }
 }
 
-function sluitModal() {
-  modalOverlay.classList.remove('zichtbaar');
-  modalOverlay.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-  huidigModalNr = null;
+function resetLeerKaart() {
+  leerOmgedraaid = false;
+  lmKaart.classList.remove('omgedraaid');
+  lmActies.classList.remove('zichtbaar');
+}
+
+function flipLeerKaart() {
+  if (leerOmgedraaid) return;
+  leerOmgedraaid = true;
+  lmKaart.classList.add('omgedraaid');
+  setTimeout(() => lmActies.classList.add('zichtbaar'), 300);
+}
+
+function updateLmFavBtn(nr) {
+  const isFav = favorieten.has(nr);
+  lmFavBtn.classList.toggle('actief', isFav);
+  lmFavIcon.setAttribute('fill', isFav ? 'currentColor' : 'none');
+  lmFavBtn.setAttribute('aria-label', isFav ? 'Verwijder uit favorieten' : 'Voeg toe aan favorieten');
+}
+
+function leerVolgende(gemem) {
+  const naam = leerLijst[leerIndex];
+  if (naam && gemem) {
+    if (!gememoriseerd.has(naam.nr)) {
+      gememoriseerd.add(naam.nr);
+      slaOp(STORAGE_MEM, gememoriseerd);
+      updateStats();
+      leerMemoCount++;
+    }
+  }
+  if (leerIndex < leerLijst.length - 1) {
+    leerIndex++;
+    laadLeerKaart(leerIndex);
+  } else {
+    /* Einde van de lijst */
+    toonLeerEinde();
+  }
+}
+
+function toonLeerEinde() {
+  lmNaamTeller.textContent = 'Afgerond!';
+  lmMemCount.textContent   = `${leerMemoCount} van ${leerLijst.length} gememoriseerd`;
+  lmVoortFill.style.width  = '100%';
+  lmKaart.style.display    = 'none';
+  lmActies.classList.remove('zichtbaar');
+  lmVorige.disabled  = true;
+  lmVolgende.disabled = true;
+
+  /* Tijdelijk bericht in kaart area */
+  const bestaand = lmOverlay.querySelector('.lm-einde-msg');
+  if (!bestaand) {
+    const msg = document.createElement('div');
+    msg.className = 'lm-einde-msg';
+    msg.innerHTML = `
+      <p class="lm-einde-arabisch" dir="rtl" lang="ar">مَاشَاءَ اللَّهُ</p>
+      <p class="lm-einde-tekst">Mashā Allāh — je hebt alle namen doorgelopen!</p>
+      <p class="lm-einde-sub">${leerMemoCount} van ${leerLijst.length} gemarkeerd als gememoriseerd.</p>
+      <button class="lm-einde-opnieuw" id="lmOpnieuw">Opnieuw beginnen</button>
+    `;
+    lmKaart.parentNode.insertBefore(msg, lmActies);
+    document.getElementById('lmOpnieuw').addEventListener('click', () => {
+      msg.remove();
+      lmKaart.style.display = '';
+      leerIndex = 0;
+      leerMemoCount = 0;
+      laadLeerKaart(0);
+    });
+  }
 }
 
 /* ──────────────────────────────────────────────────────────
-   GOATCOUNTER HELPER
+   GOATCOUNTER
    ────────────────────────────────────────────────────────── */
 function gc(event) {
   if (typeof window.goatcounter !== 'undefined' && window.goatcounter.count) {
@@ -331,7 +538,7 @@ function gc(event) {
 }
 
 /* ──────────────────────────────────────────────────────────
-   EVENT LISTENERS
+   EVENT LISTENERS — Grid
    ────────────────────────────────────────────────────────── */
 zoekInput.addEventListener('input', () => {
   zoekTerm = zoekInput.value;
@@ -341,39 +548,56 @@ zoekInput.addEventListener('input', () => {
 filterTabs.forEach(tab => {
   tab.addEventListener('click', () => {
     actieveFilter = tab.dataset.filter;
-    filterTabs.forEach(t => t.classList.toggle('actief', t === tab));
+    filterTabs.forEach(t => {
+      t.classList.toggle('actief', t === tab);
+      t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+    });
     renderGrid();
   });
 });
 
-modalOverlay.addEventListener('click', (e) => {
-  if (e.target === modalOverlay) sluitModal();
+leerStartBtn.addEventListener('click', startLeermodus);
+
+toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+window.addEventListener('scroll', () => {
+  toTopBtn.classList.toggle('zichtbaar', window.scrollY > 400);
 });
 
-document.getElementById('modalSluiten').addEventListener('click', sluitModal);
+/* ──────────────────────────────────────────────────────────
+   EVENT LISTENERS — Leermodus
+   ────────────────────────────────────────────────────────── */
+lmSluiten.addEventListener('click', sluitLeermodus);
 
-modalFavBtn.addEventListener('click', () => {
-  if (huidigModalNr) toggleFavoriet(huidigModalNr, null);
+lmKaart.addEventListener('click', flipLeerKaart);
+lmKaart.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flipLeerKaart(); }
 });
 
-modalVorige.addEventListener('click', () => {
-  if (huidigModalNr > 1) openModal(huidigModalNr - 1);
+lmBtnOefenen.addEventListener('click', () => leerVolgende(false));
+lmBtnGemem.addEventListener('click', () => leerVolgende(true));
+
+lmVorige.addEventListener('click', () => {
+  if (leerIndex > 0) { leerIndex--; laadLeerKaart(leerIndex); }
 });
-modalVolgende.addEventListener('click', () => {
-  if (huidigModalNr < 99) openModal(huidigModalNr + 1);
+lmVolgende.addEventListener('click', () => {
+  if (leerIndex < leerLijst.length - 1) { leerIndex++; laadLeerKaart(leerIndex); }
+});
+
+lmFavBtn.addEventListener('click', () => {
+  const naam = leerLijst[leerIndex];
+  if (naam) { toggleFavoriet(naam.nr); updateLmFavBtn(naam.nr); }
+});
+
+lmOverlay.addEventListener('click', (e) => {
+  if (e.target === lmOverlay) sluitLeermodus();
 });
 
 document.addEventListener('keydown', (e) => {
-  if (!modalOverlay.classList.contains('zichtbaar')) return;
-  if (e.key === 'Escape') sluitModal();
-  if (e.key === 'ArrowLeft'  && huidigModalNr > 1)  openModal(huidigModalNr - 1);
-  if (e.key === 'ArrowRight' && huidigModalNr < 99) openModal(huidigModalNr + 1);
-});
-
-toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-window.addEventListener('scroll', () => {
-  toTopBtn.classList.toggle('zichtbaar', window.scrollY > 400);
+  if (!lmOverlay.classList.contains('zichtbaar')) return;
+  if (e.key === 'Escape') sluitLeermodus();
+  if (e.key === 'ArrowLeft'  && leerIndex > 0) { leerIndex--; laadLeerKaart(leerIndex); }
+  if (e.key === 'ArrowRight' && leerIndex < leerLijst.length - 1) { leerIndex++; laadLeerKaart(leerIndex); }
+  if (e.key === ' ' || e.key === 'Enter') { if (!leerOmgedraaid) { e.preventDefault(); flipLeerKaart(); } }
 });
 
 /* ──────────────────────────────────────────────────────────
