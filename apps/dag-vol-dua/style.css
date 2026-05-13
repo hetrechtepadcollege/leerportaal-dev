@@ -1,7 +1,12 @@
-/* ── IndoPakNastaleeq (IndoPak Arabisch font) ────────────────── */
+/* ── IndoPakNastaleeq (primair) + AlQalamQuranMajeed (fallback) ─ */
 @font-face {
     font-family: 'IndoPakNastaleeq';
     src: url('fonts/indopak-nastaleeq.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'AlQalamQuranMajeed';
+    src: url('fonts/AlQalamQuranMajeed.ttf') format('truetype');
     font-display: swap;
 }
 
@@ -19,7 +24,7 @@
     --header-bg:       rgba(6, 9, 30, 0.88);
     --font-title:      'Cinzel', serif;
     --font-body:       'Noto Sans', sans-serif;
-    --font-arabic:     'IndoPakNastaleeq', serif;
+    --font-arabic:     'IndoPakNastaleeq', 'AlQalamQuranMajeed', serif;
     --radius-sm:       8px;
     --radius-md:       16px;
     --radius-lg:       24px;
