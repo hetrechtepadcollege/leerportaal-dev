@@ -1,0 +1,42 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: ["main"] # Of 'leerportaal-dev/main', stem dit af op jouw exacte branchnaam
+
+# Geef de juiste rechten om een deployment te mogen starten
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Zorg ervoor dat opeenvolgende pushes elkaar netjes afbreken/opvolgen
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # OPMERKING: Als het project eerst gebuild moet worden (bijv. met npm run build),
+      # voeg die stappen dan HIER handmatig toe (zie tip hieronder).
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Vul hier de map in die live moet ('.' voor de root, of bijvoorbeeld 'dist' of 'public')
+          path: '.' 
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
