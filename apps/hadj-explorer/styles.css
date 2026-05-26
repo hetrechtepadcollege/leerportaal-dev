@@ -1186,59 +1186,13 @@ h1, h2 { font-family: '"'"'Newsreader'"'"', serif; color: #1c2340; }
     color: #5c6e8a !important;
     font-style: normal;
     max-width: 620px;
-    margin: 1.45rem auto 0;
+    margin: .8rem auto 0;
     line-height: 1.65;
 }
 .header-arabic {
     color: #d4af37;
     font-size: clamp(1.65rem, 5vw, 2.6rem);
     margin-top: .55rem;
-}
-
-.header-visual {
-    position: relative;
-    width: min(660px, calc(100vw - 40px));
-    margin: 4.25rem auto 0;
-    overflow: hidden;
-    border-radius: 12px;
-    background: #dceefa;
-    box-shadow: 0 18px 45px rgba(31, 41, 77, 0.14);
-    line-height: 0;
-}
-
-.header-kaaba-svg {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.header-arabic-overlay {
-    position: absolute;
-    inset: 0 0 auto;
-    top: 6%;
-    display: flex;
-    justify-content: center;
-    pointer-events: none;
-}
-
-.header-arabic-word {
-    color: #b78728;
-    font-family: 'AlQalamQuranMajeed', 'Noto Naskh Arabic', serif;
-    font-size: clamp(3.2rem, 9vw, 5.1rem);
-    font-weight: 400;
-    line-height: 1.1;
-    text-shadow: 0 4px 18px rgba(255, 255, 255, 0.72), 0 2px 8px rgba(138, 106, 45, 0.24);
-}
-
-.header-sun {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: header-sun-glow 4.8s ease-in-out infinite;
-}
-
-@keyframes header-sun-glow {
-    0%, 100% { opacity: 0.92; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.035); }
 }
 
 /* === HADJ INTRO LANDING === */
