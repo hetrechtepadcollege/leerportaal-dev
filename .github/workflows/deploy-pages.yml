@@ -3,15 +3,13 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: ["main"]
-  workflow_dispatch:      # <--- Dit voegt de handmatige 'Run workflow' knop toe!
+  workflow_dispatch:
 
-# Geef de juiste rechten om een deployment te mogen starten
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Zorg ervoor dat opeenvolgende pushes elkaar netjes afbreken/opvolgen
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -29,14 +27,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # OPMERKING: Als het project eerst gebuild moet worden (bijv. met npm run build),
-      # voeg die stappen dan HIER handmatig toe (zie tip hieronder).
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Vul hier de map in die live moet ('.' voor de root, of bijvoorbeeld 'dist' of 'public')
-          path: '.' 
+          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
