@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 on:
   push:
-    branches: ["main"] # Of 'leerportaal-dev/main', stem dit af op jouw exacte branchnaam
+    branches: ["leerportaal-dev/main"] # Of 'leerportaal-dev/main', stem dit af op jouw exacte branchnaam
 
 # Geef de juiste rechten om een deployment te mogen starten
 permissions:
