@@ -39,37 +39,39 @@
     <main class="app">
       <nav class="landing-top-actions" aria-label="Snelle keuze">
         <a class="btn landing-start" href="#spelletjes">Begin met de spellen</a>
-        <a class="btn secondary landing-skip" href="#hadj-route-uitleg">Bekijk eerst de route</a>
+        <a class="btn secondary landing-skip" href="#hadj-reis-doel">Bekijk eerst de route</a>
       </nav>
-      <section class="landing-intro" aria-labelledby="landing-title">
+      <section class="landing-intro" id="hadj-reis-doel" aria-labelledby="landing-title">
         <div class="landing-copy">
           <p class="landing-kicker">Voordat je begint</p>
           <h2 id="landing-title">De hadj is een reis met een doel</h2>
           <p>
             De hadj is de grote islamitische bedevaart naar Mekka en hoort bij de vijf zuilen van de islam.
-            Deze bedevaart staat in het teken van aanbidding, berouw en spirituele zuivering.
+            De hadj staat in het teken van aanbidding, berouw en spirituele zuivering.
             Pelgrims volgen vaste rituelen die de Profeet ﷺ tijdens zijn afscheidsbedevaart heeft voorgedaan en bevestigd.
           </p>
+          <p class="term-glossary-title">Belangrijke termen bij de hadj</p>
           <div class="term-glossary" aria-label="Korte uitleg van belangrijke hadj-termen">
-            <div><strong>Iḥrām</strong><span>de gewijde staat waarmee de pelgrim de hadj begint.</span></div>
-            <div><strong>Talbiyah</strong><span>de uitspraak waarmee de pelgrim antwoord geeft aan Allah.</span></div>
-            <div><strong>Ṭawāf</strong><span>zeven rondes rond de Kaʾbah.</span></div>
-            <div><strong>Saʿī</strong><span>zeven keer lopen tussen Ṣafā en Marwa.</span></div>
-            <div><strong>Wuqūf</strong><span>het staan op Arafat in aanbidding en smeekbeden.</span></div>
+            <div><strong>Mīqāt</strong><span>de vastgestelde grens waar de pelgrim de iḥrām aanneemt.</span></div>
+            <div><strong>Iḥrām</strong><span>de gewijde staat waarin de pelgrim de hadj begint.</span></div>
+            <div><strong>Talbiyah</strong><span>de uitspraak waarmee de pelgrim zegt: “Hier ben ik, O Allah.”</span></div>
+            <div><strong>Ṭawāf</strong><span>zeven rondgangen rond de Kaʿbah.</span></div>
+            <div><strong>Saʿī</strong><span>zeven keer lopen tussen de bergen Ṣafā en Marwa.</span></div>
+            <div><strong>Wuqūf</strong><span>het staan/verblijven op Arafat in aanbidding en smeekbeden.</span></div>
             <div><strong>Duʿā</strong><span>smeekbede: Allah vragen om hulp, leiding en vergeving.</span></div>
-            <div><strong>Ramy</strong><span>het werpen van steentjes bij de zuilen in Mina.</span></div>
+            <div><strong>Ramī</strong><span>het werpen van steentjes naar de zuilen (Jamarāt) in Mina.</span></div>
           </div>
 
         </div>
 
         <div class="route-visual" aria-label="Interactieve route van de hadj">
           <div class="route-line" aria-hidden="true"></div>
-          <button type="button" class="route-point point-1 active" data-route-title="Mīqāt" data-route-detail="Hier begint de pelgrim bewust: intentie maken, iḥrām aannemen en de Talbiyah uitspreken. Iḥrām betekent dat de pelgrim een gewijde staat binnengaat."><span>Mīqāt</span><small>Intentie, iḥrām en Talbiyah.</small></button>
-          <button type="button" class="route-point point-2" data-route-title="Mekka" data-route-detail="Bij de Kaʾbah verricht de pelgrim ṭawāf: zeven rondes rond de Kaʾbah. Daarna volgt saʿī: zeven keer lopen tussen Ṣafā en Marwa."><span>Mekka</span><small>Kaʾbah, ṭawāf en saʿī.</small></button>
-          <button type="button" class="route-point point-3" data-route-title="Mina" data-route-detail="Mina is de tentenstad, ongeveer 8 kilometer ten oosten van de Kaʾbah. Pelgrims brengen hier de nacht door in aanbidding, gebed en bezinning."><span>Mina</span><small>Tentenstad, gebed en bezinning.</small></button>
+          <button type="button" class="route-point point-1 active" data-route-title="Mīqāt" data-route-detail="Hier begint de pelgrim bewust: intentie maken, iḥrām aannemen en de Talbiyah uitspreken. Iḥrām betekent dat de pelgrim een gewijde staat binnengaat."><span>Mīqāt</span><small>Intentie, iḥrām en talbiyah.</small></button>
+          <button type="button" class="route-point point-2" data-route-title="Mekka" data-route-detail="Bij de Kaʾbah verricht de pelgrim ṭawāf: zeven rondes rond de Kaʾbah. Daarna volgt saʿī: zeven keer lopen tussen Ṣafā en Marwa."><span>Mekka</span><small>Ṭawāf rond de Kaʿbah en saʿī.</small></button>
+          <button type="button" class="route-point point-3" data-route-title="Mina" data-route-detail="Mina is de tentenstad, ongeveer 8 kilometer ten oosten van de Kaʾbah. Pelgrims brengen hier de nacht door in aanbidding, gebed en bezinning."><span>Mina</span><small>Verblijf, gebed en voorbereiding op Arafat.</small></button>
           <button type="button" class="route-point point-4" data-route-title="Arafat" data-route-detail="Arafat is het belangrijkste onderdeel van de hadj. Wuqūf betekent hier: staan op Arafat in smeekbeden, gebed, bezinning en berouw tot zonsondergang."><span>Arafat</span><small>Wuqūf, duʿā en berouw.</small></button>
-          <button type="button" class="route-point point-5" data-route-title="Muzdalifah" data-route-detail="Na zonsondergang gaan pelgrims naar Muzdalifah. Daar bidden zij Maghrib en ʿIshāʾ, overnachten zij onder de open hemel en verzamelen zij steentjes."><span>Muzdalifah</span><small>Gebed, nacht en steentjes.</small></button>
-          <button type="button" class="route-point point-6" data-route-title="Mina" data-route-detail="Op dag 10 keren pelgrims terug naar Mina. Daar verrichten zij ramy: het werpen van steentjes bij de zuilen. Daarna volgen het offer, knippen of scheren en terugkeer naar Mekka."><span>Mina</span><small>Ramy, offer en knippen.</small></button>
+          <button type="button" class="route-point point-5" data-route-title="Muzdalifah" data-route-detail="Na zonsondergang gaan pelgrims naar Muzdalifah. Daar bidden zij Maghrib en ʿIshāʾ, overnachten zij onder de open hemel en verzamelen zij steentjes."><span>Muzdalifah</span><small>Gebed, overnachting en steentjes verzamelen.</small></button>
+          <button type="button" class="route-point point-6" data-route-title="Mina" data-route-detail="Op dag 10 keren pelgrims terug naar Mina. Daar verrichten zij ramī: het werpen van steentjes bij de zuilen. Daarna volgen het offer, knippen of scheren en terugkeer naar Mekka."><span>Mina</span><small>Ramī, offerhandeling en haar knippen/scheren.</small></button>
           <div class="route-detail-card" aria-live="polite">
             <strong id="route-detail-title">Mīqāt</strong>
             <span id="route-detail-text">Hier begint de pelgrim bewust: intentie maken, iḥrām aannemen en de Talbiyah uitspreken. Iḥrām betekent dat de pelgrim een gewijde staat binnengaat.</span>
@@ -91,12 +93,12 @@
           <article class="story-step">
             <span class="step-number">1</span>
             <h3>Iḥrām en aankomst in Mekka</h3>
-            <p>Voordat pelgrims Mekka binnengaan, maken zij de intentie voor de hadj en treden zij in iḥrām. De eenvoudige kleding laat zien dat afkomst, bezit en status geen rol spelen voor Allah.</p>
+            <p>Voordat pelgrims de Mīqāt passeren, maken zij de intentie voor de hadj en treden zij in iḥrām. De eenvoudige kleding laat zien dat afkomst, bezit en status geen rol spelen voor Allah.</p>
           </article>
           <article class="story-step">
             <span class="step-number">2</span>
             <h3>Ṭawāf en saʿī</h3>
-            <p>In de Masjid al-Ḥarām lopen pelgrims zeven rondes om de Kaʾbah. Daarna lopen zij zeven keer tussen Ṣafā en Marwa, als herinnering aan de zoektocht naar water van Hajar voor haar zoon Ismāʿīl.</p>
+            <p>In de Masjid al-Ḥarām lopen pelgrims zeven rondgangen om de Kaʾbah. Daarna lopen zij zeven keer tussen Ṣafā en Marwa, als herinnering aan de zoektocht naar water van Hajar voor haar zoon Ismāʿīl.</p>
           </article>
           <article class="story-step">
             <span class="step-number">3</span>
@@ -106,26 +108,26 @@
           <article class="story-step">
             <span class="step-number">4</span>
             <h3>Muzdalifah en dag 10</h3>
-            <p>Na zonsondergang gaan pelgrims naar Muzdalifah, bidden daar Maghrib en ʿIshāʾ en verzamelen steentjes. De volgende dag keren zij terug naar Mina voor ramy, het offer en het knippen of scheren.</p>
+            <p>Na zonsondergang gaan pelgrims naar Muzdalifah, bidden daar Maghrib en ʿIshāʾ en verzamelen steentjes. De volgende dag keren zij terug naar Mina voor ramī, het offer en het knippen of scheren.</p>
           </article>
           <article class="story-step">
             <span class="step-number">5</span>
             <h3>Terug naar de Kaʾbah</h3>
-            <p>Daarna keren pelgrims terug naar Mekka voor ṭawāf al-ifāḍah en saʿī. Met deze rituelen worden de belangrijkste onderdelen van de hadj voltooid.</p>
+            <p>Daarna keren pelgrims terug naar Mekka voor ṭawāf al-ifāḍah. Afhankelijk van de vorm van hadj verrichten zij ook saʿī. Hiermee worden de belangrijkste onderdelen van de hadj voltooid.</p>
           </article>
           <article class="story-step">
             <span class="step-number">6</span>
             <h3>Afscheid en nieuw begin</h3>
-            <p>Voor vertrek verrichten pelgrims ṭawāf al-wadāʾ: de afscheidstawāf. Met deze afscheidstawāf komt de hadj ten einde; de pelgrim keert terug naar het dagelijks leven met een vernieuwd hart en sterkere toewijding.</p>
+            <p>Voor vertrek verrichten pelgrims ṭawāf al-wadāʿ: de afscheidstawāf. Daarmee sluiten zij hun verblijf in Mekka af en keren zij terug naar het dagelijks leven met een vernieuwd hart en sterkere toewijding.</p>
           </article>
         </div>
       </section>
 
       <section class="talbiyah-section" aria-labelledby="talbiyah-title">
         <div class="talbiyah-copy">
-          <p class="landing-kicker">Belangrijke uitspraak</p>
+          <p class="landing-kicker">Belangrijke bedevaartuitspraak</p>
           <h2 id="talbiyah-title">De Talbiyah</h2>
-          <p>Na de intentie spreekt de pelgrim de Talbiyah uit. Het is een bekende gebedsformule die tijdens de bedevaart vaak wordt herhaald.</p>
+          <p>Na de intentie spreekt de pelgrim de Talbiyah uit. Het is een bekende gebedsformule (bedevaartuitspraak) die tijdens de hadj vaak wordt herhaald.</p>
         </div>
         <div class="talbiyah-card">
           <p class="talbiyah-arabic" dir="rtl" lang="ar">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ، وَالنِّعْمَةَ، لَكَ وَالْمُلْكَ، لاَ شَرِيكَ لَكَ</p>
@@ -137,27 +139,27 @@
       <section class="truth-section" aria-labelledby="truth-title">
         <div>
           <p class="landing-kicker">Belangrijk om goed te onthouden</p>
-          <h2 id="truth-title">De hadj is meer dan lopen van plek naar plek</h2>
+          <h2 id="truth-title">De hadj is meer dan een fysieke reis</h2>
         </div>
         <div class="truth-list">
           <div class="truth-item">
             <strong>Arafat is het hart van de hadj</strong>
-            <span>Op Arafat staat de pelgrim in wuqūf: een moment van smeekbeden, berouw en bezinning. Zonder dit staan is de hadj niet geldig; Jabl al-Raḥmah beklimmen is geen voorwaarde.</span>
+            <span>Op Arafat staat de pelgrim in wuqūf: een periode van smeekbeden, berouw en bezinning. Zonder wuqūf is de hadj niet geldig; het beklimmen van Jabal al-Raḥmah is geen voorwaarde.</span>
           </div>
           <div class="truth-item">
             <strong>Iḥrām verandert ook je gedrag</strong>
-            <span>Bij iḥrām dragen mannen twee witte doeken en vrouwen eenvoudige, bedekkende kleding. Deze kleding symboliseert gelijkheid, nederigheid en eenheid.</span>
+            <span>Tijdens iḥrām dragen mannen twee witte doeken en vrouwen eenvoudige, bedekkende kleding. De eenvoudige kleding herinnert aan gelijkheid, nederigheid en eenheid.</span>
           </div>
           <div class="truth-item">
-            <strong>Ramy is verzet tegen het kwaad</strong>
-            <span>Het gooien van steentjes bij de zuilen herinnert aan Ibrāhīm vrede zij met hem en symboliseert dat een moslim verleiding, ongehoorzaamheid en kwaad afwijst.</span>
+            <strong>Ramī is verzet tegen het kwaad</strong>
+            <span>Het gooien van steentjes bij de zuilen herinnert aan profeet Ibrāhīm, vrede zij met hem, en laat zien dat een moslim verleiding, ongehoorzaamheid en kwaad afwijst.</span>
           </div>
           <div class="truth-item">
             <strong>ʿEid al-Adha gaat over toewijding</strong>
-            <span>Het offer herdenkt de gehoorzaamheid van Ibrāhīm vrede zij met hem en symboliseert toewijding, oprechtheid en onderwerping aan Allah. Het vlees wordt gedeeld met het eigen gezin, familie en mensen die het nodig hebben.</span>
+            <span>De offerhandeling herinnert aan de gehoorzaamheid van profeet Ibrāhīm, vrede zij met hem, en symboliseert toewijding, oprechtheid en onderwerping aan Allah. Het vlees wordt gedeeld met het eigen gezin, familie en mensen die het nodig hebben.</span>
           </div>
           <div class="truth-item">
-            <strong>De reis moet iets in je achterlaten</strong>
+            <strong>De hadj laat sporen achter in het hart</strong>
             <span>Voor miljoenen moslims is de hadj een periode van spirituele groei, aanbidding en verbondenheid met Allah. De reis inspireert om met een vernieuwd hart en sterkere toewijding terug te keren.</span>
           </div>
         </div>
