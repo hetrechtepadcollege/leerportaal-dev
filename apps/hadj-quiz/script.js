@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const websiteUrl = window.location.href;
             const uitnodiging = `As-Salām ʿAlaykum! Ik heb net de kennisquiz over de hadj gedaan. Wil jij je kennis ook testen? Hier vind je de quiz: ${websiteUrl}`;
             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(uitnodiging)}`;
-            window.open(whatsappUrl, "_blank");
+            window.open(whatsappUrl, "_blank", "noopener,noreferrer");
             trackEvent("hadj-quiz/gedeeld-whatsapp", "Hadj quiz gedeeld via WhatsApp");
         });
     }
@@ -396,11 +396,11 @@ document.addEventListener("DOMContentLoaded", () => {
         characterImg.classList.remove("fade-in-element", "celebrate", "shake");
         void qTextElement.offsetWidth;
         void characterImg.offsetWidth;
-        characterImg.src = "images/mw-neutral.png";
+        characterImg.src = "images/mw-neutral.webp";
         qTextElement.classList.add("fade-in-element");
         characterImg.classList.add("fade-in-element");
         if (state.answered) {
-            characterImg.src = state.correct ? "images/mw-happy.png" : "images/mw-sad.png";
+            characterImg.src = state.correct ? "images/mw-happy.webp" : "images/mw-sad.webp";
         }
     }
 
@@ -426,7 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (isCorrect) {
             btn.classList.add("correct");
-            characterImg.src = "images/mw-happy.png";
+            characterImg.src = "images/mw-happy.webp";
             characterImg.classList.add("celebrate");
             if (correctSound) {
                 correctSound.currentTime = 0;
@@ -439,7 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } else {
             btn.classList.add("wrong");
-            characterImg.src = "images/mw-sad.png";
+            characterImg.src = "images/mw-sad.webp";
             characterImg.classList.remove("shake");
             void characterImg.offsetWidth;
             characterImg.classList.add("shake");
@@ -469,7 +469,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const scoreLabel = pct >= 0.85 ? "Uitstekend!" : pct >= 0.65 ? "Goed gedaan!" : pct >= 0.45 ? "Aardig op weg!" : "Blijf leren!";
         scoreText.innerHTML = `<div class="score-card"><div class="score-card-number">${score}<span class="score-card-denom"> / ${questions.length}</span></div><div class="score-card-label">${scoreLabel}</div><p class="score-card-dua">Moge Allah jouw kennis vermeerderen, jouw daden accepteren en iedereen die verlangt naar de hadj deze gezegende reis schenken.</p></div>`;
         resultContainer.classList.remove("hide");
-        characterImg.src = "images/mw-happy.png";
+        characterImg.src = "images/mw-happy.webp";
         characterImg.classList.add("celebrate");
         if (ritualScene) {
             ritualScene.setAttribute("data-scene", "complete");

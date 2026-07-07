@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const websiteUrl = window.location.href;
             const uitnodiging = `As-Salām ʿAlaykum! Ik heb net een leuke ʿEid al-Fiṭr kennisquiz gedaan. Wil jij je kennis ook testen? Hier vind je de quiz: ${websiteUrl}`;
             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(uitnodiging)}`;
-            window.open(whatsappUrl, "_blank");
+            window.open(whatsappUrl, "_blank", "noopener,noreferrer");
             trackEvent("ramadan-quiz-eid/gedeeld-whatsapp", "ʿEid al-Fiṭr quiz gedeeld via WhatsApp");
         });
     }
@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
         characterImg.classList.remove("fade-in-element", "celebrate", "shake");
         void qTextElement.offsetWidth;
         void characterImg.offsetWidth;
-        characterImg.src = "images/mw-neutral.png";
+        characterImg.src = "images/mw-neutral.webp";
         qTextElement.classList.add("fade-in-element");
         characterImg.classList.add("fade-in-element");
     }
@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (isCorrect) {
             btn.classList.add("correct");
-            characterImg.src = "images/mw-happy.png";
+            characterImg.src = "images/mw-happy.webp";
             characterImg.classList.add("celebrate");
             if (correctSound) {
                 correctSound.currentTime = 0;
@@ -386,7 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             btn.classList.add("wrong");
             firstTry = false;
-            characterImg.src = "images/mw-sad.png";
+            characterImg.src = "images/mw-sad.webp";
             characterImg.classList.remove("shake");
             void characterImg.offsetWidth;
             characterImg.classList.add("shake");
@@ -408,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
         qTextElement.innerText = "Māshā Allāh! Je hebt de Kennisquiz ʿEid al-Fiṭr afgerond.";
         scoreText.innerHTML = `Eindscore: ${score} van de ${questions.length}<br><br>Moge Allah jouw ʿEid al-Fiṭr vullen met vreugde, dankbaarheid en zegeningen. ʿEid Mubārak! 🌙`;
         resultContainer.classList.remove("hide");
-        characterImg.src = "images/mw-happy.png";
+        characterImg.src = "images/mw-happy.webp";
         characterImg.classList.add("celebrate");
 
         if (typeof confetti === "function") {
