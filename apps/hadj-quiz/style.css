@@ -1311,7 +1311,7 @@ body {
     gap: 0;
 }
 
-.answer-letter {
+#answer-buttons .btn-letter {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1328,16 +1328,16 @@ body {
     transition: background 0.16s ease, color 0.16s ease;
 }
 
-#answer-buttons .btn:hover:not([disabled]):not(.correct):not(.wrong) .answer-letter {
+#answer-buttons .btn:hover:not([disabled]):not(.correct):not(.wrong) .btn-letter {
     background: rgba(31, 41, 77, 0.16);
 }
 
-#answer-buttons .btn.correct .answer-letter {
+#answer-buttons .btn.correct .btn-letter {
     background: rgba(22, 163, 74, 0.18) !important;
     color: #14532d !important;
 }
 
-#answer-buttons .btn.wrong .answer-letter {
+#answer-buttons .btn.wrong .btn-letter {
     background: rgba(239, 68, 68, 0.18) !important;
     color: #b91c1c !important;
 }
