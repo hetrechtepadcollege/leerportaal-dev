@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     void characterImg.offsetWidth;
 
     // 3. Stel de neutrale afbeelding in
-    characterImg.src = 'images/neutral.png';
+    characterImg.src = 'images/neutral.webp';
 
     // 4. Voeg de animatie class weer toe
     qTextElement.classList.add('fade-in-element');
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('correct');
             disableAllAnswerButtons();
 
-            characterImg.src = 'images/happy.png';
+            characterImg.src = 'images/happy.webp';
             characterImg.classList.add('celebrate');
 
             if (correctSound) {
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.disabled = true;
         firstTry = false;
 
-        characterImg.src = 'images/sad.png';
+        characterImg.src = 'images/sad.webp';
         characterImg.classList.remove('shake');
         void characterImg.offsetWidth;
         characterImg.classList.add('shake');
@@ -355,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resultContainer.classList.remove('hide');
 
     // 4. Afbeelding aanpassen
-    characterImg.src = 'images/happy.png';
+    characterImg.src = 'images/happy.webp';
     characterImg.classList.add('celebrate');
 
     // 5. Confetti effect
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const websiteUrl = window.location.href;
             const uitnodiging = `As-Salām ʿAlaykum! Ik heb net een leuke Ramadan kennisquiz gedaan. Wil jij je kennis ook testen? Hier vind je de quiz: ${websiteUrl}`;
             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(uitnodiging)}`;
-            window.open(whatsappUrl, '_blank');
+            window.open(whatsappUrl, "_blank", "noopener,noreferrer");
             trackEvent('ramadan-quiz-kids/gedeeld-whatsapp', 'Ramadan quiz kids gedeeld via WhatsApp');
         });
     }

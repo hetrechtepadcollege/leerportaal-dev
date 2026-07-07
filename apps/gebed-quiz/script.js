@@ -966,7 +966,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const websiteUrl = window.location.href;
             const uitnodiging = `As-Salām ʿAlaykum! Ik heb net een leuke kennisquiz over het gebed gedaan. Wil jij je kennis ook testen? Hier vind je de quiz: ${websiteUrl}`;
             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(uitnodiging)}`;
-            window.open(whatsappUrl, "_blank");
+            window.open(whatsappUrl, "_blank", "noopener,noreferrer");
             trackEvent("gebed-quiz/gedeeld-whatsapp", "Kennisquiz Gebed gedeeld via WhatsApp");
         });
     }
@@ -1051,7 +1051,7 @@ document.addEventListener("DOMContentLoaded", () => {
         characterImg.classList.remove("fade-in-element", "celebrate", "shake");
         void qTextElement.offsetWidth;
         void characterImg.offsetWidth;
-        characterImg.src = "images/mw-neutral.png";
+        characterImg.src = "images/mw-neutral.webp";
         qTextElement.classList.add("fade-in-element");
         characterImg.classList.add("fade-in-element");
     }
@@ -1071,7 +1071,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (isCorrect) {
             btn.classList.add("correct");
-            characterImg.src = "images/mw-happy.png";
+            characterImg.src = "images/mw-happy.webp";
             characterImg.classList.add("celebrate");
             if (correctSound) {
                 correctSound.currentTime = 0;
@@ -1084,7 +1084,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             btn.classList.add("wrong");
             firstTry = false;
-            characterImg.src = "images/mw-thinking.png";
+            characterImg.src = "images/mw-thinking.webp";
             characterImg.classList.remove("shake");
             void characterImg.offsetWidth;
             characterImg.classList.add("shake");
@@ -1107,7 +1107,7 @@ document.addEventListener("DOMContentLoaded", () => {
         qTextElement.innerText = "Māshā Allāh! Je hebt de Kennisquiz Gebed afgerond.";
         scoreText.innerHTML = `Eindscore: ${score} van de ${activeQuestions.length}<br><br>Moge Allah ons allen helpen ons gebed te onderhouden met aandacht, eerbiedigheid en toewijding. Āmīn!`;
         resultContainer.classList.remove("hide");
-        characterImg.src = "images/mw-dua.png";
+        characterImg.src = "images/mw-dua.webp";
         characterImg.classList.add("end");
 
         if (typeof confetti === "function") {
